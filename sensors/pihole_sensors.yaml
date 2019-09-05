@@ -1,0 +1,47 @@
+##PiHole Sensors, integrated and Glances
+
+#Convert piHole CPU temp from F to Celcius
+  - platform: template
+    sensors:     
+     pihole_temp_c:
+      friendly_name: "piHole CPU Temp"
+      unit_of_measurement: 'C'
+      value_template: "{{ ((states('sensor.pihole_stats_cpu_temp')|float-32)*(5/9)) | round(2)}}"
+      
+#Enable glances platform on PiHole
+#appears as sensor.pihole_stats_[resouce name]
+   
+  - platform: glances
+    version: 3
+    name: piHole Stats
+    host: 192.168.1.135
+    port: 61208
+    resources:
+     - 'disk_use_percent'
+     - 'disk_use'
+     - 'disk_free'
+     - 'memory_use_percent' #ram_used_percent
+     - 'memory_use'
+     - 'memory_free'
+     - 'swap_use_percent'
+     - 'swap_use'
+     - 'swap_free'
+     - 'processor_load'
+     - 'process_running'
+     - 'process_total'
+     - 'process_thread'
+     - 'process_sleeping'
+     - 'cpu_temp'
+
+#PiHole Stats
+  - platform: pi_hole
+    host: 192.168.1.135
+    monitored_conditions:
+        - ads_blocked_today
+        - ads_percentage_today
+        - dns_queries_today
+        - domains_being_blocked
+        - queries_cached
+        - queries_forwarded
+        - unique_clients
+        - unique_domains
