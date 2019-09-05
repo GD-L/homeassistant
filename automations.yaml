@@ -44,5 +44,26 @@
       data:
         entity_id: climate.downstairs
         preset_mode: 'Home' 
-       
+
+#Set thermostats to Away when !@ Home
+- alias: "Set Thermostats to Away"
+  initial_state: true
+  trigger: 
+    platform: state
+    entity_id: device_tracker.greg_samsunggalaxys8
+    
+  condition:
+    condition: state
+    entity_id: device_tracker.greg_samsunggalaxys8
+    state: 'not_home'
   
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.upstairs
+        preset_mode: 'Away'
+ 
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.downstairs
+        preset_mode: 'Away' 
