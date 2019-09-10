@@ -12,6 +12,10 @@ homeassistant:
   unit_system: imperial
   time_zone: America/New_York
 
+#System Health
+#https://www.home-assistant.io/components/system_health/
+system_health:
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -21,14 +25,14 @@ automation: !include automations.yaml
 #Set frontent to point to themes file
 frontend:
     themes: !include themes.yaml
+
+#Other Configurations
+#https://www.home-assistant.io/docs/configuration/splitting_configuration/
 group: !include groups.yaml
 script: !include scripts.yaml
 sensor: !include_dir_merge_list sensors/
 recorder: !include recorder.yaml
-sun:
-
-
-    
+  
 ### Weather
 
 
@@ -40,7 +44,7 @@ weather:
     latitude: !secret home_lat
     longitude: !secret home_long
 
-
+sun:
 
 discovery: 
     ignore:

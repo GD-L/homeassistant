@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/home-assistant/home-assistant-assets/master/logo-pretty.png" height ="220">
+</p>
+
 # Home Assistant Setup
 
 This is my Home Assistant setup. I have Home Assitant setup on a [CoreOS](https://coreos.com/) instance on ESXi. CoreOS then hosts [Docker](https://www.docker.com/) with 8GB RAM (currently) dedicated to all Docker instances.
@@ -11,13 +15,16 @@ The equvanelnt docker run would be:
 
 ## Components
 
+### Hardware
+
 * [Wink Hub 2](https://www.wink.com/products/wink-hub-2/) - This currently serves as my hub for most components, specifically for Z-Wave and Zigbee devices.
   * [Sylvania Smart Plug](https://consumer.sylvania.com/our-products/smart/product-info/zigbee/sylvania-smart-zigbee-indoor-smart-plug/index.jsp) (2x)
   * [GE Z-Wave In-Wall Switch](https://byjasco.com/products/ge-z-wave-plus-wall-smart-switch-white-toggle)
   * [Wink Door Sensor](https://www.wink.com/products/wink-doorwindow-sensor/) (2x)
   * [Wink Siren and Chime](https://www.wink.com/products/wink-siren-and-chime/)
-* [Ecobee Lite3 Thermostats](https://www.ecobee.com/ecobee3-lite/) 
+* [Ecobee Lite3 Thermostats](https://www.ecobee.com/ecobee3-lite/) (2x: Upstairs, Downstairs)
 * [WeMo Smart Plug (F7C027)](https://www.belkin.com/us/Products/smarthome-iot/c/wemo/)
+* [Roku Streaming Stick+](https://www.roku.com/products/streaming-stick-plus)
 
 ### Sensors & Integrations
 
@@ -33,3 +40,9 @@ The equvanelnt docker run would be:
 * [Ecovacs](https://www.home-assistant.io/components/ecovacs/)
 * [Speedtest](https://www.home-assistant.io/components/speedtestdotnet/)
 * [Owntracks](https://www.home-assistant.io/components/owntracks/)
+
+## Automations
+Automations are currently built into the [automations.yaml](https://gitlab.com/gregdelima/homeassistant/blob/master/automations.yaml) this may change to a `!include_dir_merge_list` in a future state.
+
+# WIP
+As with most things, this is a work in progress so there may be updates and/or small tweaks here and there.
