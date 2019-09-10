@@ -1,6 +1,6 @@
-<p align="center">
+<div align="center">
   <img src="https://raw.githubusercontent.com/home-assistant/home-assistant-assets/master/logo-pretty.png" height ="220" align="center">
-</p>
+</div>
 
 # Home Assistant Setup
 
