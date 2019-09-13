@@ -1,0 +1,14 @@
+inside_lights:
+  name: Inside Lights
+  icon: mdi:lightbulb
+  entities:
+    - switch.bedroom_lamp
+    - switch.bookshelf_lamp
+    - switch.lr
+    - switch.office
+    
+livingroom:
+  name: Living Room
+  entities:
+  - switch.lr
+  - switch.bookshelf_lamp  
