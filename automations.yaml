@@ -5,8 +5,9 @@
     event: sunrise
     offset: "+00:05:00"
   action:
-    service: switch.turn_on
-    entity_id: group.livingroom
+    service: homeassistant.turn_on
+    data:
+      entity_id: group.livingroom
     
 #Turn on the inside lights 1HR before sunset
 - alias: "Sun down inside lights"
@@ -15,12 +16,12 @@
     event: sunset
     offset: "-01:0:00"
   action:
-    service: switch.turn_on
+    service: homeassistant.turn_on
     data:
       entity_id: 
         - group.livingroom
         - switch.bedroom_lamp
-         - switch.office
+        - switch.office
 
 #Set thermostats to home when @ Home
 - alias: "Set Thermostats to Home"
@@ -30,9 +31,20 @@
     entity_id: device_tracker.greg_samsunggalaxys8
     
   condition:
-    condition: state
-    entity_id: device_tracker.greg_samsunggalaxys8
-    state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.greg_samsunggalaxys8
+        state: 'home'
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
   
   action:
     - service: climate.set_preset_mode
@@ -53,9 +65,20 @@
     entity_id: device_tracker.greg_samsunggalaxys8
     
   condition:
-    condition: state
-    entity_id: device_tracker.greg_samsunggalaxys8
-    state: 'not_home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.greg_samsunggalaxys8
+        state: 'not_home'
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
   
   action:
     - service: climate.set_preset_mode
@@ -66,4 +89,33 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.downstairs
-        preset_mode: 'Away' 
+        preset_mode: 'Away'
+        
+#Turn on Inside Lights When I get Home
+- alias: "Inside Lights when Home"
+  initial_state: true
+  trigger: 
+    platform: state
+    entity_id: device_tracker.greg_samsunggalaxys8
+    
+  condition:
+    condition: and
+    conditions:
+      - condition: state #Greg is Home
+        entity_id: device_tracker.greg_samsunggalaxys8
+        state: 'home'
+      - condition: time #Between 08:00 & 17:00 on Weekdays
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  
+  action:
+    - service: homeassistant.turn_on #Turn on the Inside Lights Group
+      data:
+        entity_id: group.inside_lights
+    

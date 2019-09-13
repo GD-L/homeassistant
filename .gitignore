@@ -7,9 +7,12 @@
 !.gitignore
 !*.md
 !/sensors
+!/.storage/lovelace*
+!/www
 
 # Ignore folders.
-
+/.cloud
+/.storage
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 
