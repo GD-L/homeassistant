@@ -110,6 +110,7 @@ ecovacs:
 #Speedtest.net
 
 speedtestdotnet:
+  server_id: 16970
   scan_interval:
     minutes: 30
   monitored_conditions:
@@ -125,4 +126,10 @@ owntracks:
   #events_only: true
   #secret: !secret owntrackskey
   
-
+device_tracker:
+   
+  - platform: ping
+    hosts:
+      sara: 192.168.1.130
+      scan_interval: 60
+  

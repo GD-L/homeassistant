@@ -1,3 +1,28 @@
+#Update Weather Sensors
+- alias: Update Weather Sensors
+  initial_state: true
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+   - service: homeassistant.update_entity
+     entity_id:
+      - sensor.forecast_0
+      - sensor.forecast_1
+      - sensor.forecast_2
+      - sensor.forecast_3
+      - sensor.forecast_4
+      - sensor.forecast_5
+      - sensor.forecast_6
+      - sensor.forecast_7
+      - sensor.sunset
+      - sensor.sunrise
+      - sensor.daylight
+     
+     
+      
+
+
 #Turn on the living room lights 5min after sunrise
 - alias: "Sun up living room lights"
   trigger:
@@ -27,15 +52,14 @@
 - alias: "Set Thermostats to Home"
   initial_state: true
   trigger: 
-    platform: state
-    entity_id: device_tracker.greg_samsunggalaxys8
+    - platform: state
+      entity_id: 
+        - device_tracker.greg_samsunggalaxys8
+        - device_tracker.sara
     
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: device_tracker.greg_samsunggalaxys8
-        state: 'home'
       - condition: time 
         after: '08:00:00'
         before: '17:00:00'
@@ -45,7 +69,15 @@
           - wed
           - thu
           - fri
-  
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: device_tracker.greg_samsunggalaxys8
+            state: 'home'
+          - condition: state
+            entity_id: device_tracker.sara
+            state: 'home'
+
   action:
     - service: climate.set_preset_mode
       data:
@@ -61,15 +93,14 @@
 - alias: "Set Thermostats to Away"
   initial_state: true
   trigger: 
-    platform: state
-    entity_id: device_tracker.greg_samsunggalaxys8
+    - platform: state
+      entity_id: 
+        - device_tracker.greg_samsunggalaxys8
+        - device_tracker.sara
     
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: device_tracker.greg_samsunggalaxys8
-        state: 'not_home'
       - condition: time 
         after: '08:00:00'
         before: '17:00:00'
@@ -79,7 +110,15 @@
           - wed
           - thu
           - fri
-  
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: device_tracker.greg_samsunggalaxys8
+            state: 'not_home'
+          - condition: state
+            entity_id: device_tracker.sara
+            state: 'not_home'
+
   action:
     - service: climate.set_preset_mode
       data:
@@ -89,7 +128,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.downstairs
-        preset_mode: 'Away'
+        preset_mode: 'Away' 
         
 #Turn on Inside Lights When I get Home
 - alias: "Inside Lights when Home"
