@@ -29,6 +29,24 @@
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
     
+#Test version of net 24hr runtime
+  - platform: history_stats
+    name: Upstairs heat test
+    entity_id: sensor.upstairsthermoper
+    state: 'heating'
+    type: time
+    start: '{{as_timestamp(now())-86400}}'
+    end: '{{as_timestamp(now())}}'
+    
+  - platform: history_stats
+    name: Upstairs cool test
+    entity_id: sensor.upstairsthermoper
+    state: 'cooling'
+    type: time
+    start: '{{as_timestamp(now())-86400}}'
+    end: '{{as_timestamp(now())}}'
+#END TEST
+    
   - platform: template
     sensors:
 
@@ -89,3 +107,21 @@
           {%- else -%}
             mdi:fan
           {%- endif -%}
+
+#START TEST
+      upstairs_hvac_runtime_test:
+        friendly_name: "Upstairs 24Hr HVAC Runtime"
+        unit_of_measurement: "h"
+        value_template: >-
+           {%- if [states.sensor.upstairs_cool_test.state|float, states.sensor.upstairs_heat_test.state|float, 0]|max != None -%}
+             {{ [states.sensor.upstairs_cool_test.state|float, states.sensor.upstairs_heat_test.state|float, 0]|max }}
+           {%- else -%}
+             0
+           {%- endif -%}
+        icon_template: >-
+          {%- if states('sensor.upstairs_cool_test')|default(0) < states('sensor.upstairs_heat_test')|default(0) -%}
+            mdi:fire
+          {%- elif states('sensor.upstairs_cool_test')|default(0) > states('sensor.upstairs_heat_test')|default(0) -%}
+            mdi:snowflake
+          {%- endif -%}
+#END TEST
