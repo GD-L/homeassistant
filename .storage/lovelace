@@ -336,6 +336,15 @@
                     ],
                     "path": "netstats",
                     "title": "NetStats"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "media_player.delimastick_lr",
+                            "type": "media-control"
+                        }
+                    ]
                 }
             ]
         }

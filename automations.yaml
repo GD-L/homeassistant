@@ -3,7 +3,7 @@
   initial_state: true
   trigger:
     platform: time
-    at: '00:00:01'
+    at: '00:00:05'
   action:
    - service: homeassistant.update_entity
      entity_id:
@@ -23,12 +23,12 @@
       
 
 
-#Turn on the living room lights 5min after sunrise
+#Turn on the living room lights 30min before sunrise
 - alias: "Sun up living room lights"
   trigger:
     platform: sun
     event: sunrise
-    offset: "+00:05:00"
+    offset: "-00:30:00"
   action:
     service: homeassistant.turn_on
     data:
@@ -54,7 +54,7 @@
   trigger: 
     - platform: state
       entity_id: 
-        - device_tracker.greg_samsunggalaxys8
+        - person.greg
         - device_tracker.sara
     
   condition:
@@ -72,8 +72,9 @@
       - condition: or
         conditions:
           - condition: state
-            entity_id: device_tracker.greg_samsunggalaxys8
+            entity_id: person.greg
             state: 'home'
+          
           - condition: state
             entity_id: device_tracker.sara
             state: 'home'
@@ -95,7 +96,7 @@
   trigger: 
     - platform: state
       entity_id: 
-        - device_tracker.greg_samsunggalaxys8
+        - person.greg
         - device_tracker.sara
     
   condition:
@@ -113,7 +114,7 @@
       - condition: or
         conditions:
           - condition: state
-            entity_id: device_tracker.greg_samsunggalaxys8
+            entity_id: person.greg
             state: 'not_home'
           - condition: state
             entity_id: device_tracker.sara
@@ -135,13 +136,13 @@
   initial_state: true
   trigger: 
     platform: state
-    entity_id: device_tracker.greg_samsunggalaxys8
+    entity_id: person.greg
     
   condition:
     condition: and
     conditions:
       - condition: state #Greg is Home
-        entity_id: device_tracker.greg_samsunggalaxys8
+        entity_id: person.greg
         state: 'home'
       - condition: time #Between 08:00 & 17:00 on Weekdays
         after: '08:00:00'
