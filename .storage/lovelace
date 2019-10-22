@@ -135,6 +135,14 @@
                             ],
                             "title": "Vacuums",
                             "type": "vertical-stack"
+                        },
+                        {
+                            "aspect_ratio": "50%",
+                            "camera_view": "live",
+                            "entity": "camera.lr_camera",
+                            "show_name": true,
+                            "show_state": false,
+                            "type": "picture-entity"
                         }
                     ],
                     "path": "default_view",
@@ -144,6 +152,14 @@
                     "badges": [],
                     "cards": [
                         {
+                            "entities": [
+                                {
+                                    "entity": "sensor.moon"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
                             "entity": "weather.dark_sky",
                             "name": "Weather",
                             "type": "weather-forecast"
@@ -151,7 +167,7 @@
                         {
                             "aspect_ratio": "80%",
                             "type": "iframe",
-                            "url": "https://embed.windy.com/embed2.html?lat=36.036&lon=-78.898&zoom=8&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=35.903&detailLon=-78.744&metricWind=default&metricTemp=default&radarRange=-1"
+                            "url": "https://embed.windy.com/embed2.html?lat=36.036&lon=-78.898&zoom=8&level=surface&overlay=rain&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=35.903&detailLon=-78.744&metricWind=default&metricTemp=default&radarRange=-1"
                         },
                         {
                             "entities": [
@@ -343,6 +359,11 @@
                         {
                             "entity": "media_player.delimastick_lr",
                             "type": "media-control"
+                        },
+                        {
+                            "camera_view": "live",
+                            "entity": "camera.lr_camera",
+                            "type": "picture-entity"
                         }
                     ]
                 }

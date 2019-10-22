@@ -2,8 +2,8 @@
 - alias: Update Weather Sensors
   initial_state: true
   trigger:
-    platform: time
-    at: '00:00:05'
+    platform: time_pattern
+    hours: "/1"
   action:
    - service: homeassistant.update_entity
      entity_id:
@@ -19,9 +19,6 @@
       - sensor.sunrise
       - sensor.daylight
      
-     
-      
-
 
 #Turn on the living room lights 30min before sunrise
 - alias: "Sun up living room lights"
@@ -98,7 +95,7 @@
       entity_id: 
         - person.greg
         - device_tracker.sara
-    
+
   condition:
     condition: and
     conditions:
@@ -111,14 +108,12 @@
           - wed
           - thu
           - fri
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: person.greg
-            state: 'not_home'
-          - condition: state
-            entity_id: device_tracker.sara
-            state: 'not_home'
+      - condition: state
+        entity_id: person.greg
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.sara
+        state: 'not_home'
 
   action:
     - service: climate.set_preset_mode
@@ -171,3 +166,24 @@
     - service: notify.telegram_notify
       data:
         message: 'pong'
+
+
+#- id: downstairs_vacuum_cleaner_error
+#  alias: Downstairs Vacuum Cleaner Error
+#  trigger:
+#    - platform: state
+##      entity_id: sensor.vacuum_cleaner_status_sensor
+#      to: 'Error'
+#    - platform: state
+#      entity_id: sensor.vacuum_cleaner_status_sensor
+#      to: 'In Error'
+#  action:
+#    - service: notify.telegram_notify
+#      data:
+#        title: '*Vacuum cleaner error*'
+#        message: >-
+#          {% if is_state('sensor.vacuum_cleaner_error_sensor', 'stop')  %}
+#            {{states.sensor.vacuum_cleaner_status_sensor.status}}
+#          {% else %}
+#            {{states.sensor.vacuum_cleaner_error_sensor.status}}
+#          {% endif %}

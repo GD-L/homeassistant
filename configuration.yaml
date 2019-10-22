@@ -45,6 +45,10 @@ weather:
     units: us
     latitude: !secret home_lat
     longitude: !secret home_long
+    
+  - platform: nws
+    api_key: !secret nws_api
+    station: !secret nws_station
 
 sun:
 
@@ -147,3 +151,18 @@ notify:
   - name: telegram_notify
     platform: telegram
     chat_id: !secret greg_chatid
+ 
+#piHole
+pi_hole:
+  host: '192.168.1.135'
+  ssl: false
+  verify_ssl: false
+
+
+
+#cams
+camera:
+  - platform: generic
+    name: LR Camera
+    still_image_url: www/wyze-logo.jpg
+    stream_source: !secret wyzecam_lr
