@@ -36,7 +36,7 @@
   trigger:
     platform: sun
     event: sunset
-    offset: "-01:0:00"
+    offset: "-01:00:00"
   action:
     service: homeassistant.turn_on
     data:
@@ -52,7 +52,7 @@
     - platform: state
       entity_id: 
         - person.greg
-        - device_tracker.sara
+        - person.sara
     
   condition:
     condition: and
@@ -73,7 +73,7 @@
             state: 'home'
           
           - condition: state
-            entity_id: device_tracker.sara
+            entity_id: person.sara
             state: 'home'
 
   action:
@@ -94,7 +94,7 @@
     - platform: state
       entity_id: 
         - person.greg
-        - device_tracker.sara
+        - person.sara
 
   condition:
     condition: and
@@ -108,11 +108,14 @@
           - wed
           - thu
           - fri
+      #- condition: state
+      #  entity_id: person.greg
+      #  state: 'not_home'
+      - condition: template
+        value_template: "{{ not is_state('person.greg','home') }}"
+      
       - condition: state
-        entity_id: person.greg
-        state: 'not_home'
-      - condition: state
-        entity_id: device_tracker.sara
+        entity_id: person.sara
         state: 'not_home'
 
   action:
@@ -138,6 +141,9 @@
     conditions:
       - condition: state #Greg is Home
         entity_id: person.greg
+        state: 'home'
+      - condition: state #Sara is Home
+        entity_id: person.sara
         state: 'home'
       - condition: time #Between 08:00 & 17:00 on Weekdays
         after: '08:00:00'
@@ -167,23 +173,28 @@
       data:
         message: 'pong'
 
-
-#- id: downstairs_vacuum_cleaner_error
-#  alias: Downstairs Vacuum Cleaner Error
-#  trigger:
-#    - platform: state
-##      entity_id: sensor.vacuum_cleaner_status_sensor
-#      to: 'Error'
-#    - platform: state
-#      entity_id: sensor.vacuum_cleaner_status_sensor
-#      to: 'In Error'
-#  action:
-#    - service: notify.telegram_notify
-#      data:
-#        title: '*Vacuum cleaner error*'
-#        message: >-
-#          {% if is_state('sensor.vacuum_cleaner_error_sensor', 'stop')  %}
-#            {{states.sensor.vacuum_cleaner_status_sensor.status}}
-#          {% else %}
-#            {{states.sensor.vacuum_cleaner_error_sensor.status}}
-#          {% endif %}
+#Turn off Inside Lights when no one has been home for 20 min
+- alias: 'Lights off No One Home'
+  initial_state: true
+  trigger: 
+    - platform: template
+      value_template: >
+        {{ not is_state('person.greg','home') and
+           not is_state('person.sara','home') }}
+      for:
+        minutes: 20
+  condition:
+    - condition: time 
+      after: '08:00:00'
+      before: '17:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        
+  action:
+    - service: homeassistant.turn_off #Turn off the Inside Lights Group
+      data:
+        entity_id: group.inside_lights
