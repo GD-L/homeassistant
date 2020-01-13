@@ -9,7 +9,7 @@ This is my Home Assistant setup. I have Home Assitant setup on a [CoreOS](https:
 I set up HomeAssistant along side my [Docker-Nginx](https://gitlab.com/gregdelima/docker-nginx) instance allowing for SSL and building with [Haaska](https://github.com/mike-grant/haaska).
 
 Home Assistant was set up using the [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant/) Docker Image. `/PATH_TO_YOUR_CONFIG` was remapped to `/docker/homeassistant` 
-The equvanelnt docker run would be:
+The equivalent docker run would be:
 
 `docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /docker/homeassistant:/config --net=host homeassistant/home-assistant:stable`
 
