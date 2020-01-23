@@ -1,0 +1,86 @@
+#Turn on the living room lights 30min before sunrise
+- alias: "Sun up living room lights"
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "-00:30:00"
+  action:
+    service: homeassistant.turn_on
+    data:
+      entity_id: group.livingroom
+    
+#Turn on the inside lights 1HR before sunset
+- alias: "Sun down inside lights"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  action:
+    service: homeassistant.turn_on
+    data:
+      entity_id: 
+        - group.livingroom
+        - switch.bedroom_lamp
+        - switch.office
+
+#Turn on Inside Lights When I get Home
+- alias: "Inside Lights when Home"
+  initial_state: true
+  trigger: 
+    platform: state
+    entity_id: person.greg
+    
+  condition:
+    condition: and
+    conditions:
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: person.greg
+            state: 'home'
+          
+          - condition: state
+            entity_id: person.sara
+            state: 'home'
+
+  
+  action:
+    - service: homeassistant.turn_on #Turn on the Inside Lights Group
+      data:
+        entity_id: group.inside_lights
+
+
+#Turn off Inside Lights when no one has been home for 20 min
+- alias: 'Lights off No One Home'
+  initial_state: true
+  trigger: 
+    - platform: template
+      value_template: >
+        {{ not is_state('person.greg','home') and
+           not is_state('person.sara','home') }}
+      for:
+        minutes: 20
+  condition:
+    - condition: time 
+      after: '08:00:00'
+      before: '17:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        
+  action:
+    - service: homeassistant.turn_off #Turn off the Inside Lights Group
+      data:
+        entity_id: group.inside_lights

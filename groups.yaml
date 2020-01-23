@@ -12,3 +12,9 @@ livingroom:
   entities:
   - switch.lr
   - switch.bookshelf_lamp  
+ 
+family:
+  name: Family
+  entities:
+  - person.sara
+  - person.greg

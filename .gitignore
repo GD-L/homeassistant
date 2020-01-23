@@ -9,6 +9,7 @@
 !/sensors
 !/.storage/lovelace*
 !/www
+!/automations
 
 # Ignore folders.
 /.cloud

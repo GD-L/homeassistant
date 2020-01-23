@@ -16,7 +16,7 @@
             mdi:garage-open
             {% endif %} 
 
-      garage_last_open:
-        friendly_name: "Garage Last Opened"
+      garage_last_changed:
+        friendly_name: "Garage Last Changed"
         value_template: >-
           {{as_timestamp(states.binary_sensor.garage_door_opened.last_changed)|timestamp_custom("%a %b %m at %H:%M %p")}}

@@ -364,6 +364,22 @@
                             "camera_view": "live",
                             "entity": "camera.lr_camera",
                             "type": "picture-entity"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.garage_door_status"
+                                },
+                                {
+                                    "entity": "sensor.garage_last_changed"
+                                },
+                                {
+                                    "entity": "binary_sensor.garage_door_opened",
+                                    "secondary_info": "last-changed"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
                         }
                     ]
                 }
