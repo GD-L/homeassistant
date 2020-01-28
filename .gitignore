@@ -10,6 +10,7 @@
 !/.storage/lovelace*
 !/www
 !/automations
+!/www/*
 
 # Ignore folders.
 /.cloud
@@ -20,3 +21,7 @@
 secrets.yaml
 known_devices.yaml
 ecobee.conf
+
+#Exclude DBs
+thumbs.db
+*.db

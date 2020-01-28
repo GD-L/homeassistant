@@ -13,6 +13,8 @@ The equivalent docker run would be:
 
 `docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /docker/homeassistant:/config --net=host homeassistant/home-assistant:stable`
 
+Update 2020-01-23: Docker run command migrated to [docker-compose](https://github.com/gregdelima/homeassistant/blob/master/docker-compose.yaml). This will make it easier in the future to update Home Assistant releases.
+
 ## Components
 
 ### Hardware
@@ -42,7 +44,11 @@ The equivalent docker run would be:
 * [Owntracks](https://www.home-assistant.io/components/owntracks/)
 
 ## Automations
-Automations are currently built into the [automations.yaml](https://gitlab.com/gregdelima/homeassistant/blob/master/automations.yaml) this may change to a `!include_dir_merge_list` in a future state.
+[Automations](https://github.com/gregdelima/homeassistant/tree/master/automations) moved to directory and split out based on functionality:
+* [Lights](https://github.com/gregdelima/homeassistant/blob/master/automations/lights.yaml)
+* [Sensors](https://github.com/gregdelima/homeassistant/blob/master/automations/sensors.yaml)
+* [Telegram](https://github.com/gregdelima/homeassistant/blob/master/automations/telegram.yaml)
+* [Thermostats](https://github.com/gregdelima/homeassistant/blob/master/automations/thermostatautomations.yaml)
 
 # WIP
 As with most things, this is a work in progress so there may be updates and/or small tweaks here and there.
