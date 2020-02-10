@@ -4,7 +4,7 @@
 
 # Home Assistant Setup
 
-This is my Home Assistant setup. I have Home Assitant setup on a [CoreOS](https://coreos.com/) instance on ESXi. CoreOS then hosts [Docker](https://www.docker.com/) with 8GB RAM (currently) dedicated to all Docker instances.
+This is my Home Assistant setup. I have Home Assitant have set up on Ubunutu Server on ESXi, hosting [Docker](https://www.docker.com/).
 
 I set up HomeAssistant along side my [Docker-Nginx](https://gitlab.com/gregdelima/docker-nginx) instance allowing for SSL and building with [Haaska](https://github.com/mike-grant/haaska).
 
