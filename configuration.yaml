@@ -128,9 +128,9 @@ speedtestdotnet:
    
 ### Device Trackers
 
-owntracks: 
-  max_gps_accuracy: 200
-  waypoints: false
+#owntracks: 
+#  max_gps_accuracy: 200
+#  waypoints: false
   #events_only: true
   #secret: !secret owntrackskey
   
@@ -138,8 +138,8 @@ device_tracker:
    
   - platform: ping
     hosts:
-      sara: 192.168.1.130
-      greg: 192.168.1.131
+      sara_router: 192.168.1.130
+      greg_router: 192.168.1.131
       scan_interval: 60
     consider_home: 600
   
@@ -171,3 +171,14 @@ camera:
 
 #ffmpeg:
 #    ffmpeg_bin: /usr/bin/ffmpeg
+
+#Glances
+#Enable glances platform on PiHole
+#appears as sensor.pihole_stats_[resouce name]
+   
+#glances:
+#  version: 3
+#  name: piHole Glances
+#  host: 192.168.1.135
+#  port: 61208
+

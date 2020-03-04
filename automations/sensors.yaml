@@ -19,4 +19,15 @@
       - sensor.sunrise
       - sensor.daylight
      
-
+- alias: Garage Open Notification
+  initial_state: true
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.garage_door_opened 
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    - service: notify.telegram_notify
+      data:
+        message: 'The Garage Door has been open for more than 5 minutes'

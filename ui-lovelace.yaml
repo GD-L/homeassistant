@@ -140,7 +140,7 @@ views:
               red: 70
               yellow: 60
             type: gauge
-          - entity: sensor.pihole_stats_ram_used_percent
+          - entity:  sensor.glances_ram_used_percent
             max: 100
             min: 0
             severity:
@@ -284,6 +284,4 @@ views:
            - entity: switch.lr
              tap_action:
                action: toggle
-  
-
   

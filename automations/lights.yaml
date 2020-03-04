@@ -72,15 +72,61 @@
   condition:
     - condition: time 
       after: '08:00:00'
-      before: '17:00:00'
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
+      before: '19:00:00'
+      #weekday:
+      #  - mon
+      #  - tue
+      #  - wed
+      #  - thu
+      #  - fri
         
   action:
     - service: homeassistant.turn_off #Turn off the Inside Lights Group
       data:
         entity_id: group.inside_lights
+
+- alias: 'light light'
+  initial_state: true
+  trigger: 
+    platform: time
+    at : '23:33:00'
+
+  action:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: 
+          - group.inside_lights
+          - switch.garage_lights
+
+- alias: 'Garage On - Sunrise'
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "-01:00:00"
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.garage_lights
+
+- alias: 'Garage OFF - Sunrise'
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "+01:30:00"
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.garage_lights
+      
+- alias: 'Garage On - Sunset'
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.garage_lights
