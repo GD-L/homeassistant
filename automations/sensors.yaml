@@ -28,6 +28,9 @@
     for:
       minutes: 5
   action:
-    - service: notify.telegram_notify
+    - service: notify.telegram_notify_Greg
+      data:
+        message: 'The Garage Door has been open for more than 5 minutes'
+    - service: notify.telegram_notify_Sara
       data:
         message: 'The Garage Door has been open for more than 5 minutes'

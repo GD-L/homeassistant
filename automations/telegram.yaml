@@ -1,13 +1,42 @@
-
 #Telegram test with '/ping' should reply 'pong'
 - alias: 'Telegram bot that reply pong to ping'
-  hide_entity: true
   trigger:
     platform: event
     event_type: telegram_command
     event_data:
       command: '/ping'
   action:
-    - service: notify.telegram_notify
+    - service: notify.telegram_notify_Sara
       data:
         message: 'pong'
+    - service: notify.telegram_notify_Greg
+      data:
+        message: 'pong'
+
+#- alias: 'Test inline keeb'
+#  initial_state: true
+#  trigger:
+#    platform: event
+#    event_type: telegram_command
+#    event_data: 
+#      command: '/test'
+#  action:
+#    - service: notify.telegram_notify_Greg
+#      data:
+#        message: 'commands'
+#        data:
+#          inline_keyboard:
+#            - '/Reboot?'
+#            - '/DoNothing'
+            
+#- alias: 'Test inline keeb response'
+#  initial_state: true
+#  trigger: 
+#    platform: event
+#    event_type: telegram_callback
+#    event_data:
+#      command: '/Reboot?'
+#  
+#  action:
+#    - service: homeassistant.toggle
+#      entity_id: switch.office
