@@ -40,7 +40,7 @@ BlueNight:
   paper-listbox-color: 'hsl(var(--huesat) 50%)'
   paper-grey-50: 'hsl(var(--huesat) 50%)'
   paper-grey-200: 'hsl(var(--huesat) 10%)' #active menu item
-  sidebar-icon-color: 'hsl(var(--huesat) 50%)' #iron-icon-fill-color
+  #sidebar-icon-color: 'hsl(var(--huesat) 50%)' #iron-icon-fill-color
   # Paper card
   paper-item-icon-color: 'hsl(var(--huesat) 40%)'
   #paper-item-icon-active-color: 'var(--paper-item-icon-color)'
@@ -102,6 +102,16 @@ BlueNight:
   lumo-shade-5pct: 'rgba(41, 41, 41, .05)'
   #Removes Gradient in Calendar/Date-Picker and Drop-down lists
   lumo-tint-5pct: 'var(--darker-grey-color)'
+    ##Sidebar
+  sidebar-background-color: "var(--paper-listbox-background-color)"
+  sidebar-icon-color: "rgba(255, 255, 255, 0.70)"
+  sidebar-selected-icon-color: "var(--primary-color)"
+  sidebar-selected-text-color: "var(--primary-text-color)"
+  sidebar-text-color: "var(--primary-text-color)"
+  slider-bar-color: "var(--disabled-text-color)"
+  slider-color: "var(--primary-color)"
+  slider-secondary-color: "var(--light-primary-color)"
+  card-background-color: "var(--paper-card-background-color)"
 DarkCyan:
     # Main colors that can be changed
   primary-color: "#00bcd4"

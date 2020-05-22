@@ -11,6 +11,8 @@ homeassistant:
   elevation: 365
   unit_system: imperial
   time_zone: America/New_York
+  customize: !include customize.yaml
+
 
 
 #System Health
@@ -55,19 +57,26 @@ weather:
 sun:
 
 discovery: 
-    ignore:
-        - homekit
+#    ignore:
+#        - homekit
 
 
-### Ecobee Thermostats
+## Ecobee Thermostats
 
 
 ecobee:
   api_key: !secret ecobee_api
 
 ### Wink Hub
+#Removed 2020-05-21
+#wink:
 
-wink:
+#zwave:
+#  usb_path: /dev/ttyUSB1
+#  network_key: "0xc5, 0x7a, 0xb8, 0x1a, 0x4e, 0x64, 0x7d, 0xed, 0x13, 0xec, 0xf2, 0x82, 0xce, 0x3c, 0xe3, 0xc4" 
+  
+#zha:
+#  usb_path: /dev/ttyUSB0
 
 
 ### Media
@@ -149,18 +158,21 @@ telegram_bot:
     api_key: !secret telegram
     allowed_chat_ids:
         - !secret greg_chatid
+        - !secret sara_chatid
 notify:
-  - name: telegram_notify
+  - name: telegram_notify_Greg
     platform: telegram
     chat_id: !secret greg_chatid
+
+  - name: telegram_notify_Sara
+    platform: telegram
+    chat_id: !secret sara_chatid
  
 #piHole
 pi_hole:
   host: '192.168.1.135'
   ssl: false
   verify_ssl: false
-
-
 
 #cams
 camera:
@@ -173,12 +185,4 @@ camera:
 #    ffmpeg_bin: /usr/bin/ffmpeg
 
 #Glances
-#Enable glances platform on PiHole
-#appears as sensor.pihole_stats_[resouce name]
-   
-#glances:
-#  version: 3
-#  name: piHole Glances
-#  host: 192.168.1.135
-#  port: 61208
-
+#Now enabled via integration

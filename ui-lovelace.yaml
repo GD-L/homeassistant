@@ -1,7 +1,7 @@
 resources: 
   - url: /local/battery-entity.js?v=0.1
     type: module
-  - url: /local/auto-entities.js
+  - url: /local/auto-entities.js?v=0.1
     type: js
       
 title: Home
