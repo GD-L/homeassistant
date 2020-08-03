@@ -85,7 +85,7 @@
       data:
         entity_id: group.inside_lights
 
-- alias: 'light light'
+- alias: 'Light Light'
   initial_state: true
   trigger: 
     platform: time

@@ -11,7 +11,7 @@ homeassistant:
   elevation: 365
   unit_system: imperial
   time_zone: America/New_York
-
+  customize: !include customize.yaml
 
 #System Health
 #https://www.home-assistant.io/components/system_health/
@@ -55,25 +55,28 @@ weather:
 sun:
 
 discovery: 
-    ignore:
-        - homekit
+#    ignore:
+#        - homekit
 
 
-### Ecobee Thermostats
-
+## Ecobee Thermostats
 
 ecobee:
   api_key: !secret ecobee_api
 
+wemo:
+  discovery: true
+  static:
+    - 192.168.1.122
+    - 192.168.1.121
 ### Wink Hub
-
-wink:
-
+#Removed 2020-05-21
+#wink:
 
 ### Media
 
 roku:
-  - host: 192.168.1.106
+  - host: 192.168.1.107
   
 media_player:
   - platform: plex
@@ -99,12 +102,13 @@ zone:
     longitude: !secret gym_long
     radius: 300
     icon: mdi:Dumbbell 
-api:
+
 
 ### Alexa
 
 alexa:
   smart_home:
+api:
 
 ### Vacuums
 
@@ -135,7 +139,6 @@ speedtestdotnet:
   #secret: !secret owntrackskey
   
 device_tracker:
-   
   - platform: ping
     hosts:
       sara_router: 192.168.1.130
@@ -149,18 +152,21 @@ telegram_bot:
     api_key: !secret telegram
     allowed_chat_ids:
         - !secret greg_chatid
+        - !secret sara_chatid
 notify:
-  - name: telegram_notify
+  - name: telegram_notify_Greg
     platform: telegram
     chat_id: !secret greg_chatid
+
+  - name: telegram_notify_Sara
+    platform: telegram
+    chat_id: !secret sara_chatid
  
 #piHole
 pi_hole:
   host: '192.168.1.135'
   ssl: false
   verify_ssl: false
-
-
 
 #cams
 camera:
@@ -173,12 +179,4 @@ camera:
 #    ffmpeg_bin: /usr/bin/ffmpeg
 
 #Glances
-#Enable glances platform on PiHole
-#appears as sensor.pihole_stats_[resouce name]
-   
-#glances:
-#  version: 3
-#  name: piHole Glances
-#  host: 192.168.1.135
-#  port: 61208
-
+#Now enabled via integration

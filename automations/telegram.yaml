@@ -1,13 +1,36 @@
-
 #Telegram test with '/ping' should reply 'pong'
 - alias: 'Telegram bot that reply pong to ping'
-  hide_entity: true
   trigger:
     platform: event
     event_type: telegram_command
     event_data:
       command: '/ping'
   action:
-    - service: notify.telegram_notify
+    - service: notify.telegram_notify_Sara
       data:
         message: 'pong'
+    - service: notify.telegram_notify_Greg
+      data:
+        message: 'pong'
+        
+- alias: 'Morning Weather'
+  trigger: 
+    platform: time
+    at: "06:44:00"
+  action:
+    - service: notify.telegram_notify_Greg
+      data: 
+        message: "Today's forecast calls for a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(0)}}° and a low of: {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(0)}}°. \n \n Currently, it's {{state_attr('weather.dark_sky', 'temperature')}}° and {{states.sensor.dark_sky_summary.state}} outside.\n \n Wind speeds: {{state_attr('weather.dark_sky', 'wind_speed')}} mph \n Humidity: {{state_attr('weather.dark_sky', 'humidity')}}% \n Sunrise: {{states.sensor.sunrise.state}}AM \n Sunset: {{states.sensor.sunset.state}}PM"
+
+- alias: 'qBitTorrent Down Notification'
+  trigger:
+    - platform: state
+      entity_id: sensor.qbittorrent_status
+      to: 'unavailable'
+      for:
+        seconds: 60
+  action:
+    service: notify.telegram_notify_Greg
+    data:
+      title: "*qBitTorrent is Down*"
+      message: "qBitTorrent has lost connection, log on to restart it"

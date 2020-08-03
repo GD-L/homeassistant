@@ -1,7 +1,7 @@
 resources: 
   - url: /local/battery-entity.js?v=0.1
     type: module
-  - url: /local/auto-entities.js
+  - url: /local/auto-entities.js?v=0.1
     type: js
       
 title: Home
@@ -11,8 +11,8 @@ views:
   - badges:
       - person.greg
       - person.sara
-      - binary_sensor.front_door_opened
-      - binary_sensor.patio_door_opened
+      - binary_sensor.front_door_sensor
+      - binary_sensor.patio_door_sensor
       - binary_sensor.garage_door_opened
       - sun.sun
     cards:
@@ -260,8 +260,9 @@ views:
     title: Testing
     cards:
       - cards:
-        - entity: media_player.delimastick_lr
+        - entity: media_player.dl_lr_tcl55
           type: media-control
+
         - camera_view: live
           entity: camera.lr_camera
           type: picture-entity

@@ -1,0 +1,30 @@
+#Power Outage
+  - alias: "Power Outage"
+    initial_state: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.ups_input_voltage
+        below: 50
+    action:
+      - service: notify.telegram_notify_Greg
+        data:
+          title: "*Power Outage*"
+          message: "The power is out and network devices are running off the UPS"
+      - service: homeassistant.turn_on
+        entity_id: automation.power_restored
+
+#Power Restored
+
+  - alias: "Power Restored"
+    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.ups_input_voltage
+        above: 50
+    action:
+      - service: notify.telegram_notify_Greg
+        data:
+          title: "*Power Restored*"
+          message: "The power is Restored"
+      - service: homeassistant.turn_off
+        entity_id: automation.power_restored

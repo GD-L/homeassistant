@@ -1,0 +1,28 @@
+- alias : "WeMo Offline Notice"
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id:
+        - switch.lr
+        - switch.office
+      to: 'unavailable'
+      for:
+        seconds: 30
+  action:
+    service: notify.telegram_notify_Greg
+    data:
+      message: "One of the WeMo is offline."
+      data:
+        inline_keyboard:
+          - '/Reboot?'
+
+- alias: 'Reboot Response'
+  initial_state: true
+  trigger: 
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/Reboot?'
+  
+  action:
+    - service: homeassistant.restart
