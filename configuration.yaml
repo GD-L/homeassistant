@@ -58,7 +58,6 @@ discovery:
 #    ignore:
 #        - homekit
 
-
 ## Ecobee Thermostats
 
 ecobee:
