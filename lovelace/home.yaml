@@ -1,0 +1,68 @@
+#HOME
+path: default_view
+title: Home
+badges:
+  - person.greg
+  - person.sara
+  - binary_sensor.front_door_sensor
+  - binary_sensor.patio_door_sensor
+  - binary_sensor.garage_door_opened
+  - sun.sun
+cards:
+  - cards:
+      - entity: climate.upstairs
+        type: thermostat
+      - entity: climate.downstairs
+        type: thermostat
+    type: vertical-stack
+    
+  - entities:
+      - entity: group.inside_lights
+      - entity: switch.bedroom_lamp
+      - entity: switch.bookshelf_lamp
+      - entity: switch.garage_lights
+      - entity: switch.lr
+      - entity: switch.office
+    title: Lights
+    type: entities
+    
+  - cards:
+      - entities:
+          - climate.upstairs
+        type: history-graph
+      - entities:
+          - climate.downstairs
+        type: history-graph
+    type: vertical-stack
+  - entities:
+      - entity: sensor.upstairs_hvac_runtime
+      - entity: sensor.upstairsthermoper
+      - entity: sensor.downstairs_hvac_runtime
+      - entity: sensor.downstairsthermoper
+      - entity: sensor.upstairs_hvac_runtime_test
+    type: entities
+  - cards:
+      - cards:
+          - entities:
+              - entity: vacuum.downstairs
+            type: entities
+          - entities:
+              - entity: vacuum.upstairs
+            type: entities
+        type: horizontal-stack
+      - cards:
+          - entities:
+              - entity: sensor.vacuum_battery_upstairs
+              - entity: sensor.vacuum_battery_downstairs
+              - entity: sensor.vacuum_state_upstairs
+              - entity: sensor.vacuum_state_downstairs
+            type: entities
+        type: vertical-stack
+    title: Vacuums
+    type: vertical-stack
+  - aspect_ratio: 50%
+    camera_view: live
+    entity: camera.lr_camera
+    show_name: true
+    show_state: false
+    type: picture-entity

@@ -11,6 +11,8 @@
 !/www
 !/automations
 !/www/*
+!/lovelace
+
 
 # Ignore folders.
 /.cloud

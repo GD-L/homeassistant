@@ -1,0 +1,65 @@
+#NetStats     
+badges: []
+path: netstats
+title: NetStats
+cards:
+  - cards:
+      - entity: sensor.pihole_temp_c
+        max: 100
+        min: 0
+        severity:
+          green: 0
+          red: 70
+          yellow: 60
+        type: gauge
+      - entity:  sensor.glances_ram_used_percent
+        max: 100
+        min: 0
+        severity:
+          green: 0
+          red: 80
+          yellow: 75
+        type: gauge
+        unit: '%'
+    type: horizontal-stack
+  - cards:
+      - cards:
+          - entity: sensor.pi_hole_ads_blocked_today
+            graph: line
+            type: sensor
+          - entity: sensor.pi_hole_dns_unique_clients
+            graph: line
+            type: sensor
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.archer_gb_received
+            graph: line
+            type: sensor
+        type: vertical-stack
+    type: vertical-stack
+  - cards:
+      - entities:
+          - entity: sensor.speedtest_download
+        type: entities
+      - entities:
+          - entity: sensor.speedtest_upload
+        type: entities
+    type: vertical-stack
+  - entity: sensor.pi_hole_domains_blocked
+    type: sensor
+  - aspect_ratio: '16:9'
+    dark_mode: false
+    entities:
+      - entity: person.greg
+      - entity: zone.home
+      - entity: zone.duke_hospital
+      - entity: zone.greg_gym
+    type: map
+  - cards:
+    type: entities
+    title: "qBitTorrent"
+    entities: 
+      - entity: sensor.qbittorrent_status
+      - entity: sensor.qbittorrent_down_speed
+      - entity: sensor.qbittorrent_up_speed
+
