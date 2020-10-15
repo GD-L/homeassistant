@@ -1,14 +1,3 @@
-  - platform: sonarr
-    api_key: !secret sonarr_api
-    host: 192.168.1.187
-    port: 8989
-    monitored_conditions:
-        - series
-        - upcoming
-        - queue
-        - wanted
-    days: 7
-
   - platform: radarr
     api_key: !secret radarr_api
     host: 192.168.1.187
@@ -16,10 +5,10 @@
     monitored_conditions:
         - movies
         - status
-        - wanted
+        - upcoming
     days: 7
   
   - platform: qbittorrent
-    url: http://192.168.1.148:8080/
+    url: https://qbitvpn.gregdelima.com
     username: !secret qbit_user
     password: !secret qbit_pass

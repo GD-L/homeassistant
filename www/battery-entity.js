@@ -45,7 +45,7 @@ class BatteryEntity extends Polymer.Element {
 				[[displayName()]]
 			</div>
 			<div class="state">
-				[[getBatteryLevel()]] %
+				[[getBatteryLevel()]]&nbsp;%
 			</div>
 		</div>
 		`
@@ -61,7 +61,7 @@ class BatteryEntity extends Polymer.Element {
 	}
 
 	setConfig(config) {
-		this._config = config;
+		this._config = JSON.parse(JSON.stringify(config));
 	}
 
 	displayName() {

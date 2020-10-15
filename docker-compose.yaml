@@ -11,9 +11,11 @@ services:
     devices:
       - /dev/ttyUSB1:/dev/ttyUSB1
       - /dev/ttyUSB0:/dev/ttyUSB0
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/New_York
+    #environment:
+    #  - PUID=1000
+    #  - PGID=1000
+    #  - TZ=America/New_York
+    env_file: /docker/docker_envs.env
+
       
     restart: unless-stopped

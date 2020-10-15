@@ -19,6 +19,12 @@ system_health:
 
 lovelace:
   mode: yaml
+  resources: 
+  - url: /local/battery-entity.js?v=0.1
+    type: module
+  - url: /local/auto-entities.js?v=0.1
+    type: js
+      
 
 # Text to speech
 tts:
@@ -27,7 +33,9 @@ tts:
 
 #Set frontent to point to themes file
 frontend:
-    themes: !include themes.yaml
+    #themes: !include themes.yaml
+    themes: !include_dir_merge_named themes
+
 
 #Other Configurations
 #https://www.home-assistant.io/docs/configuration/splitting_configuration/
@@ -36,7 +44,7 @@ script: !include scripts.yaml
 sensor: !include_dir_merge_list sensors/
 recorder: !include recorder.yaml
 automation: !include_dir_merge_list automations/
-  
+input_boolean: 
 ### Weather
 
 
@@ -48,9 +56,6 @@ weather:
     latitude: !secret home_lat
     longitude: !secret home_long
     
-  - platform: nws
-    api_key: !secret nws_api
-    station: !secret nws_station
 
 sun:
 
@@ -58,28 +63,22 @@ discovery:
 #    ignore:
 #        - homekit
 
+
 ## Ecobee Thermostats
 
-ecobee:
-  api_key: !secret ecobee_api
+#ecobee:
+#  api_key: !secret ecobee_api
 
 wemo:
   discovery: true
   static:
     - 192.168.1.122
     - 192.168.1.121
-### Wink Hub
-#Removed 2020-05-21
-#wink:
 
 ### Media
 
 roku:
   - host: 192.168.1.107
-  
-media_player:
-  - platform: plex
-
 
 ### Custom Zones
 
@@ -107,6 +106,13 @@ zone:
 
 alexa:
   smart_home:
+    filter: 
+      exclude_domains:
+         - sensor
+         - automation
+         - binary_sensor
+         - media_player
+         - device_tracker
 api:
 
 ### Vacuums
@@ -117,25 +123,14 @@ ecovacs:
   country: us #USA
   continent: na #North America
 
-
 #Speedtest.net
 
 speedtestdotnet:
-  server_id: 16970
   scan_interval:
     minutes: 30
-  monitored_conditions:
-    - ping
-    - download
-    - upload
+
    
 ### Device Trackers
-
-#owntracks: 
-#  max_gps_accuracy: 200
-#  waypoints: false
-  #events_only: true
-  #secret: !secret owntrackskey
   
 device_tracker:
   - platform: ping
@@ -160,7 +155,7 @@ notify:
   - name: telegram_notify_Sara
     platform: telegram
     chat_id: !secret sara_chatid
- 
+
 #piHole
 pi_hole:
   host: '192.168.1.135'
@@ -171,11 +166,5 @@ pi_hole:
 camera:
   - platform: generic
     name: LR Camera
-    still_image_url: www/wyze-logo.jpg
+    still_image_url: /local/wyze-logo.jpg
     stream_source: !secret wyzecam_lr
-
-#ffmpeg:
-#    ffmpeg_bin: /usr/bin/ffmpeg
-
-#Glances
-#Now enabled via integration

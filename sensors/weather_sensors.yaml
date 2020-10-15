@@ -25,54 +25,54 @@
   - platform: template
     sensors:
       forecast_0:
-        entity_id: []
+        #entity_id: []
         friendly_name: "Today"
         value_template: >
           Hi: {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(0)}}°/Precip: {{states.sensor.dark_sky_precip_probability_0d.state|round(0)}}%
       forecast_1:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (1 * 86400 ) -%}
           {{ date | timestamp_custom("Tomorrow (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
         value_template: >
           Hi: {{states.sensor.dark_sky_daytime_high_temperature_1d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_1d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_1d.state|round(0)}}%
       forecast_2:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (2 * 86400 ) -%}
           {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
         value_template: >
           Hi: {{states.sensor.dark_sky_daytime_high_temperature_2d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_2d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_2d.state|round(0)}}%
       forecast_3:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (3 * 86400 ) -%}
           {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
         value_template: >
           Hi: {{states.sensor.dark_sky_daytime_high_temperature_3d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_3d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_3d.state|round(0)}}%
       forecast_4:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (4 * 86400 ) -%}
           {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
         value_template: >
           Hi: {{states.sensor.dark_sky_daytime_high_temperature_4d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_4d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_4d.state|round(0)}}%
       forecast_5:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (5 * 86400 ) -%}
           {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
         value_template: >
           Hi: {{states.sensor.dark_sky_daytime_high_temperature_5d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_5d.state|round(0)}}°/ Precip:{{states.sensor.dark_sky_precip_probability_5d.state|round(0)}}%
       forecast_6:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (6 * 86400 ) -%}
           {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
         value_template: >
             Hi: {{states.sensor.dark_sky_daytime_high_temperature_6d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_6d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_6d.state|round(0)}}%
       forecast_7:
-        entity_id: []
+        #entity_id: []
         friendly_name_template: >
           {%- set date = as_timestamp(now()) + (7 * 86400 ) -%}
           {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
@@ -101,12 +101,12 @@
 
 #https://www.home-assistant.io/components/template/
       currenttemp:
-        entity_id: weather.dark_sky
+        #entity_id: weather.dark_sky
         value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
         unit_of_measurement: "°F"
 
       currenthumid:
-        entity_id: weather.dark_sky
+        #entity_id: weather.dark_sky
         value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
         unit_of_measurement: "%"
 
