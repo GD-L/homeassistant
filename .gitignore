@@ -12,6 +12,7 @@
 !/automations
 !/www/*
 !/lovelace
+!hassup.sh
 
 
 # Ignore folders.
