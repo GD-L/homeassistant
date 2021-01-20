@@ -8,7 +8,6 @@
       entity_id: 
         - person.greg
         - person.sara
-    
   condition:
     condition: and
     conditions:
@@ -21,6 +20,9 @@
           - wed
           - thu
           - fri
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
       - condition: or
         conditions:
           - condition: state
@@ -60,22 +62,25 @@
           - wed
           - thu
           - fri
-      #- condition: state
-      #  entity_id: person.greg
-      #  state: 'not_home'
       - condition: template
         value_template: "{{ not is_state('person.greg','home') }}"
-      
       - condition: state
         entity_id: person.sara
         state: 'not_home'
-
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
   action:
-  
     - service: climate.set_preset_mode
       data:
         entity_id:
           - climate.downstairs
           - climate.upstairs
         preset_mode: 'Away'
-        
+
+#Thermostat Vacation Mode
+#- alias: "Thermostat Vacation Mode"
+#  trigger:
+#    - platform: state
+#      entity_id: input_boolean.vacation_mode
+#      state: 'on'

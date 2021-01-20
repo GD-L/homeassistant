@@ -6,3 +6,8 @@ binary_sensor.front_door_sensor:
   
 binary_sensor.patio_door_sensor:
   device_class: door
+  
+switch.adhoc_plug:
+  friendly_name: "AdHoc Plug"
+  icon: mdi:lightbulb
+  state_color: true

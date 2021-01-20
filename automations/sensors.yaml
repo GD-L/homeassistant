@@ -1,12 +1,12 @@
 #Update Weather Sensors
-- alias: Update Weather Sensors
+- alias: 'Update Weather Sensors'
   initial_state: true
   trigger:
     platform: time_pattern
     hours: "/1"
   action:
-   - service: homeassistant.update_entity
-     entity_id:
+  - service: homeassistant.update_entity
+    entity_id:
       - sensor.forecast_0
       - sensor.forecast_1
       - sensor.forecast_2
@@ -18,8 +18,8 @@
       - sensor.sunset
       - sensor.sunrise
       - sensor.daylight
-     
-- alias: Garage Open Notification
+    
+- alias: 'Garage Open Notification'
   initial_state: true
   trigger: 
     platform: state

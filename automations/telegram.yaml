@@ -30,10 +30,10 @@
       for:
         seconds: 60
   action:
-    service: notify.telegram_notify_Greg
-    data:
-      title: "*qBitTorrent is Down*"
-      message: "qBitTorrent has lost connection, log on to restart it"
+    - service: notify.telegram_notify_Greg
+      data:
+        title: "*qBitTorrent is Down*"
+        message: "qBitTorrent has lost connection, log on to restart it"
 
 
 - alias: Update Available Notification
@@ -44,5 +44,60 @@
       to: 'on'
   action:
     - service: notify.telegram_notify_Greg
-      data_template:
+      data:
         message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
+
+- alias: Version Check
+  trigger: 
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/version'
+  action: 
+    - service: telegram_bot.send_message
+      data: 
+        chat_id: '{{ trigger.event.data.chat_id }}'
+        message: "The current version is {{state_attr('binary_sensor.updater','newest_version')}},
+                  {% if states('binary_sensor.updater') == 'on'%} You are not up to date
+            {% else %} You are up to date
+            {% endif %}"
+
+- alias: Stauts Report
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/statusreport'
+  action:
+    - service: telegram_bot.send_message
+      data:
+        chat_id: '{{ trigger.event.data.chat_id }}'
+        message: 'You asked for a status report'
+
+
+- alias: "Computer on, it's late"
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id: switch.desktop_power
+      to: 'on'
+  condition:
+    condition: time
+    after: '22:30:00'
+  action:
+    - service: notify.telegram_notify_Greg
+      data:
+        message: "It's late and the computer is on."
+        data:
+          inline_keyboard:
+            - '/Shutdown?'
+
+- alias: 'Shutdown Response'
+  initial_state: true
+  trigger: 
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/Shutdown?'
+  action:
+    - service: shell_command.sleep_on_lan

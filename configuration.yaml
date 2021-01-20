@@ -13,6 +13,7 @@ homeassistant:
   time_zone: America/New_York
   customize: !include customize.yaml
 
+
 #System Health
 #https://www.home-assistant.io/components/system_health/
 system_health:
@@ -24,6 +25,17 @@ lovelace:
     type: module
   - url: /local/auto-entities.js?v=0.1
     type: js
+  dashboards:
+    custom-config: 
+      mode: yaml
+      filename: ui-lovelace.yaml
+      title: Dashboard
+      show_in_sidebar: true
+    testing-zone:
+      mode: yaml
+      filename: lovelace-testing.yaml
+      title: Testing
+      show_in_sidebar: true
       
 
 # Text to speech
@@ -44,6 +56,8 @@ script: !include scripts.yaml
 sensor: !include_dir_merge_list sensors/
 recorder: !include recorder.yaml
 automation: !include_dir_merge_list automations/
+binary_sensor: !include_dir_merge_list binarysensors/
+switch: !include_dir_merge_list switches/
 input_boolean: 
 ### Weather
 
@@ -76,9 +90,9 @@ wemo:
     - 192.168.1.121
 
 ### Media
-
-roku:
-  - host: 192.168.1.107
+#Roku Deprecated 0.118.0
+#roku:
+#  - host: 192.168.1.107
 
 ### Custom Zones
 
@@ -115,6 +129,18 @@ alexa:
          - device_tracker
 api:
 
+google_assistant:
+  project_id: !secret google_assist_project
+  service_account: !include SERVICE_ACCOUNT.JSON
+  report_state: true
+  exposed_domains:
+    - switch
+    - light
+    - group
+    - vacuum
+    - climate
+
+
 ### Vacuums
 
 ecovacs:
@@ -129,7 +155,6 @@ speedtestdotnet:
   scan_interval:
     minutes: 30
 
-   
 ### Device Trackers
   
 device_tracker:
@@ -168,3 +193,8 @@ camera:
     name: LR Camera
     still_image_url: /local/wyze-logo.jpg
     stream_source: !secret wyzecam_lr
+
+
+#Wake on LAN
+wake_on_lan:
+shell_command: !include shell_command.yaml

@@ -1,0 +1,4 @@
+title: Testing Dash
+
+views:
+  - !include lovelacetesting/testing.yaml

@@ -13,7 +13,8 @@
 !/www/*
 !/lovelace
 !hassup.sh
-
+!/switches
+!/binarysensors
 
 # Ignore folders.
 /.cloud
