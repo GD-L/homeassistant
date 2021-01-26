@@ -4,22 +4,24 @@
 
 # Home Assistant Setup
 
-This is my Home Assistant setup. I have Home Assitant have set up on Ubunutu Server on ESXi, hosting [Docker](https://www.docker.com/).
+This is my Home Assistant setup. I have Home Assistant have set up on Ubunutu Server on ESXi, hosting [Docker](https://www.docker.com/).
 
-I set up HomeAssistant along side my [Docker-Nginx](https://gitlab.com/gregdelima/docker-nginx) instance allowing for SSL and building with [Haaska](https://github.com/mike-grant/haaska).
+In order to get [Haaska](https://github.com/mike-grant/haaska) working, I used [NginxProxyManager](https://nginxproxymanager.com/) to server Home Assistant along with other services.
 
 Home Assistant was set up using the [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant/) Docker Image. `/PATH_TO_YOUR_CONFIG` was remapped to `/docker/homeassistant` 
 The equivalent docker run would be:
 
 `docker run --init -d --name="home-assistant" -e "TZ=America/New_York" -v /docker/homeassistant:/config --net=host homeassistant/home-assistant:stable`
 
-Update 2020-01-23: Docker run command migrated to [docker-compose](https://github.com/gregdelima/homeassistant/blob/master/docker-compose.yaml). This will make it easier in the future to update Home Assistant releases.
+Update 2020-01-23: Docker run command migrated to [docker-compose](docker-compose.yaml). This will make it easier in the future to update Home Assistant releases.
 
 ## Components
 
 ### Hardware
 
-* [Wink Hub 2](https://www.wink.com/products/wink-hub-2/) - This currently serves as my hub for most components, specifically for Z-Wave and Zigbee devices.
+* ~~[Wink Hub 2](https://www.wink.com/products/wink-hub-2/) - This currently serves as my hub for most components, specifically for Z-Wave and Zigbee devices.~~ 
+* After Wink decided they wanted to start charging for their services, I threw the hub in the trash can, and got a [HUSBZB-1](https://www.amazon.com/GoControl-CECOMINOD016164-HUSBZB-1-USB-Hub/dp/B01GJ826F8), that now serves as my Z-Wave and ZigBee hub.
+  
   * [Sylvania Smart Plug](https://consumer.sylvania.com/our-products/smart/product-info/zigbee/sylvania-smart-zigbee-indoor-smart-plug/index.jsp) (2x)
   * [GE Z-Wave In-Wall Switch](https://byjasco.com/products/ge-z-wave-plus-wall-smart-switch-white-toggle)
   * [Wink Door Sensor](https://www.wink.com/products/wink-doorwindow-sensor/) (2x)
