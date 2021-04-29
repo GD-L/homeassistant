@@ -1,6 +1,5 @@
   - platform: template
     sensors:
-
       garage_door_status:
         friendly_name: "Garage Door Status"
         value_template: >-

@@ -1,0 +1,9 @@
+  # - platform: template
+  #   switches:
+  #     pi_hole_off_time:
+  #       friendly_name: "Pi-hole Enabled"
+  #       value_template: "{{ is_state('sensor.pihole', 'enabled') }}"
+  #       turn_off:
+  #         service: pi_hole.disable
+  #         data:
+  #           duration: timer.pi_hole_off_duration

@@ -6,5 +6,8 @@ docker-compose down
 img_dock=$(docker images | grep home-assistant  | awk '{ print $3 }')
 #Remove the image in the variable
 docker image rm $img_dock
+#remove image for zwavejs
+img_zwave=$(docker images | grep zwavejs  | awk '{ print $3 }')
+docker image rm $img_zwave
 #Bring container back up.
 docker-compose up -d

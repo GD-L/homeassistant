@@ -20,15 +20,11 @@
           - wed
           - thu
           - fri
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'off'
       - condition: or
         conditions:
           - condition: state
             entity_id: person.greg
             state: 'home'
-          
           - condition: state
             entity_id: person.sara
             state: 'home'
@@ -78,9 +74,17 @@
           - climate.upstairs
         preset_mode: 'Away'
 
-#Thermostat Vacation Mode
-#- alias: "Thermostat Vacation Mode"
-#  trigger:
-#    - platform: state
-#      entity_id: input_boolean.vacation_mode
-#      state: 'on'
+
+- alias: Thermostat Away Hold (ENABLE)
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.vacation_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: climate.set_preset_mode
+      target: 
+        entity_id: all
+      data:
+        preset_mode: 'Away'

@@ -2,3 +2,5 @@ title: Testing Dash
 
 views:
   - !include lovelacetesting/testing.yaml
+  #- !include lovelacetesting/embed.yaml
+  
