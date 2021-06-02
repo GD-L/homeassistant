@@ -19,6 +19,9 @@
 # Ignore folders.
 /.cloud
 /.storage
+/www/community*
+/www/commands*
+
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 
@@ -26,6 +29,7 @@ secrets.yaml
 known_devices.yaml
 ecobee.conf
 shell_command.yaml
+
 
 #Exclude DBs
 thumbs.db
