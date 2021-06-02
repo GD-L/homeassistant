@@ -4,12 +4,8 @@
     type: js
   - url: /hacsfiles/uptime-card/uptime-card.js
     type: module
-<<<<<<< HEAD
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js?v=0.10.0
     type: module         
   - url: /hacsfiles/button-card/button-card.js
     type: module         
                               
-=======
-                
->>>>>>> c7b113c74f248546757961c64fc6a534fffe9c86
