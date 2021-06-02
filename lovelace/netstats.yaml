@@ -27,9 +27,11 @@ cards:
           - entity: sensor.pi_hole_ads_blocked_today
             graph: line
             type: sensor
+            color: green
           - entity: sensor.pi_hole_dns_unique_clients
             graph: line
             type: sensor
+            color: green
         type: horizontal-stack
       - cards:
           - entity: sensor.archer_gb_received

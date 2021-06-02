@@ -60,9 +60,7 @@ cards:
         type: vertical-stack
     title: Vacuums
     type: vertical-stack
-  - aspect_ratio: 50%
-    camera_view: live
+  - type: 'custom:webrtc-camera'
     entity: camera.lr_camera
-    show_name: true
-    show_state: false
-    type: picture-entity
+    ui: true
+    title: "LR Camera"
