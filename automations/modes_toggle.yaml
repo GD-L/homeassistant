@@ -59,7 +59,15 @@
     - service: automation.turn_off
       entity_id: automation.lights_off_no_one_home
     - service: automation.turn_on
-      entity_id: automation.set_thermostats_to_vacation
+      entity_id: automation.set_thermostats_to_away
+    - service: climate.set_preset_mode
+      data:
+        entity_id:
+          - climate.downstairs
+          - climate.upstairs
+        preset_mode: 'Away'
+    - service: shell_command.sleep_on_lan
+
 
 - alias: Disable Vacation Mode
   initial_state: true
@@ -73,7 +81,8 @@
       entity_id: automation.inside_lights_when_home
     - service: automation.turn_on
       entity_id: automation.lights_off_no_one_home
-    - service: automation.turn_on
-      entity_id: automation.set_thermostats_to_vacation
     - service: automation.turn_off
-      entity_id: automation.set_thermostats_to_vacation
+      entity_id: automation.set_thermostats_to_home
+    #- service: automation.turn_off
+    #  entity_id: automation.thermostat_away_hold_enable
+

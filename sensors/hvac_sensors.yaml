@@ -94,6 +94,33 @@
           {%- else -%}
             mdi:fan
           {%- endif -%}
+
+      downstairs_idler:
+        friendly_name: "Downstairs idler"
+        value_template: >-
+          {%- if state_attr('climate.downstairs', 'hvac_action') == "heating" -%}
+                running
+              {%- elif state_attr('climate.downstairs', 'hvac_action') == "cooling" -%}
+                running
+              {%- elif state_attr('climate.downstairs', 'fan') == "on" -%}
+                running
+              {%- else -%}
+                idle
+              {%- endif -%}
+      upstairs_idler:
+        friendly_name: "Upstairs idler"
+        value_template: >-
+          {%- if state_attr('climate.upstairs', 'hvac_action') == "heating" -%}
+                running
+              {%- elif state_attr('climate.upstairs', 'hvac_action') == "cooling" -%}
+                running
+              {%- elif state_attr('climate.upstairs', 'fan') == "on" -%}
+                running
+              {%- else -%}
+                idle
+              {%- endif -%}
+
+
           
       upstairsthermoper:
         friendly_name: "Upstairs Thermostat"

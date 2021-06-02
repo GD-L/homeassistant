@@ -5,4 +5,4 @@ views:
   - !include lovelace/weather.yaml
   - !include lovelace/netstats.yaml
   - !include lovelace/status.yaml
-  - !include lovelace/testing.yaml
+#  - !include lovelace/testing.yaml

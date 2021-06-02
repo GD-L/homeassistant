@@ -25,6 +25,7 @@
 secrets.yaml
 known_devices.yaml
 ecobee.conf
+shell_command.yaml
 
 #Exclude DBs
 thumbs.db

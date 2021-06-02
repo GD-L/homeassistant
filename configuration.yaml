@@ -20,11 +20,11 @@ system_health:
 
 lovelace:
   mode: yaml
-  resources: 
-  - url: /local/battery-entity.js?v=0.1
-    type: module
-  - url: /local/auto-entities.js?v=0.1
-    type: js
+  resources: !include resources.yaml
+  #- url: /local/battery-entity.js?v=0.1
+  #  type: module
+  #- url: /local/auto-entities.js?v=0.1
+  #  type: js
   dashboards:
     custom-config: 
       mode: yaml
@@ -36,6 +36,7 @@ lovelace:
       filename: lovelace-testing.yaml
       title: Testing
       show_in_sidebar: true
+      require_admin: true
       
 
 # Text to speech
@@ -186,6 +187,7 @@ pi_hole:
   host: '192.168.1.135'
   ssl: false
   verify_ssl: false
+  api_key: !secret pihole_api
 
 #cams
 camera:
@@ -193,8 +195,19 @@ camera:
     name: LR Camera
     still_image_url: /local/wyze-logo.jpg
     stream_source: !secret wyzecam_lr
-
+  
+  #- platform: mjpeg
+  #  name: LR Camera
+  #  mjpeg_url: !secret motioneye_lr_url
+  #  still_image_url: !secret motioneye_lr_still_url
 
 #Wake on LAN
 wake_on_lan:
 shell_command: !include shell_command.yaml
+
+
+panel_iframe:
+  zwave: 
+    title: "Z-Wave Config"
+    url: !secret zwave_url
+    icon: mdi:z-wave

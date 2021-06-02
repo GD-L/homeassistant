@@ -6,7 +6,8 @@
      pihole_temp_c:
       friendly_name: "piHole CPU Temp"
       unit_of_measurement: 'C'
-      value_template: "{{ ((states('sensor.glances_cpu_thermal_1_temp')|float-32)*(5/9)) | round(2)}}"
+      value_template: "{{ ((states('sensor.glances_cpu_thermal_1_temperature')|float-32)*(5/9)) | round(2)}}"
+
       
 #Enable glances platform on PiHole
 #appears as sensor.pihole_stats_[resouce name]

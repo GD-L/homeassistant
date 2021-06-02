@@ -2,6 +2,14 @@
 title: Status
 path: status
 cards:   
+
+  - type: entities
+    title: Automation Modes
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.guest_mode
+      - entity: input_boolean.vacation_mode
+  
   - type: custom:auto-entities
     card:
       type: entities
