@@ -60,7 +60,13 @@ cards:
         type: vertical-stack
     title: Vacuums
     type: vertical-stack
-  - type: 'custom:webrtc-camera'
-    entity: camera.lr_camera
-    ui: true
-    title: "LR Camera"
+  - cards:
+      - type: 'custom:webrtc-camera'
+        entity: camera.lr_camera
+        ui: true
+        title: "LR Camera"
+      - type: picture-entity
+        entity: camera.front_door
+        name: "Front Door Camera"
+        show_state: false
+    type: vertical-stack
