@@ -1,0 +1,391 @@
+{
+    "data": {
+        "config": {
+            "title": "Home",
+            "views": [
+                {
+                    "badges": [
+                        "person.greg",
+                        "person.sara",
+                        "binary_sensor.front_door_opened",
+                        "binary_sensor.patio_door_opened",
+                        "binary_sensor.garage_door_opened",
+                        "sun.sun"
+                    ],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entity": "climate.upstairs",
+                                    "type": "thermostat"
+                                },
+                                {
+                                    "entity": "climate.downstairs",
+                                    "type": "thermostat"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.inside_lights"
+                                },
+                                {
+                                    "entity": "switch.bedroom_lamp"
+                                },
+                                {
+                                    "entity": "switch.bookshelf_lamp"
+                                },
+                                {
+                                    "entity": "switch.garage_lights"
+                                },
+                                {
+                                    "entity": "switch.lr"
+                                },
+                                {
+                                    "entity": "switch.office"
+                                }
+                            ],
+                            "title": "Lights",
+                            "type": "entities"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        "climate.upstairs"
+                                    ],
+                                    "type": "history-graph"
+                                },
+                                {
+                                    "entities": [
+                                        "climate.downstairs"
+                                    ],
+                                    "type": "history-graph"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.upstairs_hvac_runtime"
+                                },
+                                {
+                                    "entity": "sensor.upstairsthermoper"
+                                },
+                                {
+                                    "entity": "sensor.downstairs_hvac_runtime"
+                                },
+                                {
+                                    "entity": "sensor.downstairsthermoper"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_hvac_runtime_test"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "cards": [
+                                        {
+                                            "entities": [
+                                                {
+                                                    "entity": "vacuum.downstairs"
+                                                }
+                                            ],
+                                            "type": "entities"
+                                        },
+                                        {
+                                            "entities": [
+                                                {
+                                                    "entity": "vacuum.upstairs"
+                                                }
+                                            ],
+                                            "type": "entities"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.vacuum_battery_upstairs"
+                                                },
+                                                {
+                                                    "entity": "sensor.vacuum_battery_downstairs"
+                                                },
+                                                {
+                                                    "entity": "sensor.vacuum_state_upstairs"
+                                                },
+                                                {
+                                                    "entity": "sensor.vacuum_state_downstairs"
+                                                }
+                                            ],
+                                            "type": "entities"
+                                        }
+                                    ],
+                                    "type": "vertical-stack"
+                                }
+                            ],
+                            "title": "Vacuums",
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "aspect_ratio": "50%",
+                            "camera_view": "live",
+                            "entity": "camera.lr_camera",
+                            "show_name": true,
+                            "show_state": false,
+                            "type": "picture-entity"
+                        }
+                    ],
+                    "path": "default_view",
+                    "title": "Home"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.moon"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "weather.dark_sky",
+                            "name": "Weather",
+                            "type": "weather-forecast"
+                        },
+                        {
+                            "aspect_ratio": "80%",
+                            "type": "iframe",
+                            "url": "https://embed.windy.com/embed2.html?lat=36.036&lon=-78.898&zoom=8&level=surface&overlay=rain&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=35.903&detailLon=-78.744&metricWind=default&metricTemp=default&radarRange=-1"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.forecast_0",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_0d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_1",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_1d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_2",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_2d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_3",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_3d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_4",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_4d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_5",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_5d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_6",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_6d",
+                                    "name": " "
+                                },
+                                {
+                                    "entity": "sensor.forecast_7",
+                                    "icon": "mdi:blank"
+                                },
+                                {
+                                    "entity": "sensor.dark_sky_summary_7d",
+                                    "name": " "
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Weather Forecast",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "weather",
+                    "title": "Weather"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entity": "sensor.pihole_temp_c",
+                                    "max": 100,
+                                    "min": 0,
+                                    "severity": {
+                                        "green": 0,
+                                        "red": 70,
+                                        "yellow": 60
+                                    },
+                                    "type": "gauge"
+                                },
+                                {
+                                    "entity": "sensor.pihole_stats_ram_used_percent",
+                                    "max": 100,
+                                    "min": 0,
+                                    "severity": {
+                                        "green": 0,
+                                        "red": 80,
+                                        "yellow": 75
+                                    },
+                                    "type": "gauge",
+                                    "unit": "%"
+                                }
+                            ],
+                            "type": "horizontal-stack"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "sensor.pi_hole_ads_blocked_today",
+                                            "graph": "line",
+                                            "type": "sensor"
+                                        },
+                                        {
+                                            "entity": "sensor.pi_hole_dns_unique_clients",
+                                            "graph": "line",
+                                            "type": "sensor"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "sensor.archer_gb_received",
+                                            "graph": "line",
+                                            "type": "sensor"
+                                        }
+                                    ],
+                                    "type": "vertical-stack"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.speedtest_download"
+                                        }
+                                    ],
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.speedtest_upload"
+                                        }
+                                    ],
+                                    "type": "entities"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entity": "sensor.pi_hole_domains_blocked",
+                            "type": "sensor"
+                        },
+                        {
+                            "aspect_ratio": "16:9",
+                            "dark_mode": false,
+                            "entities": [
+                                {
+                                    "entity": "person.greg"
+                                },
+                                {
+                                    "entity": "zone.home"
+                                },
+                                {
+                                    "entity": "zone.duke_hospital"
+                                },
+                                {
+                                    "entity": "zone.greg_gym"
+                                }
+                            ],
+                            "type": "map"
+                        }
+                    ],
+                    "path": "netstats",
+                    "title": "NetStats"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "media_player.delimastick_lr",
+                            "type": "media-control"
+                        },
+                        {
+                            "camera_view": "live",
+                            "entity": "camera.lr_camera",
+                            "type": "picture-entity"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.garage_door_status"
+                                },
+                                {
+                                    "entity": "sensor.garage_last_changed"
+                                },
+                                {
+                                    "entity": "binary_sensor.garage_door_opened",
+                                    "secondary_info": "last-changed"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}

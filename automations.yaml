@@ -1,0 +1,200 @@
+#Update Weather Sensors
+- alias: Update Weather Sensors
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    hours: "/1"
+  action:
+   - service: homeassistant.update_entity
+     entity_id:
+      - sensor.forecast_0
+      - sensor.forecast_1
+      - sensor.forecast_2
+      - sensor.forecast_3
+      - sensor.forecast_4
+      - sensor.forecast_5
+      - sensor.forecast_6
+      - sensor.forecast_7
+      - sensor.sunset
+      - sensor.sunrise
+      - sensor.daylight
+     
+
+#Turn on the living room lights 30min before sunrise
+- alias: "Sun up living room lights"
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "-00:30:00"
+  action:
+    service: homeassistant.turn_on
+    data:
+      entity_id: group.livingroom
+    
+#Turn on the inside lights 1HR before sunset
+- alias: "Sun down inside lights"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  action:
+    service: homeassistant.turn_on
+    data:
+      entity_id: 
+        - group.livingroom
+        - switch.bedroom_lamp
+        - switch.office
+
+#Set thermostats to home when @ Home
+- alias: "Set Thermostats to Home"
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id: 
+        - person.greg
+        - person.sara
+    
+  condition:
+    condition: and
+    conditions:
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: person.greg
+            state: 'home'
+          
+          - condition: state
+            entity_id: person.sara
+            state: 'home'
+
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.upstairs
+        preset_mode: 'Home'
+ 
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.downstairs
+        preset_mode: 'Home' 
+
+#Set thermostats to Away when !@ Home
+- alias: "Set Thermostats to Away"
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id: 
+        - person.greg
+        - person.sara
+
+  condition:
+    condition: and
+    conditions:
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      #- condition: state
+      #  entity_id: person.greg
+      #  state: 'not_home'
+      - condition: template
+        value_template: "{{ not is_state('person.greg','home') }}"
+      
+      - condition: state
+        entity_id: person.sara
+        state: 'not_home'
+
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.upstairs
+        preset_mode: 'Away'
+ 
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.downstairs
+        preset_mode: 'Away' 
+        
+#Turn on Inside Lights When I get Home
+- alias: "Inside Lights when Home"
+  initial_state: true
+  trigger: 
+    platform: state
+    entity_id: person.greg
+    
+  condition:
+    condition: and
+    conditions:
+      - condition: state #Greg is Home
+        entity_id: person.greg
+        state: 'home'
+      - condition: state #Sara is Home
+        entity_id: person.sara
+        state: 'home'
+      - condition: time #Between 08:00 & 17:00 on Weekdays
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  
+  action:
+    - service: homeassistant.turn_on #Turn on the Inside Lights Group
+      data:
+        entity_id: group.inside_lights
+    
+#Telegram test with '/ping' should reply 'pong'
+- alias: 'Telegram bot that reply pong to ping'
+  #hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/ping'
+  action:
+    - service: notify.telegram_notify
+      data:
+        message: 'pong'
+
+#Turn off Inside Lights when no one has been home for 20 min
+- alias: 'Lights off No One Home'
+  initial_state: true
+  trigger: 
+    - platform: template
+      value_template: >
+        {{ not is_state('person.greg','home') and
+           not is_state('person.sara','home') }}
+      for:
+        minutes: 20
+  condition:
+    - condition: time 
+      after: '08:00:00'
+      before: '17:00:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        
+  action:
+    - service: homeassistant.turn_off #Turn off the Inside Lights Group
+      data:
+        entity_id: group.inside_lights
