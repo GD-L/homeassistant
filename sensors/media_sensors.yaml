@@ -1,0 +1,14 @@
+  - platform: radarr
+    api_key: !secret radarr_api
+    host: 192.168.1.198
+    port: 7878
+    monitored_conditions:
+        - movies
+        - status
+        - upcoming
+    days: 7
+  
+  - platform: qbittorrent
+    url: https://qbitvpn.gregdelima.com
+    username: !secret qbit_user
+    password: !secret qbit_pass

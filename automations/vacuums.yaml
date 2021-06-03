@@ -1,0 +1,13 @@
+- alias: 'Empty Downstairs Vacuum'
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id: vacuum.Downstairs
+      to: 'on'
+      for:
+        minutes: 10
+  action: 
+    service: input_boolean.turn_off
+    data:
+      entity_id:  input_boolean.downstairs_vacuum_empty
+

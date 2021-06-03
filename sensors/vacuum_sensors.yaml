@@ -1,0 +1,31 @@
+### Vacuum Sensors
+
+  - platform: template
+    sensors:
+     vacuum_battery_downstairs:
+      friendly_name: "Downstairs Vacuum Battery"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('vacuum.downstairs', 'battery_level') }}"
+      
+     vacuum_battery_upstairs:
+      friendly_name: "Upstairs Vacuum Battery"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('vacuum.upstairs', 'battery_level') }}"
+      
+     vacuum_state_upstairs:
+      friendly_name: "Upstairs Vacuum State"
+      value_template: "{{ state_attr('vacuum.upstairs', 'status') }}"
+            
+     vacuum_state_downstairs:
+      friendly_name: "Downstairs Vacuum State"
+      value_template: "{{ state_attr('vacuum.downstairs', 'status') }}"
+     
+     #Ecovacs currently doesn't trigger errors when stuck, only sets to 'stop' state, which can be different depending on circumstances
+     vacuum_cleaner_downstairs_error_sensor:
+      friendly_name: Vacuum Cleaner Downstairs Error Sensor
+      value_template: >-
+        {% if states.vacuum.downstairs.attributes.status == 'stop' %}
+          {{states.vacuum.downstairs.attributes.status}}
+        {% else %}
+          No Error
+        {% endif %}

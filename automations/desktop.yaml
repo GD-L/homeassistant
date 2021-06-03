@@ -1,0 +1,27 @@
+
+- alias: "Computer on, it's late"
+  initial_state: true
+  trigger: 
+    - platform: time
+      at: '22:30:00'
+  condition:
+    condition: state
+    entity_id: switch.desktop_power
+    state: 'on'
+  action:
+    - service: notify.telegram_notify_Greg
+      data:
+        message: "It's late and the computer is on."
+        data:
+          inline_keyboard:
+            - '/Shutdown?'
+
+- alias: 'Shutdown Response'
+  initial_state: true
+  trigger: 
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/Shutdown?'
+  action:
+    - service: shell_command.sleep_on_lan

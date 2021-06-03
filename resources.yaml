@@ -1,0 +1,11 @@
+  - url: /local/battery-entity.js?v=0.1
+    type: module
+  - url: /local/auto-entities.js?v=0.1
+    type: js
+  - url: /hacsfiles/uptime-card/uptime-card.js
+    type: module
+  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js?v=0.10.0
+    type: module         
+  - url: /hacsfiles/button-card/button-card.js
+    type: module         
+                              

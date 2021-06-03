@@ -1,0 +1,7 @@
+
+  - platform: ffmpeg_motion
+    input: -rtsp_transport http -i rtsp://gregdelima:tkId3jY8@192.168.1.185/live
+    name: Cam1_motion
+    extra_arguments: -pred 1 -q:v 2
+    changes: 10
+    reset: 10

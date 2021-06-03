@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+
+  homeassistant:
+    container_name: 'home-assistant'
+    image: homeassistant/home-assistant:stable
+    network_mode: host
+    volumes:
+      - /docker/homeassistant:/config
+    devices:
+    #Passthrough USB Stick for Z-Wave & Zigbee
+      - /dev/ttyUSB1:/dev/ttyUSB1 #Zigbee
+      #- /dev/ttyUSB0:/dev/ttyUSB0 #Z-Wave
+      #- /dev/ttyUSBX:/dev/ttyUSBX
+    #environment:
+    #  - PUID=1000
+    #  - PGID=1000
+    #  - TZ=America/New_York
+    env_file: /docker/docker_envs.env 
+    restart: unless-stopped
+    depends_on: 
+      - zwaveJS
+  
+  zwaveJS:
+    container_name: zwave_js
+    image: zwavejs/zwavejs2mqtt:latest
+    network_mode: host
+    volumes: 
+      - ./store:/usr/src/app/store
+    devices:
+      - /dev/ttyUSB0
+    tty: true
+    ports:
+      - 8091:8091
+      - 3030:3030
+    env_file: /docker/docker_envs.env
+    restart: unless-stopped

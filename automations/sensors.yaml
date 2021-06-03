@@ -1,0 +1,49 @@
+#Update Weather Sensors
+- alias: 'Update Weather Sensors'
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    hours: "/1"
+  action:
+  - service: homeassistant.update_entity
+    entity_id:
+      - sensor.forecast_0
+      - sensor.forecast_1
+      - sensor.forecast_2
+      - sensor.forecast_3
+      - sensor.forecast_4
+      - sensor.forecast_5
+      - sensor.forecast_6
+      - sensor.forecast_7
+      - sensor.sunset
+      - sensor.sunrise
+      - sensor.daylight
+    
+- alias: 'Garage Open Notification'
+  initial_state: true
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.garage_door_opened 
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    - service: notify.telegram_notify_Greg
+      data:
+        message: 'The Garage Door has been open for more than 5 minutes'
+    - service: notify.telegram_notify_Sara
+      data:
+        message: 'The Garage Door has been open for more than 5 minutes'
+
+- alias: "NUT UPS Error"
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.ups_status
+    to: 'unavailable'
+    for:
+      minutes: 5
+  action:
+    - service: notify.telegram_notify_Greg
+      data:
+        message: 'The UPS is in an unknown state, you may need to reboot the server.'

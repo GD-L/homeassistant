@@ -1,0 +1,90 @@
+#Thermostat Automations
+
+#Set thermostats to home when @ Home
+- alias: "Set Thermostats to Home"
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id: 
+        - person.greg
+        - person.sara
+  condition:
+    condition: and
+    conditions:
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: person.greg
+            state: 'home'
+          - condition: state
+            entity_id: person.sara
+            state: 'home'
+
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: 
+          - climate.upstairs
+          - climate.downstairs
+        preset_mode: 'Home'
+
+#Set thermostats to Away when !@ Home
+- alias: "Set Thermostats to Away"
+  initial_state: true
+  trigger: 
+    - platform: state
+      entity_id: 
+        - person.greg
+        - person.sara
+
+  condition:
+    condition: and
+    conditions:
+      - condition: time 
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: template
+        value_template: "{{ not is_state('person.greg','home') }}"
+      - condition: state
+        entity_id: person.sara
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id:
+          - climate.downstairs
+          - climate.upstairs
+        preset_mode: 'Away'
+
+
+- alias: Thermostat Away Hold (ENABLE)
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.vacation_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: climate.set_preset_mode
+      target: 
+        entity_id: all
+      data:
+        preset_mode: 'Away'

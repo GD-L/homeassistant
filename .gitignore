@@ -1,0 +1,36 @@
+# Example .gitignore file for your config dir.
+# A * ensures that everything will be ignored.
+*
+
+# You can whitelist files/folders with !, these will not be ignored.
+!*.yaml
+!.gitignore
+!*.md
+!/sensors
+!/.storage/lovelace*
+!/www
+!/automations
+!/www/*
+!/lovelace
+!hassup.sh
+!/switches
+!/binarysensors
+
+# Ignore folders.
+/.cloud
+/.storage
+/www/community*
+/www/commands*
+
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+
+secrets.yaml
+known_devices.yaml
+ecobee.conf
+shell_command.yaml
+
+
+#Exclude DBs
+thumbs.db
+*.db

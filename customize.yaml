@@ -1,0 +1,13 @@
+binary_sensor.garage_door_opened:
+  device_class: garage_door
+  
+binary_sensor.front_door_sensor:
+  device_class: door
+  
+binary_sensor.patio_door_sensor:
+  device_class: door
+  
+switch.adhoc_plug:
+  friendly_name: "AdHoc Plug"
+  icon: mdi:lightbulb
+  state_color: true

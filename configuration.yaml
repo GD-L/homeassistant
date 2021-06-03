@@ -1,0 +1,217 @@
+
+### General Configurations
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  elevation: 365
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include customize.yaml
+
+
+#System Health
+#https://www.home-assistant.io/components/system_health/
+system_health:
+
+lovelace:
+  mode: yaml
+  resources: !include resources.yaml
+  #- url: /local/battery-entity.js?v=0.1
+  #  type: module
+  #- url: /local/auto-entities.js?v=0.1
+  #  type: js
+  dashboards:
+    custom-config: 
+      mode: yaml
+      filename: ui-lovelace.yaml
+      title: Dashboard
+      show_in_sidebar: true
+    testing-zone:
+      mode: yaml
+      filename: lovelace-testing.yaml
+      title: Testing
+      show_in_sidebar: true
+      require_admin: true
+      
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+
+#Set frontent to point to themes file
+frontend:
+    #themes: !include themes.yaml
+    themes: !include_dir_merge_named themes
+
+
+#Other Configurations
+#https://www.home-assistant.io/docs/configuration/splitting_configuration/
+group: !include groups.yaml
+script: !include scripts.yaml
+sensor: !include_dir_merge_list sensors/
+recorder: !include recorder.yaml
+automation: !include_dir_merge_list automations/
+binary_sensor: !include_dir_merge_list binarysensors/
+switch: !include_dir_merge_list switches/
+input_boolean: 
+### Weather
+
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky
+    mode: hourly
+    units: us
+    latitude: !secret home_lat
+    longitude: !secret home_long
+    
+
+sun:
+
+discovery: 
+#    ignore:
+#        - homekit
+
+
+## Ecobee Thermostats
+
+#ecobee:
+#  api_key: !secret ecobee_api
+
+wemo:
+  discovery: true
+  static:
+    - 192.168.1.122
+    - 192.168.1.121
+
+### Media
+#Roku Deprecated 0.118.0
+#roku:
+#  - host: 192.168.1.107
+
+spotify:
+  client_id: !secret spotify_client
+  client_secret: !secret spotify_secret
+
+### Custom Zones
+
+zone:
+  - name: Greg Work 
+    latitude: !secret gwork_lat
+    longitude: !secret gwork_long
+    radius: 300
+    icon: mdi:breifcase
+    
+  - name: !secret swork_name 
+    latitude: !secret swork_lat
+    longitude: !secret swork_long
+    radius: 500
+    icon: !secret swork_icon
+
+  - name: Greg Gym
+    latitude: !secret gym_lat
+    longitude: !secret gym_long
+    radius: 300
+    icon: mdi:Dumbbell 
+
+
+### Alexa
+
+alexa:
+  smart_home:
+    filter: 
+      exclude_domains:
+         - sensor
+         - automation
+         - binary_sensor
+         - media_player
+         - device_tracker
+api:
+
+google_assistant:
+  project_id: !secret google_assist_project
+  service_account: !include SERVICE_ACCOUNT.JSON
+  report_state: true
+  exposed_domains:
+    - switch
+    - light
+    - group
+    - vacuum
+    - climate
+
+
+### Vacuums
+
+ecovacs:
+  username: !secret ecovacs_email
+  password: !secret ecovacs_pass
+  country: us #USA
+  continent: na #North America
+
+#Speedtest.net
+
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+
+### Device Trackers
+  
+device_tracker:
+  - platform: ping
+    hosts:
+      sara_router: 192.168.1.130
+      greg_router: 192.168.1.131
+      scan_interval: 60
+    consider_home: 600
+  
+#Telegram
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram
+    allowed_chat_ids:
+        - !secret greg_chatid
+        - !secret sara_chatid
+notify:
+  - name: telegram_notify_Greg
+    platform: telegram
+    chat_id: !secret greg_chatid
+
+  - name: telegram_notify_Sara
+    platform: telegram
+    chat_id: !secret sara_chatid
+
+#piHole
+pi_hole:
+  host: '192.168.1.135'
+  ssl: false
+  verify_ssl: false
+  api_key: !secret pihole_api
+
+#cams
+camera:
+  - platform: generic
+    name: LR Camera
+    still_image_url: /local/wyze-logo.jpg
+    stream_source: !secret wyzecam_lr
+  
+  #- platform: mjpeg
+  #  name: LR Camera
+  #  mjpeg_url: !secret motioneye_lr_url
+  #  still_image_url: !secret motioneye_lr_still_url
+
+#Wake on LAN
+wake_on_lan:
+shell_command: !include shell_command.yaml
+
+
+panel_iframe:
+  zwave: 
+    title: "Z-Wave Config"
+    url: !secret zwave_url
+    icon: mdi:z-wave

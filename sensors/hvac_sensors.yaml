@@ -1,0 +1,154 @@
+
+
+  - platform: history_stats
+    name: Downstairs heat
+    entity_id: sensor.downstairsthermoper
+    state: 'heating'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Downstairs cool
+    entity_id: sensor.downstairsthermoper
+    state: 'cooling'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Upstairs heat
+    entity_id: sensor.upstairsthermoper
+    state: 'heating'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Upstairs cool
+    entity_id: sensor.upstairsthermoper
+    state: 'cooling'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+#Test version of net 24hr runtime
+  - platform: history_stats
+    name: Upstairs heat test
+    entity_id: sensor.upstairsthermoper
+    state: 'heating'
+    type: time
+    start: '{{as_timestamp(now())-86400}}'
+    end: '{{as_timestamp(now())}}'
+    
+  - platform: history_stats
+    name: Upstairs cool test
+    entity_id: sensor.upstairsthermoper
+    state: 'cooling'
+    type: time
+    start: '{{as_timestamp(now())-86400}}'
+    end: '{{as_timestamp(now())}}'
+#END TEST
+    
+  - platform: template
+    sensors:
+
+      downstairs_hvac_runtime:
+        friendly_name: "Downstairs HVAC Runtime"
+        unit_of_measurement: "h"
+        value_template: >-
+           {%- if [states.sensor.downstairs_cool.state|float, states.sensor.downstairs_heat.state|float, 0]|max != None -%}
+             {{ [states.sensor.downstairs_cool.state|float, states.sensor.downstairs_heat.state|float, 0]|max }}
+           {%- else -%}
+             0
+           {%- endif -%}
+        icon_template: >-
+          {%- if states('sensor.downstairs_cool')|default(0) < states('sensor.downstairs_heat')|default(0) -%}
+            mdi:fire
+          {%- elif states('sensor.downstairs_cool')|default(0) > states('sensor.downstairs_heat')|default(0) -%}
+            mdi:snowflake
+          {%- endif -%}
+          
+      upstairs_hvac_runtime:
+        friendly_name: "Upstairs HVAC Runtime"
+        unit_of_measurement: "h"
+        value_template: >-
+           {%- if [states.sensor.upstairs_cool.state|float, states.sensor.upstairs_heat.state|float, 0]|max != None -%}
+             {{ [states.sensor.upstairs_cool.state|float, states.sensor.upstairs_heat.state|float, 0]|max }}
+           {%- else -%}
+             0
+           {%- endif -%}
+        icon_template: >-
+          {%- if states('sensor.upstairs_cool')|default(0) < states('sensor.upstairs_heat')|default(0) -%}
+            mdi:fire
+          {%- elif states('sensor.upstairs_cool')|default(0) > states('sensor.upstairs_heat')|default(0) -%}
+            mdi:snowflake
+          {%- endif -%}
+    
+      downstairsthermoper:
+        friendly_name: "Downstairs Thermostat"
+        value_template: >-
+           {{ state_attr('climate.downstairs', 'hvac_action') }}
+        icon_template: >-
+          {%- if state_attr('climate.downstairs', 'hvac_action') == "heating" -%}
+            mdi:fire
+          {%- elif state_attr('climate.downstairs', 'hvac_action') == "cooling" -%}
+            mdi:snowflake
+          {%- else -%}
+            mdi:fan
+          {%- endif -%}
+
+      downstairs_idler:
+        friendly_name: "Downstairs idler"
+        value_template: >-
+          {%- if state_attr('climate.downstairs', 'hvac_action') == "heating" -%}
+                running
+              {%- elif state_attr('climate.downstairs', 'hvac_action') == "cooling" -%}
+                running
+              {%- elif state_attr('climate.downstairs', 'fan') == "on" -%}
+                running
+              {%- else -%}
+                idle
+              {%- endif -%}
+      upstairs_idler:
+        friendly_name: "Upstairs idler"
+        value_template: >-
+          {%- if state_attr('climate.upstairs', 'hvac_action') == "heating" -%}
+                running
+              {%- elif state_attr('climate.upstairs', 'hvac_action') == "cooling" -%}
+                running
+              {%- elif state_attr('climate.upstairs', 'fan') == "on" -%}
+                running
+              {%- else -%}
+                idle
+              {%- endif -%}
+
+
+          
+      upstairsthermoper:
+        friendly_name: "Upstairs Thermostat"
+        value_template: >-
+           {{ state_attr('climate.upstairs', 'hvac_action') }}
+        icon_template: >-
+          {%- if state_attr('climate.upstairs', 'hvac_action') == "heating" -%}
+            mdi:fire
+          {%- elif state_attr('climate.upstairs', 'hvac_action') ==  "cooling" -%}
+            mdi:snowflake
+          {%- else -%}
+            mdi:fan
+          {%- endif -%}
+
+#START TEST
+      upstairs_hvac_runtime_test:
+        friendly_name: "Upstairs 24Hr HVAC Runtime"
+        unit_of_measurement: "h"
+        value_template: >-
+           {%- if [states.sensor.upstairs_cool_test.state|float, states.sensor.upstairs_heat_test.state|float, 0]|max != None -%}
+             {{ [states.sensor.upstairs_cool_test.state|float, states.sensor.upstairs_heat_test.state|float, 0]|max }}
+           {%- else -%}
+             0
+           {%- endif -%}
+        icon_template: >-
+          {%- if states('sensor.upstairs_cool_test')|default(0) < states('sensor.upstairs_heat_test')|default(0) -%}
+            mdi:fire
+          {%- elif states('sensor.upstairs_cool_test')|default(0) > states('sensor.upstairs_heat_test')|default(0) -%}
+            mdi:snowflake
+          {%- endif -%}
+#END TEST

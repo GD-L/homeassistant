@@ -1,0 +1,88 @@
+- alias:  Enable Guest Mode
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: automation.turn_off
+      entity_id: automation.inside_lights_when_home
+    - service: automation.turn_off
+      entity_id: automation.light_light
+    - service: automation.turn_off
+      entity_id: automation.sun_down_inside_lights
+    - service: automation.turn_off
+      entity_id: automation.sun_up_living_room_lights
+    - service: automation.turn_off
+      entity_id: automation.lights_off_no_one_home
+    - service: automation.turn_off
+      entity_id: automation.set_thermostats_to_home
+    - service: automation.turn_off
+      entity_id: automation.set_thermostats_to_away
+      
+- alias: Disable Guest Mode
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode
+    from: 'on'
+    to: 'off'
+  action:
+    - service: automation.turn_on
+      entity_id: automation.inside_lights_when_home
+    - service: automation.turn_on
+      entity_id: automation.light_light
+    - service: automation.turn_on
+      entity_id: automation.sun_down_inside_lights
+    - service: automation.turn_on
+      entity_id: automation.sun_up_living_room_lights
+    - service: automation.turn_on
+      entity_id: automation.lights_off_no_one_home
+    - service: automation.turn_on
+      entity_id: automation.set_thermostats_to_home
+    - service: automation.turn_on
+      entity_id: automation.set_thermostats_to_away
+
+
+
+- alias: Enable Vacation Mode
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.vacation_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: automation.turn_off
+      entity_id: automation.inside_lights_when_home
+    - service: automation.turn_off
+      entity_id: automation.lights_off_no_one_home
+    - service: automation.turn_on
+      entity_id: automation.set_thermostats_to_away
+    - service: climate.set_preset_mode
+      data:
+        entity_id:
+          - climate.downstairs
+          - climate.upstairs
+        preset_mode: 'Away'
+    - service: shell_command.sleep_on_lan
+
+
+- alias: Disable Vacation Mode
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.vacation_mode
+    from: 'on'
+    to: 'off'
+  action:
+    - service: automation.turn_on
+      entity_id: automation.inside_lights_when_home
+    - service: automation.turn_on
+      entity_id: automation.lights_off_no_one_home
+    - service: automation.turn_off
+      entity_id: automation.set_thermostats_to_home
+    #- service: automation.turn_off
+    #  entity_id: automation.thermostat_away_hold_enable
+
