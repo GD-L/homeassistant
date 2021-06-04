@@ -62,14 +62,15 @@
             {% else %} You are up to date
             {% endif %}"
 
-- alias: Stauts Report
-  trigger:
+- alias: Trash Check
+  trigger: 
     platform: event
     event_type: telegram_command
     event_data:
-      command: '/statusreport'
-  action:
+      command: '/garbage'
+  action: 
     - service: telegram_bot.send_message
-      data:
+      data: 
         chat_id: '{{ trigger.event.data.chat_id }}'
-        message: 'You asked for a status report'
+        message: "The next trash day is: {{as_timestamp(state_attr('calendar.trash_calendar', 'start_time'))|timestamp_custom('%B %-d %Y', 'true')}}
+                  and the next trash & recycle day is {{as_timestamp(state_attr('calendar.recycle_calendar', 'start_time'))|timestamp_custom('%B %-d %Y', 'true')}}"

@@ -1,0 +1,25 @@
+- alias: "Trash Notify"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.trash_day
+      to: 'on'
+  action:
+    - service: notify.telegram_notify_Sara
+      data:
+        message: "Tomorrow's Trash Day, don't forget to take out the trash"
+    - service: notify.telegram_notify_Greg
+      data:
+        message: "Tomorrow's Trash Day, don't forget to take out the trash"
+
+- alias: "Recycle Notify"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.recycle_day
+      to: 'on'
+  action:
+    - service: notify.telegram_notify_Sara
+      data:
+        message: "Tomorrow's Trash & *Recycle* Day, don't forget to take it out."
+    - service: notify.telegram_notify_Greg
+      data:
+        message: "Tomorrow's Trash & *Recycle* Day, don't forget to take it out."

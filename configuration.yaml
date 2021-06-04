@@ -209,6 +209,10 @@ camera:
 wake_on_lan:
 shell_command: !include shell_command.yaml
 
+google:
+  client_id: !secret gcal_client
+  client_secret: !secret gcal_secret
+  track_new_calendar: false
 
 panel_iframe:
   zwave: 

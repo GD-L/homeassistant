@@ -29,7 +29,7 @@ secrets.yaml
 known_devices.yaml
 ecobee.conf
 shell_command.yaml
-
+google_calendars.yaml
 
 #Exclude DBs
 thumbs.db
