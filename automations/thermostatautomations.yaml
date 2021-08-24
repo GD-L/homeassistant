@@ -75,7 +75,79 @@
         preset_mode: 'Away'
 
 
-- alias: Thermostat Away Hold (ENABLE)
+# - alias: Thermostat Away Hold (ENABLE)
+#   initial_state: true
+#   trigger:
+#     platform: state
+#     entity_id: input_boolean.vacation_mode
+#     from: 'off'
+#     to: 'on'
+#   action:
+#     - service: climate.set_preset_mode
+#       target: 
+#         entity_id: all
+#       data:
+#         preset_mode: 'Away'
+
+
+- alias: "Thermostat Break"
+  initial_state: false  
+  trigger:
+    platform: template
+    value_template: "{% if state_attr('climate.upstairs', 'hvac_action')=='cooling' %}true{% endif %}"
+    for: '01:00:00'
+  action:
+    - service: automation.turn_off
+      target:
+        entity_id: automation.set_thermostats_to_home
+    - service: climate.set_hvac_mode
+      target:
+        entity_id: climate.upstairs
+      data:
+        hvac_mode: 'off'
+    - service: climate.set_fan_mode
+      target: 
+        entity_id: climate.upstairs
+      data:
+        fan_mode: 'on'
+    - service: climate.set_hvac_mode
+      target:
+        entity_id: climate.downstairs
+      data:
+        hvac_mode: 'off'
+    - service: climate.set_fan_mode
+      target: 
+        entity_id: climate.downstairs
+      data:
+        fan_mode: 'on'
+
+    - delay: "00:10:00"
+    - service: automation.turn_on
+      target:
+        entity_id: automation.set_thermostats_to_home
+    - service: climate.set_hvac_mode
+      target:
+        entity_id: climate.upstairs
+      data:
+        hvac_mode: 'cool'
+    - service: climate.set_fan_mode
+      target: 
+        entity_id: climate.upstairs
+      data:
+        fan_mode: 'auto'
+    - service: climate.set_hvac_mode
+      target:
+        entity_id: climate.downstairs
+      data:
+        hvac_mode: 'cool'
+    - service: climate.set_fan_mode
+      target: 
+        entity_id: climate.downstairs
+      data:
+        fan_mode: 'auto'
+
+
+- alias: Thermostat Vacation Hold
   initial_state: true
   trigger:
     platform: state
@@ -83,38 +155,38 @@
     from: 'off'
     to: 'on'
   action:
-    - service: climate.set_preset_mode
-      target: 
-        entity_id: all
+    - service: ecobee.create_vacation
       data:
-        preset_mode: 'Away'
+        entity_id: climate.upstairs
+        vacation_name: "UpstairsHold"
+        cool_temp: 78
+        heat_temp: 65
+        fan_mode: auto
+        fan_min_on_time: 5
+    - service: ecobee.create_vacation
+      data:
+        entity_id: climate.downstairs
+        vacation_name: "DownstairsHold"
+        cool_temp: 78
+        heat_temp: 65
+        fan_mode: auto
+        fan_min_on_time: 5
 
-
-- alias: "Upstairs Thermostat Break"
+- alias: Thermostat Vacation End
   initial_state: true
   trigger:
     platform: state
-    entity_id: climate.downstairs
-    from: idle
-    to: cool
-    for: '01:00:00'
+    entity_id: input_boolean.vacation_mode
+    from: 'on'
+    to: 'off'
   action:
-    - service: climate.set_preset_mode
-      target:
+    - service: ecobee.delete_vacation
+      data_template:
         entity_id: climate.upstairs
-      data:
-        preset_mode: 'Away'
-    - service: climate.set_fan_mode
-      target: 
+        vacation_name: "UpstairsHold"
+    - service: ecobee.delete_vacation
+      data_template:
         entity_id: climate.upstairs
-      data:
-        fan_mode: 'on'
-    - service: automation.turn_off
-      target:
-        entity_id: automation.set_thermostats_to_home
-    - delay: "00:10:00"
-    - service: automation.turn_on
-      target:
-        entity_id: automation.set_thermostats_to_home
+        vacation_name: "DownstairsHold"
 
-  
+

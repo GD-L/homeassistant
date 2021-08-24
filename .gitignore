@@ -9,7 +9,7 @@
 !/sensors
 !/.storage/lovelace*
 !/www
-!/automations
+!/automations*
 !/www/*
 !/lovelace
 !hassup.sh

@@ -39,22 +39,18 @@ cards:
       - entity: sensor.upstairsthermoper
       - entity: sensor.downstairs_hvac_runtime
       - entity: sensor.downstairsthermoper
-      - entity: sensor.upstairs_hvac_runtime_test
+      - entity: sensor.upstairs_hvac_runtime_24h
+      - entity: sensor.downstairs_hvac_runtime_24h
     type: entities
   - cards:
       - cards:
           - entities:
               - entity: vacuum.downstairs
             type: entities
-          - entities:
-              - entity: vacuum.upstairs
-            type: entities
         type: horizontal-stack
       - cards:
           - entities:
-              - entity: sensor.vacuum_battery_upstairs
               - entity: sensor.vacuum_battery_downstairs
-              - entity: sensor.vacuum_state_upstairs
               - entity: sensor.vacuum_state_downstairs
             type: entities
         type: vertical-stack

@@ -48,34 +48,10 @@ cards:
       name_adaptive_color: false
       icon_adaptive_color: true
       labels: true
-      legend: true
+      legend: false
       points: false
       state: false
-  - type: horizontal-stack
-    cards:
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.qbittorrent_active_torrents
-            name: Active Torrents
-            color: "#6fe1dc"
-        unit: "Torrents"
-        icon: "mdi:swap-vertical"
-        show:
-          graph: false
-          name_adaptive_color: true
-          icon_adaptive_color: true
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.qbittorrent_inactive_torrents
-            name: Inctive Torrents
-            color: "#ad74e3"
-        unit: "Torrents"
-        icon: "mdi:swap-vertical"
-        show:
-          graph: false
-          name_adaptive_color: true
-          icon_adaptive_color: true
-
+  
   - type: horizontal-stack
     cards:
       - type: custom:mini-graph-card
@@ -124,3 +100,65 @@ cards:
       - entity: sensor.qbittorrent_status
       - entity: sensor.qbittorrent_down_speed
       - entity: sensor.qbittorrent_up_speed
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.qbittorrent_active_torrents
+            name: Active Torrents
+            color: "#6fe1dc"
+        unit: "Torrents"
+        icon: "mdi:swap-vertical"
+        show:
+          graph: false
+          name_adaptive_color: true
+          icon_adaptive_color: true
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.qbittorrent_inactive_torrents
+            name: Inctive Torrents
+            color: "#ad74e3"
+        unit: "Torrents"
+        icon: "mdi:swap-vertical"
+        show:
+          graph: false
+          name_adaptive_color: true
+          icon_adaptive_color: true
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        cards:
+        entities:
+          - entity: sensor.plex_stream_counts
+            color: "#ff8c32"
+        unit: "Streams"
+        name: "Active Plex Streams"
+        show:
+          graph: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+
+      - cards:
+        type: custom:mini-graph-card
+        entities:
+          - entity: sensor.plex_wan_bandwidth
+            name: "Plex WAN Bandwidth"
+            color: "#6fe1dc"
+          - entity: sensor.plex_lan_bandwidth
+            color: "#ad74e3"
+            name: "Plex LAN Bandwidth"
+        hours_to_show: 24
+        points_per_hour: 2
+        line_width: 2
+        name: "Plex Bandwidth"
+        decimals: 0
+        icon: 'mdi:ethernet'
+        show:
+          fill: true
+          name_adaptive_color: false
+          icon_adaptive_color: true
+          labels: true
+          legend: false
+          points: true
+          state: true

@@ -12,3 +12,29 @@
     url: https://qbitvpn.gregdelima.com
     username: !secret qbit_user
     password: !secret qbit_pass
+
+
+  - platform: tautulli
+    api_key: !secret tautulli_api
+    host: !secret tautulli_host
+    ssl: true
+    port: 443
+
+  - platform: template
+    sensors:
+      plex_lan_bandwidth:
+        value_template: "{{ states.sensor.tautulli.attributes.lan_bandwidth / 1024 | round(2) }}"
+        unit_of_measurement: "Mbps"
+        icon_template: mdi:ethernet
+      plex_wan_bandwidth:
+        value_template: "{{ states.sensor.tautulli.attributes.wan_bandwidth / 1024  | round(2)}}"
+        unit_of_measurement: "Mbps"
+        icon_template: mdi:ethernet
+      plex_total_bandwidth:
+        value_template: "{{ states.sensor.tautulli.attributes.total_bandwidth / 1024  | round(2)}}"
+        unit_of_measurement: "Mbps"
+        icon_template: mdi:ethernet
+      plex_stream_counts:
+        value_template: "{{ states.sensor.tautulli.attributes.stream_count}}"
+        unit_of_measurement: "Streams"
+        icon_template: mdi:monitor-eye

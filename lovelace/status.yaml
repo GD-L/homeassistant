@@ -3,6 +3,17 @@ title: Status
 path: status
 cards:   
 
+  - type: button
+    name: Restart HomeAssistant
+    show_state: false
+    icon: mdi:restart
+    icon_height: 4em
+    tap_action:
+      action: call-service
+      confirmation: 
+        text: Are you sure you want to restart?
+      service: homeassistant.restart
+
   - type: entities
     title: Automation Modes
     show_header_toggle: false

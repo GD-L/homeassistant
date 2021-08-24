@@ -21,11 +21,13 @@ services:
     restart: unless-stopped
     depends_on: 
       - zwaveJS
+    labels:
+      - "diun.enable=true"
   
   zwaveJS:
     container_name: zwave_js
     image: zwavejs/zwavejs2mqtt:latest
-    network_mode: host
+    #network_mode: host
     volumes: 
       - ./store:/usr/src/app/store
     devices:
@@ -36,3 +38,5 @@ services:
       - 3030:3030
     env_file: /docker/docker_envs.env
     restart: unless-stopped
+    labels:
+      - "diun.enable=true"
