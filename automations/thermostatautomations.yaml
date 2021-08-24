@@ -88,3 +88,33 @@
         entity_id: all
       data:
         preset_mode: 'Away'
+
+
+- alias: "Upstairs Thermostat Break"
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: climate.downstairs
+    from: idle
+    to: cool
+    for: '01:00:00'
+  action:
+    - service: climate.set_preset_mode
+      target:
+        entity_id: climate.upstairs
+      data:
+        preset_mode: 'Away'
+    - service: climate.set_fan_mode
+      target: 
+        entity_id: climate.upstairs
+      data:
+        fan_mode: 'on'
+    - service: automation.turn_off
+      target:
+        entity_id: automation.set_thermostats_to_home
+    - delay: "00:10:00"
+    - service: automation.turn_on
+      target:
+        entity_id: automation.set_thermostats_to_home
+
+  
