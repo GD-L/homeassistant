@@ -1,0 +1,14 @@
+play_black_ops:
+  alias: My Computer - Run CoD
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: iotlink/workgroup/gdl-desktop/commands/run
+      payload: '{ "command": "C:\\Program Files (x86)\\Call of Duty Black Ops Cold War\\Black Ops Cold War Launcher.exe", 
+                "args":"", 
+                "path": "C:\\Program Files (x86)\\Call of Duty Black Ops Cold War\\", 
+                "user": "", 
+                "visible": true, 
+                "fallback": true }'
+      qos: '1'
+  mode: single
