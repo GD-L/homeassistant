@@ -74,22 +74,6 @@
           - climate.upstairs
         preset_mode: 'Away'
 
-
-# - alias: Thermostat Away Hold (ENABLE)
-#   initial_state: true
-#   trigger:
-#     platform: state
-#     entity_id: input_boolean.vacation_mode
-#     from: 'off'
-#     to: 'on'
-#   action:
-#     - service: climate.set_preset_mode
-#       target: 
-#         entity_id: all
-#       data:
-#         preset_mode: 'Away'
-
-
 - alias: "Thermostat Break"
   initial_state: true  
   trigger:

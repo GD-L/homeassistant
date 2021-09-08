@@ -15,7 +15,8 @@
 !hassup.sh
 !/switches
 !/binarysensors
-!/mobile-layout*
+!/layouts*
+!/layouts/*
 
 # Ignore folders.
 /.cloud

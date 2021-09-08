@@ -17,10 +17,7 @@ system_health:
 
 http:
   use_x_forwarded_for: true
-  trusted_proxies:
-    - 192.168.1.0/24
-    - 172.0.0.0/8
-    - 192.168.0.0/16
+  trusted_proxies: !secret proxies
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
@@ -30,18 +27,18 @@ lovelace:
   dashboards:
     custom-config:
       mode: yaml
-      filename: ui-lovelace.yaml
+      filename: layouts/lovelace/ui-lovelace.yaml
       title: Dashboard
       show_in_sidebar: true
     testing-zone:
       mode: yaml
-      filename: lovelace-testing.yaml
+      filename: layouts/lovelacetesting/lovelace-testing.yaml
       title: Testing
       show_in_sidebar: true
       require_admin: true
     mobile-layout:
       mode: yaml
-      filename: mobile-layout/mobile-layout.yaml
+      filename: layouts/mobile-layout/mobile-layout.yaml
       title: Mobile
       show_in_sidebar: true
       require_admin: true

@@ -1,18 +1,4 @@
-#Telegram test with '/ping' should reply 'pong'
-- alias: 'Telegram bot that reply pong to ping'
-  trigger:
-    platform: event
-    event_type: telegram_command
-    event_data:
-      command: '/ping'
-  action:
-    - service: notify.telegram_notify_Sara
-      data:
-        message: 'pong'
-    - service: notify.telegram_notify_Greg
-      data:
-        message: 'pong'
-        
+  
 - alias: 'Morning Weather'
   trigger: 
     platform: time

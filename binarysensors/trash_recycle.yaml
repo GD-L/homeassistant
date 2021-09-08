@@ -60,7 +60,7 @@
         # or 1 hour (3600s) before normal event (Problemmüll)
         # CAREFUL: Binary sensors need true/false as input, NOT UI niceties like on/off or the like!
         value_template: >-
-          {% set calendar = 'recycle_calendar' %}
+          {% set calendar = 'calendar.recycle_calendar' %}
           {# Adapt these for your needs #}
           {% set seconds_before_all_day = 25200 %}
           {% set seconds_before_end_all_day = 25200 %}

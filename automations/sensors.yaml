@@ -40,7 +40,7 @@
   trigger:
     platform: state
     entity_id: sensor.ups_status
-    to: 'unavailable'
+    to: unavailable
     for:
       minutes: 5
   action:

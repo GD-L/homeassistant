@@ -1,8 +1,0 @@
-title: Testing Dash
-
-views:
-  - !include lovelacetesting/testing.yaml
-  - !include lovelacetesting/home.yaml
-  - !include lovelacetesting/netstats.yaml
-
-  

@@ -2,7 +2,6 @@
 
   - platform: template
     sensors:
-     
      archer_mbps_sec_received:
       friendly_name: "Archer C1200 MBPS"
       unit_of_measurement: 'mbps'
