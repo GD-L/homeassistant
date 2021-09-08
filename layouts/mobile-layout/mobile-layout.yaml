@@ -1,0 +1,10 @@
+title: Mobile Dash
+swipe_nav:
+  animate: swipe
+  swipe_amount: 25
+  wrap: true
+
+views:
+  - !include ./home.yaml
+  - !include ./netstats.yaml
+  

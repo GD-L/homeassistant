@@ -1,0 +1,7 @@
+title: Home
+
+views:
+  - !include ./home.yaml
+  - !include ./weather.yaml
+  - !include ./netstats.yaml
+  - !include ./status.yaml

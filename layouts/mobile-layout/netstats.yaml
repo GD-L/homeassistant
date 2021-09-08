@@ -1,0 +1,164 @@
+#NetStats     
+path: netstats
+title: NetStats
+icon: mdi:wan
+cards:
+  - type: 'custom:uptime-card'
+    entity: binary_sensor.updater
+    icon: 'mdi:raspberry-pi'
+    severity: 100
+    ok: 'on'
+    ko: 'off'
+    bar:
+      height: 46
+      round: 1
+      spacing: 4
+      amount: 24
+    name: HA update
+    alias:
+      ok: Update available !
+      ko: No update for the moment...
+    color:
+      icon: grey
+    hours_to_show: 24
+    show:
+      footer: false
+    status_adaptive_color: true
+    color_thresholds:
+      - value: 1
+        color: gray
+      - value: 100
+        color: green
+
+  - cards:
+    type: custom:mini-graph-card
+    entities:
+      - entity: sensor.speedtest_download
+        color: "#6fe1dc"
+      - entity: sensor.speedtest_upload
+        color: "#ad74e3"
+    hours_to_show: 24
+    points_per_hour: 2
+    line_width: 2
+    name: "SpeedTest"
+    decimals: 0
+    icon: 'mdi:ethernet'
+    show:
+      fill: true
+      name_adaptive_color: false
+      icon_adaptive_color: true
+      labels: true
+      legend: false
+      points: false
+      state: false
+  
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.pihole_temp_c
+        line_color: var(--accent-color)
+        line_width: 5
+        show:
+          icon_adaptive_color: true
+          points: false
+      - type: custom:mini-graph-card
+        entities:
+           - sensor.glances_ram_used_percent
+        hours_to_show: 24
+        points_per_hour: 2
+        decimals: 0
+        line_color: var(--accent-color)
+        show:
+          fill: true
+          icon_adaptive_color: true
+          points: false
+
+  - cards:
+      - cards:
+          - entity: sensor.pi_hole_ads_blocked_today
+            graph: line
+            type: sensor
+            color: green
+          - entity: sensor.pi_hole_dns_unique_clients
+            graph: line
+            type: sensor
+            color: green
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.archer_gb_received
+            graph: line
+            type: sensor
+        type: vertical-stack
+    type: vertical-stack
+  - entity: sensor.pi_hole_domains_blocked
+    type: sensor
+  - cards:
+    type: entities
+    title: "qBitTorrent"
+    entities: 
+      - entity: sensor.qbittorrent_status
+      - entity: sensor.qbittorrent_down_speed
+      - entity: sensor.qbittorrent_up_speed
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.qbittorrent_active_torrents
+            name: Active Torrents
+            color: "#6fe1dc"
+        unit: "Torrents"
+        icon: "mdi:swap-vertical"
+        show:
+          graph: false
+          name_adaptive_color: true
+          icon_adaptive_color: true
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.qbittorrent_inactive_torrents
+            name: Inctive Torrents
+            color: "#ad74e3"
+        unit: "Torrents"
+        icon: "mdi:swap-vertical"
+        show:
+          graph: false
+          name_adaptive_color: true
+          icon_adaptive_color: true
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        cards:
+        entities:
+          - entity: sensor.plex_stream_counts
+            color: "#ff8c32"
+        unit: "Streams"
+        name: "Active Plex Streams"
+        show:
+          graph: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+
+      - cards:
+        type: custom:mini-graph-card
+        entities:
+          - entity: sensor.plex_wan_bandwidth
+            name: "Plex WAN Bandwidth"
+            color: "#6fe1dc"
+          - entity: sensor.plex_lan_bandwidth
+            color: "#ad74e3"
+            name: "Plex LAN Bandwidth"
+        hours_to_show: 24
+        points_per_hour: 2
+        line_width: 2
+        name: "Plex Bandwidth"
+        decimals: 0
+        icon: 'mdi:ethernet'
+        show:
+          fill: true
+          name_adaptive_color: false
+          icon_adaptive_color: true
+          labels: true
+          legend: false
+          points: true
+          state: true

@@ -1,0 +1,82 @@
+#Status    
+title: Status
+path: status
+cards:   
+
+  - type: button
+    name: Restart HomeAssistant
+    show_state: false
+    icon: mdi:restart
+    icon_height: 4em
+    tap_action:
+      action: call-service
+      confirmation: 
+        text: Are you sure you want to restart?
+      service: homeassistant.restart
+
+  - type: entities
+    title: Automation Modes
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.guest_mode
+      - entity: input_boolean.vacation_mode
+  
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Door Status
+      show_header_toggle: false
+    filter: 
+      include: 
+        - entity_id: "binary_sensor*door*"
+
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Switch Status
+    filter: 
+      include: 
+        - entity_id: "switch*"
+      exclude:
+        - entity_id: switch.whole_home
+        - entity_id: switch.chime_switch
+        
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Groups
+    filter: 
+      include: 
+        - entity_id: "group*"
+      exclude:
+
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Automations
+    filter: 
+      include: 
+        - entity_id: "automation*"
+
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Eaton UPS
+    filter: 
+      include: 
+        - entity_id: "sensor.ups_*"
+
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Batteries
+    filter: 
+      include: 
+        - entity_id: "sensor.*battery*"
+      exclude:
+        - entity_id: sensor.ups_start_on_battery
+        - entity_id: sensor.ups_reboot_on_battery
+        - entity_id: sensor.ups_low_battery_setpoint
+        - entity_id: sensor.ups_minimum_battery_to_start
+        - entity_id: sensor.ups_battery_capacity
+        - entity_id: sensor.ups_battery_chemistry
