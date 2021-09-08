@@ -7,5 +7,16 @@
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js?v=0.10.0
     type: module         
   - url: /hacsfiles/button-card/button-card.js
-    type: module         
-                              
+    type: module
+  - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js
+    type: module
+  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+    type: module
+  - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+    type: module
+  - url: /hacsfiles/lovelace-state-switch/state-switch.js
+    type: module
+  - url: /browser_mod.js
+    type: module
+    
+                

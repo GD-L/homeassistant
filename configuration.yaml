@@ -39,6 +39,16 @@ lovelace:
       title: Testing
       show_in_sidebar: true
       require_admin: true
+    mobile-layout:
+      mode: yaml
+      filename: mobile-layout/mobile-layout.yaml
+      title: Mobile
+      show_in_sidebar: true
+      require_admin: true
+
+browser_mod:
+  prefix: "browser_"
+
 
 # Text to speech
 tts:

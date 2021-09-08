@@ -91,7 +91,7 @@
 
 
 - alias: "Thermostat Break"
-  initial_state: false  
+  initial_state: true  
   trigger:
     platform: template
     value_template: "{% if state_attr('climate.upstairs', 'hvac_action')=='cooling' %}true{% endif %}"
