@@ -179,6 +179,8 @@
   trigger:
     - platform: template
       value_template: >-
+        {% set upstairs_mode = state_attr('climate.upstairs', 'preset_mode') %}
+        {% set downstairs_mode = state_attr('climate.downstairs', 'preset_mode') %}
         {% if upstairs_mode == 'temp' or downstairs_mode == 'temp' %}
         true
         {% else %}
