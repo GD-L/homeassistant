@@ -282,7 +282,7 @@ cards:
             stroke_width: 2
             type: area
             curve: smooth
-            fill_raw: zero
+            fill_raw: last
             opacity: 0.25
           - entity: climate.upstairs
             attribute: temperature
@@ -340,7 +340,7 @@ cards:
             stroke_width: 2
             type: area
             curve: smooth
-            fill_raw: zero
+            fill_raw: last
             opacity: 0.25
           - entity: climate.downstairs
             attribute: temperature

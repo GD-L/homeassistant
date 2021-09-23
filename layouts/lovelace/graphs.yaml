@@ -1,0 +1,6 @@
+path: ups-dash
+title: UPS Graph
+type: panel
+cards:
+  - type: iframe
+    url: !secret graph_url

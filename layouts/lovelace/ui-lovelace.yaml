@@ -5,3 +5,5 @@ views:
   - !include ./weather.yaml
   - !include ./netstats.yaml
   - !include ./status.yaml
+  - !include ./graphs.yaml
+  

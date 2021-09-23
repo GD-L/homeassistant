@@ -6,13 +6,23 @@ cards:
   - type: button
     name: Restart HomeAssistant
     show_state: false
-    icon: mdi:restart
+    icon: mdi:reload-alert
     icon_height: 4em
     tap_action:
       action: call-service
       confirmation: 
         text: Are you sure you want to restart?
       service: homeassistant.restart
+  - type: button
+    name: "Reload Automations"
+    show_state: false
+    icon: mdi:reload
+    icon_height: 4em
+    tap_action:
+      action: call-service
+      confirmation: 
+        text: "Do you want to reload automations?"
+      service: automation.reload
 
   - type: entities
     title: Automation Modes
