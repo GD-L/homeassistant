@@ -47,3 +47,28 @@
     - service: notify.telegram_notify_Greg
       data:
         message: 'The UPS is in an unknown state, you may need to reboot the server.'
+  
+- alias: "Reload Speedtest"
+  initial_state: true
+  trigger:
+    - platform: template
+      value_template: >-
+        {% set last_updated = relative_time(states.sensor.speedtest_download.last_updated)%}
+        {% set is_unavailable = states.sensor.speedtest_download.last_updated == 'unavailable' %}
+        {% if last_updated > '65' or is_unavailable == 'True'%}
+          true
+        {% else %}
+          false
+        {% endif %}
+  action:
+    - service: notify.telegram_notify_Greg
+      data:
+        message: >-
+          Speedtest was last loaded {{relative_time(states.sensor.speedtest_download.last_updated) }}
+          ago. It is being reloaded.
+    - delay: "00:00:03"
+    - service: homeassistant.reload_config_entry
+      data:
+        entry_id: 5381213a762e2b7528453d58d26ba12c
+      target:
+        entity_id: sensor.speedtest_download
