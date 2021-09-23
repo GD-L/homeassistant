@@ -6,4 +6,3 @@
   broadcast_address: 192.168.1.255
   turn_off:
     service: shell_command.sleep_on_lan
-  
