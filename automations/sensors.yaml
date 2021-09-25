@@ -53,9 +53,9 @@
   trigger:
     - platform: template
       value_template: >-
-        {% set last_updated = relative_time(states.sensor.speedtest_download.last_updated)%}
+        {% set last_updated = as_timestamp(states.sensor.speedtest_download.last_updated) %}
         {% set is_unavailable = states.sensor.speedtest_download.last_updated == 'unavailable' %}
-        {% if last_updated > '65' or is_unavailable == 'True'%}
+        {% if (as_timestamp(now()) - last_updated) > 3900 or is_unavailable == 'True'%}
           true
         {% else %}
           false
