@@ -112,3 +112,15 @@
 
 #https://www.home-assistant.io/components/moon/
   - platform: moon
+
+  - platform: template
+    sensors:
+      dew_point:
+        unit_of_measurement: "°F"
+        value_template: >
+          {% set T1 = states('sensor.currenttemp') | float %}
+          {% set T1_C = (T1 - 32) / 1.8 %}
+          {% set RH1 = states('sensor.currenthumid')| float %}
+          {% set B1 = (log(RH1 / 100) + ((17.27 * T1_C) / (237.3 + T1_C))) / 17.27 %}
+          {% set DP = ((237.3 * B1) / (1 - B1)) %}
+          {{((DP * 1.8) + 32) | round(1)}}
