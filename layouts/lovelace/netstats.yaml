@@ -59,6 +59,7 @@ cards:
           - sensor.pihole_temp_c
         line_color: var(--accent-color)
         line_width: 5
+        lower_bound: 0
         show:
           icon_adaptive_color: true
           points: false
