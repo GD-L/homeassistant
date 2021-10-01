@@ -6,7 +6,7 @@
   action:
     - service: notify.telegram_notify_Greg
       data: 
-        message: "Today's forecast calls for a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(0)}}° and a low of: {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(0)}}°. \n \n Currently, it's {{state_attr('weather.dark_sky', 'temperature')}}° and {{states.sensor.dark_sky_summary.state}} outside.\n \n Wind speeds: {{state_attr('weather.dark_sky', 'wind_speed')}} mph \n Humidity: {{state_attr('weather.dark_sky', 'humidity')}}% \n Dewpoint: {{states('sensor.dew_point')}} \n Sunrise: {{states.sensor.sunrise.state}}AM \n Sunset: {{states.sensor.sunset.state}}PM"
+        message: "Today's forecast calls for a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(0)}}° and a low of: {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(0)}}°. \n \n Currently, it's {{state_attr('weather.dark_sky', 'temperature')}}° and {{states.sensor.dark_sky_summary.state}} outside.\n \n Wind speeds: {{state_attr('weather.dark_sky', 'wind_speed')}} mph \n Humidity: {{state_attr('weather.dark_sky', 'humidity')}}% \n Dewpoint: {{states('sensor.dew_point')}}° \n Sunrise: {{states.sensor.sunrise.state}}AM \n Sunset: {{states.sensor.sunset.state}}PM"
 
 - alias: 'qBitTorrent Down Notification'
   trigger:
