@@ -67,6 +67,9 @@ cards:
     filter: 
       include: 
         - entity_id: "automation*"
+    sort:
+      method: name
+      ignore_case: true
 
   - type: custom:auto-entities
     card:
