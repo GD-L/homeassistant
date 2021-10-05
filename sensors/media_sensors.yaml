@@ -38,3 +38,16 @@
         value_template: "{{ states.sensor.tautulli.attributes.stream_count}}"
         unit_of_measurement: "Streams"
         icon_template: mdi:monitor-eye
+ 
+  - platform: command_line
+    name: qBittorrent - active torrents
+    command: "./www/commands/activetorrents.sh"
+    unit_of_measurement: 'torrents'
+    scan_interval: 20
+
+  - platform: command_line
+    name: qBittorrent - inactive torrents
+    command: "./www/commands/inactivetorrents.sh"
+    unit_of_measurement: 'torrents'
+    scan_interval: 20
+  

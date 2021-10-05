@@ -11,16 +11,3 @@
       friendly_name: "Archer C1200 GB Received"
       unit_of_measurement: 'GB'
       value_template: "{{ (states('sensor.archer_c1200_b_received')| float /1073741824) | round(2)}}"
-     
- 
-  - platform: command_line
-    name: qBittorrent - active torrents
-    command: "./www/commands/activetorrents.sh"
-    unit_of_measurement: 'torrents'
-    scan_interval: 20
-
-  - platform: command_line
-    name: qBittorrent - inactive torrents
-    command: "./www/commands/inactivetorrents.sh"
-    unit_of_measurement: 'torrents'
-    scan_interval: 20
