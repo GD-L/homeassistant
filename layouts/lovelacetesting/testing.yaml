@@ -85,7 +85,7 @@ cards:
     type: glance
     title: Glance
     entities:
-        - entity: sensor.garage_door_status        
+        - sensor.garage_door_status        
         - climate.downstairs
         - climate.upstairs
         - entity: switch.lr
