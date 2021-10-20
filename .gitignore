@@ -20,7 +20,7 @@
 !/scenes/
 !/.github*
 !/.github/*
-
+!/.github/*/.jscpd.json
 
 # Ignore folders.
 /.cloud
