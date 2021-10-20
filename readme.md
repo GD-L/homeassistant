@@ -3,6 +3,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/home-assistant/assets/master/logo/logo-pretty.png" height ="220" align="center">
 </div>
+
 [![GitHub Super-Linter](https://github.com/GD-L/homeassistant/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 
