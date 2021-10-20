@@ -42,7 +42,7 @@ cards:
   - cards:
       - type: custom:button-card
         entity: person.greg
-        icon: mdi:face
+        icon: mdi:face-man
         show_name: true
         show_state: true
         size: 25%

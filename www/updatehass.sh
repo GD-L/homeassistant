@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Move to docker directory
 cd /docker/homeassistant
 #Bring down the container with docker-compose

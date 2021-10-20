@@ -61,9 +61,12 @@ script: !include scripts.yaml
 sensor: !include_dir_merge_list sensors/
 recorder: !include recorder.yaml
 automation: !include_dir_merge_list automations/
-binary_sensor: !include_dir_merge_list binarysensors/
+#binary_sensor: !include_dir_merge_list binarysensors/
 switch: !include_dir_merge_list switches/
+template: 
+  - binary_sensor: !include_dir_merge_list template/binarysensors/
 input_boolean:
+scene: !include_dir_merge_list scenes/
 ### Weather
 
 weather:

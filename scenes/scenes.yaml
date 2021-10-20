@@ -1,0 +1,34 @@
+- name: "Movie Time"
+  icon: "mdi:movie-open"
+  entities: 
+     light.living_room_color_light:
+      state: "on"
+      brightness: 128
+      colormode: "rgb"
+      rgb_color: [255,0,0]
+     light.bookshelf_color_light:
+      state: "on"
+      brightness: 128
+      colormode: "rgb"
+      rgb_color: [255,0,0]
+     media_player.dl_lr_tcl55:
+      state: "on"
+      source: "13535"
+
+- name: "Daytime Living Room"
+  icon: "mdi:white-balance-sunny"
+  entities: 
+     light.living_room_color_light:
+      state: "on"
+      brightness: 128
+      colormode: "color_temp"
+      brightness: 255
+      color_temp: 370
+     light.bookshelf_color_light:
+      state: "on"
+      brightness: 128
+      colormode: "color_temp"
+      brightness: 255
+      color_temp: 370
+     media_player.dl_lr_tcl55:
+      state: "off"

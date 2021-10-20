@@ -1,6 +1,0 @@
-#Duke Energy
-
-#sensor:
-#  - platform: duke_energy
-#    username: !secret duke_username
-#    password: !secret duke_password

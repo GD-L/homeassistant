@@ -6,12 +6,16 @@ inside_lights:
     - switch.bookshelf_lamp
     - switch.lr
     - switch.office
+    - light.bookshelf_color_light
+    - light.living_room_color_light
     
 livingroom:
   name: Living Room
   entities:
   - switch.lr
-  - switch.bookshelf_lamp  
+  - switch.bookshelf_lamp 
+  - light.bookshelf_color_light
+  - light.living_room_color_light 
  
 family:
   name: Family
