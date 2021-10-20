@@ -13,9 +13,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Super-Linter
-        uses: docker://github/super-linter:v3
+        uses: github/super-linter:slim-v4
         
         env:
           SUPPRESS_POSSUM: true
           GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
-          JSCPD_CONFIG_FILE: .jspcd.json
+          #JSCPD_CONFIG_FILE: .jspcd.json
