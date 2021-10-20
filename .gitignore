@@ -17,6 +17,10 @@
 !/binarysensors
 !/layouts*
 !/layouts/*
+!/scenes/
+!/.github*
+!/.github/*
+
 
 # Ignore folders.
 /.cloud
