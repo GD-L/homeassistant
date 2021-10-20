@@ -52,5 +52,5 @@ Update 2020-01-23: Docker run command migrated to [docker-compose](docker-compos
 * [Telegram](https://github.com/gregdelima/homeassistant/blob/master/automations/telegram.yaml)
 * [Thermostats](https://github.com/gregdelima/homeassistant/blob/master/automations/thermostatautomations.yaml)
 
-# WIP
+## WIP
 As with most things, this is a work in progress so there may be updates and/or small tweaks here and there.

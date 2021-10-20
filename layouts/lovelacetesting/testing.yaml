@@ -1,8 +1,7 @@
-##TESTING AREA VIEW    
+##TESTING AREA VIEW
 title: Testing
 path: testing
 cards:
-
   - type: 'custom:uptime-card'
     entity: binary_sensor.updater
     icon: 'mdi:raspberry-pi'
@@ -52,7 +51,6 @@ cards:
 
   - type: 'custom:uptime-card'
     entity: sensor.upstairs_idler
-    #icon: 'mdi:raspberry-pi'
     severity: 100
     ok: 'running'
     ko: 'idle'
@@ -72,7 +70,6 @@ cards:
       footer: true
     status_adaptive_color: true
 
-
   - type: entities
     title: Automation Modes
     show_header_toggle: false
@@ -83,13 +80,6 @@ cards:
     entity: media_player.dl_lr_tcl55
   - type: media-control
     entity: media_player.plex_plex_for_roku_dl_lr_tcl55  
-#  - type: picture-entity
-#    entity: camera.lr_camera
-#    camera_view: live
-#  - type: 'custom:webrtc-camera'
-#    entity: camera.lr_camera
-
-
 
   - cards:  
     type: glance
