@@ -18,4 +18,5 @@ jobs:
         env:
           SUPPRESS_POSSUM: true
           GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
-          #JSCPD_CONFIG_FILE: .jspcd.json
+          VALIDATE_ALL_CODEBASE: false
+          FILTER_REGEX_EXCLUDE: .*/lovelacetesting/.*         #JSCPD_CONFIG_FILE: .jspcd.json
