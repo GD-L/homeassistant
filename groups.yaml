@@ -12,10 +12,10 @@ inside_lights:
 livingroom:
   name: Living Room
   entities:
-  - switch.lr
-  - switch.bookshelf_lamp 
-  - light.bookshelf_color_light
-  - light.living_room_color_light 
+    - switch.lr
+    - switch.bookshelf_lamp 
+    - light.bookshelf_color_light
+    - light.living_room_color_light 
  
 family:
   name: Family

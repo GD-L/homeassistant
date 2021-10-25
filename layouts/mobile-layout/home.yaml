@@ -2,16 +2,7 @@
 path: home
 title: Home
 icon: mdi:home-variant
-# badges:
-#   - person.greg
-#   - person.sara
-#   - binary_sensor.front_door_sensor
-#   - binary_sensor.patio_door_sensor
-#   - binary_sensor.garage_door_opened
-# layout:
-#   max_cols: 2
 cards:
-
   - cards:
       - type: custom:button-card
         entity: binary_sensor.garage_door_opened
@@ -46,7 +37,7 @@ cards:
         show_name: true
         show_state: true
         size: 25%
-        state:
+        state: &stateperson
           - value: not_home
             styles:
               icon:
@@ -55,7 +46,7 @@ cards:
             styles:
               icon:
                 - color: var(--primary-color)
-        styles:
+        styles: &statestyle
           grid:
           - grid-template-areas: ' "i n" "i l" "i s"'
           - grid-template-columns: 1fr
@@ -63,7 +54,6 @@ cards:
           card:
             - border: solid 2px var(--card-background-color)
             - background: transparent
-
 
       - type: custom:button-card
         entity: person.sara
@@ -71,23 +61,24 @@ cards:
         size: 25%
         show_name: true
         show_state: true
-        state:
-          - value: not_home
-            styles:
-              icon:
-                - color: var(--disabled-text-color)
-          - value: home
-            styles:
-              icon:
-                - color: var(--primary-color)
-        styles:
-          grid:
-          - grid-template-areas: ' "i n" "i l" "i s"'
-          - grid-template-columns: 1fr
-          - grid-template-rows: 1fr min-content min-content
-          card:
-            - border: solid 2px var(--card-background-color)
-            - background: transparent
+        state: *stateperson
+        #   - value: not_home
+        #     styles:
+        #       icon:
+        #         - color: var(--disabled-text-color)
+        #   - value: home
+        #     styles:
+        #       icon:
+        #         - color: var(--primary-color)
+        styles: *statestyle 
+          #<<: *statestyle
+        #   grid:
+        #   - grid-template-areas: ' "i n" "i l" "i s"'
+        #   - grid-template-columns: 1fr
+        #   - grid-template-rows: 1fr min-content min-content
+        #   card:
+        #     - border: solid 2px var(--card-background-color)
+        #     - background: transparent
     type: horizontal-stack
 
   - type: custom:button-card
