@@ -206,6 +206,12 @@ cards:
                   styles:
                     icon:
                     - color: gray
+            - type: horizontal-stack
+              cards:
+                - type: light
+                  entity: light.living_room_color_light
+                - type: light
+                  entity: light.bookshelf_color_light 
 
   - type: custom:button-card
     show_icon: true
