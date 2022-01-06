@@ -239,6 +239,28 @@ cards:
               name: "Front Door Camera"
               show_state: false
               show_label: false
+  
+  - cards:
+      - type: custom:button-card
+        entity: scene.movie_time
+        size: 20%
+        color: var(--primary-color)
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.movie_time
+
+      - type: custom:button-card
+        entity: scene.daytime_living_room
+        size: 20%
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.daytime_living_room
+        color: var(--primary-color)
+    type: horizontal-stack
 
   - cards:
       - type: custom:uptime-card

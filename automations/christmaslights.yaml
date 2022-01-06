@@ -11,7 +11,7 @@
 - alias: "Christmas Lights Off"
   trigger: 
     platform: time
-    at : '01:02:00'
+    at : '23:33:00'
   action:
     - service: homeassistant.turn_off
       data:
