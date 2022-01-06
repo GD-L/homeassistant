@@ -188,3 +188,5 @@ panel_iframe:
     title: "Z-Wave Config"
     url: !secret zwave_url
     icon: mdi:z-wave
+
+circadian_lighting:
