@@ -5,4 +5,4 @@
      archer_gb_received:
       friendly_name: "Archer C1200 GB Received"
       unit_of_measurement: 'GB'
-      value_template: "{{ (states('sensor.archer_c1200_b_received')| float /1073741824) |default(0)| round(2)}}"
+      value_template: "{{ (states('sensor.archer_c1200_b_received')| float /1073741824)| round(2, default = 0)}}"
