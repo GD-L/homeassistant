@@ -191,9 +191,9 @@
       data:
         message: >-
           {% set upstairs_mode = state_attr('climate.upstairs', 'preset_mode') %}
-          {% set upstairs_set_temp = state_attr('climate.upstairs', 'temperature') %}
+          {% set upstairs_set_temp = state_attr('climate.upstairs', 'target_temp_high') %}
           {% set downstairs_mode = state_attr('climate.downstairs', 'preset_mode') %}
-          {% set downstairs_set_temp = state_attr('climate.downstairs', 'temperature') %}
+          {% set downstairs_set_temp = state_attr('climate.downstairs', 'target_temp_high') %}
           The Upstairs Thermostat has been set to {{upstairs_mode}} ({{upstairs_set_temp}})
           and the Downstairs thermostat is set to {{downstairs_mode}} ({{downstairs_set_temp}}).
           Due to manual override, Automation: "Set to Home" is being disabled.
