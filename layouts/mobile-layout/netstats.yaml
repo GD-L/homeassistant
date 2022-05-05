@@ -4,7 +4,7 @@ title: NetStats
 icon: mdi:wan
 cards:
   - type: 'custom:uptime-card'
-    entity: binary_sensor.updater
+    entity: binary_sensor.docker_hub_update_available
     icon: 'mdi:raspberry-pi'
     severity: 100
     ok: 'on'
