@@ -11,3 +11,8 @@ switch.adhoc_plug:
   friendly_name: "AdHoc Plug"
   icon: mdi:lightbulb
   state_color: true
+
+climate.upstairs:
+  target_temp_step: 1
+climate.downstairs:
+  target_temp_step: 1
