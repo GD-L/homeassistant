@@ -1,0 +1,7 @@
+sensor:
+  - platform: template
+    sensors:
+      washer_cycle_state:
+        value_template: '{{state_attr(''sensor.my_washer'', ''remain_time'')}}'
+        friendly_name: Washer Cycle State
+        icon_template: 'mdi:washing-machine'
