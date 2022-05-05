@@ -25,13 +25,13 @@
 - alias: Update Available Notification
   trigger:
     - platform: state
-      entity_id: binary_sensor.updater
+      entity_id: binary_sensor.docker_hub_update_available
       from: 'off'
       to: 'on'
   action:
     - service: notify.telegram_notify_Greg
       data:
-        message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
+        message: "Home Assistant {{states('sensor.docker_hub')}} is available."
 
 - alias: Version Check
   trigger: 
@@ -43,8 +43,8 @@
     - service: telegram_bot.send_message
       data: 
         chat_id: '{{ trigger.event.data.chat_id }}'
-        message: "The current version is {{state_attr('binary_sensor.updater','newest_version')}},
-                  {% if states('binary_sensor.updater') == 'on'%} You are not up to date
+        message: "The current version is {{states('sensor.docker_hub')}},
+                  {% if states('binary_sensor.docker_hub_update_available') == 'on'%} You are not up to date
             {% else %} You are up to date
             {% endif %}"
 
