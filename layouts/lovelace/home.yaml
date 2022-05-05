@@ -21,7 +21,6 @@ cards:
       - entity: switch.bedroom_lamp
       - entity: switch.bookshelf_lamp
       - entity: switch.garage_lights
-      - entity: switch.lr
       - entity: switch.office
       - entity: light.living_room_color_light
       - entity: light.bookshelf_color_light
@@ -67,4 +66,14 @@ cards:
         entity: camera.front_door
         name: "Front Door Camera"
         show_state: false
+    type: vertical-stack
+  
+  - cards:
+      - title: "Washer"
+        entity: sensor.washer
+        type: 'custom:laundry-card'
+      - title: "Dryer"
+        entity: sensor.dryer
+        type: 'custom:laundry-card'
+    title: Laundry        
     type: vertical-stack
