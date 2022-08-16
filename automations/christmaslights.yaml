@@ -1,4 +1,5 @@
-- alias: "Christmas Lights On"
+- id: "2e67bc88-375c-486c-82a6-f0c2ec4d758e"
+  alias: "Christmas Lights On"
   trigger:
     platform: sun
     event: sunset
@@ -7,8 +8,8 @@
     - service: homeassistant.turn_on
       data:
         entity_id: switch.adhoc_plug
-
-- alias: "Christmas Lights Off"
+- id: "a5ca00eb-ee35-4d9e-9ff8-305501624dc3"
+  alias: "Christmas Lights Off"
   trigger: 
     platform: time
     at : '23:33:00'

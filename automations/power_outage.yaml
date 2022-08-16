@@ -1,5 +1,6 @@
 #Power Outage
-- alias: "Power Outage"
+- id: "2431017b-38ca-48ec-b5d4-fd9063a35b6a"
+  alias: "Power Outage"
   initial_state: true
   trigger:
     - platform: numeric_state
@@ -15,7 +16,8 @@
 
 #Power Restored
 
-- alias: "Power Restored"
+- id: "11838da0-8b7d-4f91-ab00-0c070c8da8a2"
+  alias: "Power Restored"
   initial_state: false
   trigger:
     - platform: numeric_state

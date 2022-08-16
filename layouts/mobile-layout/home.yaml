@@ -13,6 +13,14 @@ cards:
           card: 
             - font-size: 10px
       - type: custom:button-card
+        entity: cover.garage_door_opener_garage
+        show_name: true
+        show_state: true
+        size: 20%
+        styles:
+          card: 
+            - font-size: 10px
+      - type: custom:button-card
         entity: binary_sensor.front_door_sensor
         show_name: true
         show_state: true
@@ -296,6 +304,24 @@ cards:
         graph_span: 24h
         series: 
           - entity: climate.upstairs
+            attribute: temperature
+            name: Set Temperature
+            stroke_width: 2
+            fill_raw: last
+            curve: stepline
+          - entity: climate.upstairs
+            attribute: target_temp_high
+            name: Target Temp High
+            stroke_width: 2
+            fill_raw: last
+            curve: stepline
+          - entity: climate.upstairs
+            attribute: target_temp_low
+            name: Target Temp Low
+            stroke_width: 2
+            fill_raw: last
+            curve: stepline
+          - entity: climate.upstairs
             attribute: current_temperature
             name: Current Temperature
             stroke_width: 2
@@ -303,12 +329,6 @@ cards:
             curve: smooth
             fill_raw: last
             opacity: 0.25
-          - entity: climate.upstairs
-            attribute: temperature
-            name: Set Temperature
-            stroke_width: 2
-            fill_raw: last
-            curve: stepline
 
       - type: custom:simple-thermostat
         entity: climate.upstairs
@@ -354,6 +374,24 @@ cards:
         graph_span: 24h
         series: 
           - entity: climate.downstairs
+            attribute: temperature
+            name: Set Temperature
+            stroke_width: 2
+            fill_raw: last
+            curve: stepline
+          - entity: climate.downstairs
+            attribute: target_temp_high
+            name: Target Temp High
+            stroke_width: 2
+            fill_raw: last
+            curve: stepline
+          - entity: climate.downstairs
+            attribute: target_temp_low
+            name: Target Temp Low
+            stroke_width: 2
+            fill_raw: last
+            curve: stepline
+          - entity: climate.downstairs
             attribute: current_temperature
             name: Current Temperature
             stroke_width: 2
@@ -361,13 +399,6 @@ cards:
             curve: smooth
             fill_raw: last
             opacity: 0.25
-          - entity: climate.downstairs
-            attribute: temperature
-            name: Set Temperature
-            stroke_width: 2
-            fill_raw: last
-            curve: stepline
-
       - type: custom:simple-thermostat
         entity: climate.downstairs
         step_size: 1

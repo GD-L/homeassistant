@@ -1,4 +1,5 @@
-- alias : "WeMo Offline Notice"
+- id: "322341fe-c364-4dcd-822e-a633db1df864"
+  alias : "WeMo Offline Notice"
   initial_state: true
   trigger: 
     - platform: state
@@ -16,7 +17,8 @@
         inline_keyboard:
           - '/Reboot?'
 
-- alias: 'Reboot Response'
+- id: "b4d6f122-1097-44eb-afce-b19974831e1d"
+  alias: 'Reboot Response'
   initial_state: true
   trigger: 
     platform: event

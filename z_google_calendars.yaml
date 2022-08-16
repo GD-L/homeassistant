@@ -1,0 +1,63 @@
+
+
+- cal_id: nodvbi6t5uat14fv54ehrd252hnf4ej0@import.calendar.google.com
+  entities:
+  - device_id: trash_calendar
+    ignore_availability: true
+    name: Trash Calendar
+    track: true
+    search: "Household garbage"
+    #search: "^(h|H)(ousehold garbage)$"
+  - device_id: recycle_calendar
+    ignore_availability: true
+    name: Recycling Calendar
+    track: true
+    search: "Recycling blue week"
+
+- cal_id: ncaab_413_%4eorth+%43arolina+%54ar+%48eels#sports@group.v.calendar.google.com
+  entities:
+  - device_id: north_carolina_tar_heels
+    ignore_availability: true
+    name: North Carolina Tar Heels
+    track: true
+- cal_id: p#weather@group.v.calendar.google.com
+  entities:
+  - device_id: weather
+    ignore_availability: true
+    name: Weather
+    track: false
+
+- cal_id: gregdelima@gmail.com
+  entities:
+  - device_id: gregdelima_gmail_com
+    ignore_availability: true
+    name: gregdelima@gmail.com
+    track: false
+
+- cal_id: saraelizabethcroom@gmail.com
+  entities:
+  - device_id: saraelizabethcroom_gmail_com
+    ignore_availability: true
+    name: saraelizabethcroom@gmail.com
+    track: false
+
+- cal_id: jendelima@gmail.com
+  entities:
+  - device_id: jendelima_gmail_com
+    ignore_availability: true
+    name: jendelima@gmail.com
+    track: false
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+  - device_id: birthdays
+    ignore_availability: true
+    name: Birthdays
+    track: false
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_states
+    ignore_availability: true
+    name: Holidays in United States
+    track: false

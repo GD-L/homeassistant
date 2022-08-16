@@ -7,6 +7,7 @@ badges:
   - binary_sensor.front_door_sensor
   - binary_sensor.patio_door_sensor
   - binary_sensor.garage_door_opened
+  - cover.garage_door_opener_garage
   - sun.sun
 cards:
   - cards:

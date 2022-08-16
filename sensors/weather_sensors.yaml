@@ -1,85 +1,26 @@
-### Custom Weather Sensors 
+#https://www.home-assistant.io/components/moon/
+  - platform: moon
 
-#https://www.home-assistant.io/components/sensor.yweather/
-
-#Darksky Sensors
-  - platform: darksky
-    api_key: !secret darksky
-    forecast:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-    monitored_conditions:
-      - summary
-      - precip_probability
-      - temperature_low
-      - temperature_high
-    scan_interval:
-      minutes: 60
-
+#https://www.home-assistant.io/components/template/
   - platform: template
     sensors:
-      forecast_0:
-        #entity_id: []
-        friendly_name: "Today"
-        value_template: >
-          Hi: {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(0)}}°/Precip: {{states.sensor.dark_sky_precip_probability_0d.state|round(0)}}%
-      forecast_1:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (1 * 86400 ) -%}
-          {{ date | timestamp_custom("Tomorrow (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-          Hi: {{states.sensor.dark_sky_daytime_high_temperature_1d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_1d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_1d.state|round(0)}}%
-      forecast_2:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (2 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-          Hi: {{states.sensor.dark_sky_daytime_high_temperature_2d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_2d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_2d.state|round(0)}}%
-      forecast_3:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (3 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-          Hi: {{states.sensor.dark_sky_daytime_high_temperature_3d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_3d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_3d.state|round(0)}}%
-      forecast_4:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (4 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-          Hi: {{states.sensor.dark_sky_daytime_high_temperature_4d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_4d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_4d.state|round(0)}}%
-      forecast_5:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (5 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-          Hi: {{states.sensor.dark_sky_daytime_high_temperature_5d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_5d.state|round(0)}}°/ Precip:{{states.sensor.dark_sky_precip_probability_5d.state|round(0)}}%
-      forecast_6:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (6 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-            Hi: {{states.sensor.dark_sky_daytime_high_temperature_6d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_6d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_6d.state|round(0)}}%
-      forecast_7:
-        #entity_id: []
-        friendly_name_template: >
-          {%- set date = as_timestamp(now()) + (7 * 86400 ) -%}
-          {{ date | timestamp_custom("%A (%m/%d)") | replace("(0", "(") | replace("/0", "/") }}
-        value_template: >
-            Hi: {{states.sensor.dark_sky_daytime_high_temperature_7d.state|round(0)}}°/ Low: {{states.sensor.dark_sky_overnight_low_temperature_7d.state|round(0)}}°/ Precip: {{states.sensor.dark_sky_precip_probability_7d.state|round(0)}}%
+      currenttemp:
+        value_template: "{{ state_attr('weather.krdu_daynight', 'temperature') }}"
+        unit_of_measurement: "°F"
 
-
+      currenthumid:
+        value_template: "{{ state_attr('weather.krdu_daynight', 'humidity') }}"
+        unit_of_measurement: "%"
+      
+      dew_point:
+        unit_of_measurement: "°F"
+        value_template: >-
+          {% set T1 = state_attr('weather.downstairs', 'temperature') | float %}
+          {% set T1_C = (T1 - 32) / 1.8 %}
+          {% set RH1 = state_attr('weather.downstairs', 'humidity') | float %}
+          {% set B1 = (log(RH1 / 100) + ((17.27 * T1_C) / (237.3 + T1_C))) / 17.27 %}
+          {% set DP = ((237.3 * B1) / (1 - B1)) %}
+          {{((DP * 1.8) + 32) | round(1)}}
       sunset:
         value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%I:%M") %} {{ timestamp.lstrip("0") }}'
         unit_of_measurement: 'PM'
@@ -87,38 +28,3 @@
       sunrise:
         value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%I:%M") %} {{ timestamp.lstrip("0") }}'
         unit_of_measurement: 'AM'
-
-      daylight:
-        value_template: >
-          {% set nr = as_timestamp(state_attr('sun.sun','next_rising')) %}
-          {% set ns = as_timestamp(state_attr('sun.sun','next_setting')) %}
-          {% if nr > ns %}
-            {% set nr = nr - 60*60*24 %}
-          {% endif %}
-          {{ (ns - nr)|timestamp_custom('%H:%M',false) }}
-          
-###Other Weather Sensors
-
-#https://www.home-assistant.io/components/template/
-      currenttemp:
-        value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
-        unit_of_measurement: "°F"
-
-      currenthumid:
-        value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
-        unit_of_measurement: "%"
-
-#https://www.home-assistant.io/components/moon/
-  - platform: moon
-
-  - platform: template
-    sensors:
-      dew_point:
-        unit_of_measurement: "°F"
-        value_template: >
-          {% set T1 = states('sensor.currenttemp') | float %}
-          {% set T1_C = (T1 - 32) / 1.8 %}
-          {% set RH1 = states('sensor.currenthumid')| float %}
-          {% set B1 = (log(RH1 / 100) + ((17.27 * T1_C) / (237.3 + T1_C))) / 17.27 %}
-          {% set DP = ((237.3 * B1) / (1 - B1)) %}
-          {{((DP * 1.8) + 32) | round(1)}}

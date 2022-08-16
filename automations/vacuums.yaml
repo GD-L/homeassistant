@@ -1,4 +1,5 @@
-- alias: 'Empty Downstairs Vacuum'
+- id: "836d8d90-530e-49d7-84f7-4fbf2cc25d02"
+  alias: 'Empty Downstairs Vacuum'
   initial_state: true
   trigger: 
     - platform: state

@@ -1,4 +1,5 @@
-- alias:  Enable Guest Mode
+- id: "5a6ab3ef-695c-49c5-ba43-046f1732ef07"
+  alias:  Enable Guest Mode
   initial_state: true
   trigger:
     platform: state
@@ -21,7 +22,8 @@
     - service: automation.turn_off
       entity_id: automation.set_thermostats_to_away
       
-- alias: Disable Guest Mode
+- id: "12081969-8532-4169-a4f1-1b7a37e93ee2"
+  alias: Disable Guest Mode
   initial_state: true
   trigger:
     platform: state
@@ -46,7 +48,8 @@
 
 
 
-- alias: Enable Vacation Mode
+- id: "cfe0d44c-012c-4da0-b69c-86faeb2cab02"
+  alias: Enable Vacation Mode
   initial_state: true
   trigger:
     platform: state
@@ -62,7 +65,8 @@
 
 
 
-- alias: Disable Vacation Mode
+- id: "f3f7e8cd-d14c-4905-b1a1-81174b2da24e"
+  alias: Disable Vacation Mode
   initial_state: true
   trigger:
     platform: state

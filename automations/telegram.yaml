@@ -6,7 +6,12 @@
   action:
     - service: notify.telegram_notify_Greg
       data: 
-        message: "Today's forecast calls for a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(0)}}° and a low of: {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(0)}}°. \n \n Currently, it's {{state_attr('weather.dark_sky', 'temperature')}}° and {{states.sensor.dark_sky_summary.state}} outside.\n \n Wind speeds: {{state_attr('weather.dark_sky', 'wind_speed')}} mph \n Humidity: {{state_attr('weather.dark_sky', 'humidity')}}% \n Dewpoint: {{states('sensor.dew_point')}}° \n Sunrise: {{states.sensor.sunrise.state}}AM \n Sunset: {{states.sensor.sunset.state}}PM"
+        message: "Today's forecast calls for {{state_attr('weather.krdu_daynight', 'forecast')[0].detailed_description}}
+                  \n Humidity: {{states('sensor.krdu_relative_humidity')}}% 
+                  \n Dewpoint: {{states('sensor.krdu_dew_point')}}° 
+                  \n Sunrise: {{states.sensor.sunrise.state}}AM 
+                  \n Sunset: {{states.sensor.sunset.state}}PM"
+
 
 - alias: 'qBitTorrent Down Notification'
   trigger:
@@ -22,7 +27,8 @@
         message: "qBitTorrent has lost connection, log on to restart it"
 
 
-- alias: Update Available Notification
+- id: "3dbc90c3-6d28-4ba4-8c4e-0efaa3cb6160"
+  alias: Update Available Notification
   trigger:
     - platform: state
       entity_id: binary_sensor.docker_hub_update_available
@@ -33,7 +39,8 @@
       data:
         message: "Home Assistant {{states('sensor.docker_hub')}} is available."
 
-- alias: Version Check
+- id: "277eee6a-72fb-47b9-a73d-0d24721e80f4"
+  alias: Version Check
   trigger: 
     platform: event
     event_type: telegram_command
@@ -48,7 +55,8 @@
             {% else %} You are up to date
             {% endif %}"
 
-- alias: Trash Check
+- id: "47569aa4-4fca-417e-b73b-5e02a302d71e"
+  alias: Trash Check
   trigger: 
     platform: event
     event_type: telegram_command
@@ -58,5 +66,16 @@
     - service: telegram_bot.send_message
       data: 
         chat_id: '{{ trigger.event.data.chat_id }}'
-        message: "The next trash day is: {{as_timestamp(state_attr('calendar.trash_calendar', 'start_time'))|timestamp_custom('%B %-d %Y', 'true')}}
-                  and the next trash & recycle day is {{as_timestamp(state_attr('calendar.recycle_calendar', 'start_time'))|timestamp_custom('%B %-d %Y', 'true')}}"
+        message: >-
+          This week's pickup is:
+          {% set calendar = 'calendar.712_cross_timbers_dr_durham' %}
+          {% set start = as_timestamp(state_attr(calendar,'start_time'))|timestamp_custom('%B %-d %Y', 'true') %}
+          {% if 'Household' in state_attr('calendar.712_cross_timbers_dr_durham', 'message') and 
+                states('calendar.712_cross_timbers_dr_durham') == 'on' %}
+          {{"Trash on " + start}}
+          {% else %}
+          {% if 'Recycling' in state_attr('calendar.712_cross_timbers_dr_durham', 'message') and 
+                states('calendar.712_cross_timbers_dr_durham') == 'on' %}
+          {{"Recycling on "+ start}}
+          {% endif %}
+          {% endif %}

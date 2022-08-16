@@ -1,5 +1,6 @@
 #Turn on the living room lights 30min before sunrise
-- alias: "Sun up living room lights"
+- id: "938bdd66-e626-48b0-9b75-0ab2c78c2daf"
+  alias: "Sun up living room lights"
   trigger:
     platform: sun
     event: sunrise
@@ -10,7 +11,8 @@
       entity_id: group.livingroom
     
 #Turn on the inside lights 1HR before sunset
-- alias: "Sun down inside lights"
+- id: "073111c6-5e98-419f-9855-c5f9bb25dd15"
+  alias: "Sun down inside lights"
   trigger:
     platform: sun
     event: sunset
@@ -24,7 +26,8 @@
         - switch.office
 
 #Turn on Inside Lights When I get Home
-- alias: "Inside Lights when Home"
+- id: "7e4bbb55-1829-45e1-be16-6cb091a565b5"
+  alias: "Inside Lights when Home"
   initial_state: true
   trigger: 
     platform: state
@@ -60,11 +63,12 @@
 
 
 #Turn off Inside Lights when no one has been home for 20 min
-- alias: 'Lights off No One Home'
+- id: "fe2ca6d3-a4b9-4c5c-8bbf-96683b5c9666"
+  alias: 'Lights off No One Home'
   initial_state: true
   trigger: 
     - platform: template
-      value_template: >
+      value_template: >-
         {{ not is_state('person.greg','home') and
            not is_state('person.sara','home') }}
       for:
@@ -85,7 +89,8 @@
       data:
         entity_id: group.inside_lights
 
-- alias: 'Light Light'
+- id: "f4244633-dbcb-455b-bfa2-12268c3da8c1"
+  alias: 'Light Light'
   initial_state: true
   trigger: 
     platform: time
@@ -98,7 +103,8 @@
           - group.inside_lights
           - switch.garage_lights
 
-- alias: 'Garage On - Sunrise'
+- id: "578fcb1c-0257-4f35-9b2f-d480f1078b96"
+  alias: 'Garage On - Sunrise'
   initial_state: true
   trigger:
     platform: sun
@@ -109,7 +115,8 @@
     data:
       entity_id: switch.garage_lights
 
-- alias: 'Garage OFF - Sunrise'
+- id: "b09edd64-38e4-4eef-badf-86b928b72f5c"
+  alias: 'Garage OFF - Sunrise'
   initial_state: true
   trigger:
     platform: sun
@@ -120,7 +127,8 @@
     data:
       entity_id: switch.garage_lights
       
-- alias: 'Garage On - Sunset'
+- id: "eabe53e7-7237-4870-83db-6760cd7633cb"
+  alias: 'Garage On - Sunset'
   initial_state: true
   trigger:
     platform: sun

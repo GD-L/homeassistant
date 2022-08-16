@@ -1,4 +1,5 @@
-- alias: Set Theme
+- id: "8b443555-2d95-40f9-b8c4-03e7aa4d181a"
+  alias: Set Theme
   trigger:
     - platform: state
       entity_id: sun.sun

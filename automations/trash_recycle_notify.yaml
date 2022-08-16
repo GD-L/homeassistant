@@ -24,7 +24,8 @@
 #       data:
 #         message: "Tomorrow's Trash & *Recycle* Day, don't forget to take it out."
 
-- alias: "Trash/Recyle Notifier"
+- id: "16fbac56-a217-4ac7-a094-cf40fd99a62f"
+  alias: "Trash/Recyle Notifier"
   trigger:
     - platform: template
       value_template: >-

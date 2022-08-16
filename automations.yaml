@@ -1,1 +1,16 @@
-#See ./automations
+- id: '1659644949692'
+  alias: Garage Open Auto Close
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:30:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.garage_door_opened
+    state: 'on'
+  action:
+  - device_id: 6e148cfd2ba68d0a2f519b58f8b7fca3
+    domain: cover
+    entity_id: cover.garage_door_opener_garage
+    type: close
+  mode: single

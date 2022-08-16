@@ -1,7 +1,8 @@
 #Thermostat Automations
 
 #Set thermostats to home when @ Home
-- alias: "Set Thermostats to Home"
+- id: "e3f68cc9-8dbe-415f-abc9-b928eb6c7d5f"
+  alias: "Set Thermostats to Home"
   initial_state: true
   trigger: 
     - platform: state
@@ -38,7 +39,8 @@
         preset_mode: 'Home'
 
 #Set thermostats to Away when !@ Home
-- alias: "Set Thermostats to Away"
+- id: "5f552aad-2362-46d5-affd-0e2828b10809"
+  alias: "Set Thermostats to Away"
   initial_state: true
   trigger: 
     - platform: state
@@ -131,7 +133,8 @@
         fan_mode: 'auto'
 
 
-- alias: Thermostat Vacation Hold
+- id: "be814806-f329-49ac-92a2-0101febb8d68"
+  alias: Thermostat Vacation Hold
   initial_state: true
   trigger:
     platform: state
@@ -143,7 +146,7 @@
       data:
         entity_id: climate.upstairs
         vacation_name: "UpstairsHold"
-        cool_temp: 78
+        cool_temp: 76
         heat_temp: 65
         fan_mode: auto
         fan_min_on_time: 5
@@ -151,12 +154,13 @@
       data:
         entity_id: climate.downstairs
         vacation_name: "DownstairsHold"
-        cool_temp: 78
+        cool_temp: 76
         heat_temp: 65
         fan_mode: auto
         fan_min_on_time: 5
 
-- alias: Thermostat Vacation End
+- id: "b684a98f-5907-46ad-92aa-9468af0175b8"
+  alias: Thermostat Vacation End
   initial_state: true
   trigger:
     platform: state
@@ -174,7 +178,8 @@
         vacation_name: "DownstairsHold"
 
 
-- alias: Thermostat Override
+- id: "676cd457-6218-41a3-943e-ff658e2febce"
+  alias: Thermostat Override
   initial_state: true
   trigger:
     - platform: template
@@ -202,7 +207,8 @@
            - '/confirm?'
            - '/deny?'
 
-- alias: 'Override Confirm'
+- id: "ca0e15cc-bbd3-4854-b621-e85220f90007"
+  alias: 'Override Confirm'
   initial_state: true
   trigger: 
     platform: event
@@ -220,7 +226,8 @@
         callback_query_id: '{{ trigger.event.data.id }}'
         message: Disabling "Set Thermostats to Home"
 
-- alias: 'Override Deny'
+- id: "e7fd2150-23e3-486c-bebb-785c3248a528"
+  alias: 'Override Deny'
   initial_state: true
   trigger: 
     platform: event
@@ -233,7 +240,9 @@
       data_template:
         callback_query_id: '{{ trigger.event.data.id }}'
         message: Ignoring manual temperature set.
-- alias: Reset Thermostat Controls
+
+- id: "9e8c4224-3a98-4754-8911-6e11d515cfc8"
+  alias: Reset Thermostat Controls
   trigger: 
     platform: event
     event_type: telegram_command

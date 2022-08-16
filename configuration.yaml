@@ -10,6 +10,13 @@ homeassistant:
   unit_system: imperial
   time_zone: America/New_York
   customize: !include customize.yaml
+  external_url: "https://homeassist.gregdelima.com"
+  internal_url: "http://192.168.1.198:8123"
+
+logger:
+  default: warning
+  logs:
+    custom_components.kia_uvo: debug
 
 #System Health
 #https://www.home-assistant.io/components/system_health/
@@ -18,8 +25,8 @@ system_health:
 http:
   use_x_forwarded_for: true
   trusted_proxies: !secret proxies
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
+  # ip_ban_enabled: true
+  # login_attempts_threshold: 5
   cors_allowed_origins: !secret cors_origins
 
 
@@ -72,26 +79,21 @@ scene: !include_dir_merge_list scenes/
 ### Weather
 
 weather:
-  - platform: darksky
-    api_key: !secret darksky
-    mode: hourly
-    units: us
-    latitude: !secret home_lat
-    longitude: !secret home_long
+
 
 sun:
 
 discovery:
 
 wemo:
-  discovery: true
+  discovery: false
   static:
     #- 192.168.1.122  #Living Room
     - 192.168.1.121  #Office
 
-spotify:
-  client_id: !secret spotify_client
-  client_secret: !secret spotify_secret
+# spotify:
+#   client_id: !secret spotify_client
+#   client_secret: !secret spotify_secret
 
 ### Custom Zones
 
@@ -137,11 +139,11 @@ google_assistant:
     - climate
   ### Vacuums
 
-ecovacs:
-  username: !secret ecovacs_email
-  password: !secret ecovacs_pass
-  country: us #USA
-  continent: na #North America
+# ecovacs:
+#   username: !secret ecovacs_email
+#   password: !secret ecovacs_pass
+#   country: us #USA
+#   continent: na #North America
 
 ### Device Trackers
 
@@ -164,26 +166,18 @@ notify:
   - name: telegram_notify_Greg
     platform: telegram
     chat_id: !secret greg_chatid
-
   - name: telegram_notify_Sara
     platform: telegram
     chat_id: !secret sara_chatid
-
-#cams  - Deprecated 2022.2
-# camera:
-#   - platform: generic
-#     name: LR Camera
-#     still_image_url: /local/wyze-logo.jpg
-#     stream_source: !secret wyzecam_lr
 
 #Wake on LAN
 wake_on_lan:
 shell_command: !include shell_command.yaml
 
-google:
-  client_id: !secret gcal_client
-  client_secret: !secret gcal_secret
-  track_new_calendar: false
+# google:
+#   client_id: !secret gcal_client
+#   client_secret: !secret gcal_secret
+#   track_new_calendar: false
 
 panel_iframe:
   zwave:

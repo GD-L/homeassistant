@@ -1,5 +1,6 @@
 
-- alias: "Computer on, it's late"
+- id: "be7461e7-da45-43bb-bac8-145943b9873f"
+  alias: "Computer on, it's late"
   initial_state: true
   trigger: 
     - platform: time
@@ -16,7 +17,8 @@
           inline_keyboard:
             - '/Shutdown?'
 
-- alias: 'Shutdown Response'
+- id: "5ef2ad46-e744-4ac5-8c3c-527bed02913a"
+  alias: 'Shutdown Response'
   initial_state: true
   trigger: 
     platform: event
