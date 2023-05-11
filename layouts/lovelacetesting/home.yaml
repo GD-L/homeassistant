@@ -28,7 +28,6 @@ cards:
       - entity: switch.bedroom_lamp
       - entity: switch.bookshelf_lamp
       - entity: switch.garage_lights
-      - entity: switch.lr
       - entity: switch.office
     title: Lights
     type: entities

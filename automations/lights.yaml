@@ -23,7 +23,6 @@
       entity_id: 
         - group.livingroom
         - switch.bedroom_lamp
-        - switch.office
 
 #Turn on Inside Lights When I get Home
 - id: "7e4bbb55-1829-45e1-be16-6cb091a565b5"
@@ -77,12 +76,6 @@
     - condition: time 
       after: '08:00:00'
       before: '19:00:00'
-      #weekday:
-      #  - mon
-      #  - tue
-      #  - wed
-      #  - thu
-      #  - fri
         
   action:
     - service: homeassistant.turn_off #Turn off the Inside Lights Group

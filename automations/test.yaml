@@ -1,0 +1,10 @@
+- alias: 'Send Notification'
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode
+    from: 'off'
+    to: 'on'
+  action:
+    - service: notify.mobile_app_Pixel_6
+      data:
+        message: "Guest Mode Turned On"

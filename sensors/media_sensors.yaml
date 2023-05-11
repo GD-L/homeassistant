@@ -1,35 +1,20 @@
-  - platform: radarr
-    api_key: !secret radarr_api
-    host: 192.168.1.198
-    port: 7878
-    monitored_conditions:
-        - movies
-        - status
-        - upcoming
-    days: 7
-  
-  - platform: qbittorrent
-    url: https://qbitvpn.gregdelima.com
-    username: !secret qbit_user
-    password: !secret qbit_pass
 
-#Deprecated 2022.5
-  # - platform: tautulli
-  #   api_key: !secret tautulli_api
-  #   host: !secret tautulli_host
-  #   ssl: true
-  #   port: 443
+  # - platform: qbittorrent
+  #   url: https://qbitvpn.gregdelima.com
+  #   username: !secret qbit_user
+  #   password: !secret qbit_pass
 
   - platform: template
     sensors:
       plex_lan_bandwidth:
-        value_template: "{{int(states('sensor.lan_bandwidth'))/1024| default(0) | round(2)}}"
+        value_template: "{{int(states('sensor.lan_bandwidth'))/1024| round(2, default = 0)| int(0)}}"
         unit_of_measurement: "Mbps"
         icon_template: mdi:ethernet
       plex_wan_bandwidth:
-        value_template: "{{int(states('sensor.wan_bandwidth'))/1024| default(0) | round(2)}}"
+        value_template: "{{int(states('sensor.wan_bandwidth'))/1024| round(2, default = 0)| int(0)}}"
         unit_of_measurement: "Mbps"
         icon_template: mdi:ethernet
+
       plex_stream_counts:
         value_template: "{{states('sensor.tautulli') | default(0) }}"
 

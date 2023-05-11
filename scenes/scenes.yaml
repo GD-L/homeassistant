@@ -30,3 +30,25 @@
       color_temp: 370
      media_player.dl_lr_tcl55:
       state: "off"
+     switch.circadian_lighting_circadian_lights:
+      state: "on"
+
+- name: "Spooky Lights"
+  icon: "mdi:halloween"
+  entities: 
+    light.living_room_color_light:
+      state: "on"
+      colormode: "rbg"
+      rgb_color:
+        - 255
+        - 128
+        - 0
+    light.bookshelf_color_light:
+      state: "on"
+      colormode: "rbg"
+      rgb_color:
+        - 153
+        - 0
+        - 153
+    switch.circadian_lighting_circadian_lights:
+      state: "off"

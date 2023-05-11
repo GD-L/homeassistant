@@ -61,8 +61,6 @@
       entity_id: automation.inside_lights_when_home
     - service: automation.turn_off
       entity_id: automation.lights_off_no_one_home
-    #- service: shell_command.sleep_on_lan
-
 
 
 - id: "f3f7e8cd-d14c-4905-b1a1-81174b2da24e"
@@ -86,6 +84,5 @@
           - climate.downstairs
           - climate.upstairs
         preset_mode: 'Home'
-    #- service: automation.turn_off
-    #  entity_id: automation.thermostat_away_hold_enable
+
 

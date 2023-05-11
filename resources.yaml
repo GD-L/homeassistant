@@ -1,26 +1,30 @@
-  - url: /hacsfiles/uptime-card/uptime-card.js
+  - url: \hacsfiles\uptime-card\uptime-card.js
     type: module
-  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js?v=0.10.0
+  - url: \hacsfiles\mini-graph-card\mini-graph-card-bundle.js?v=0.10.0
     type: module         
-  - url: /hacsfiles/button-card/button-card.js
+  - url: \hacsfiles\button-card\button-card.js
     type: module
-  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+  - url: \hacsfiles\simple-thermostat\simple-thermostat.js
     type: module
-  - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+  - url: \hacsfiles\apexcharts-card\apexcharts-card.js
     type: module
-  - url: /hacsfiles/lovelace-state-switch/state-switch.js
+  - url: \hacsfiles\lovelace-state-switch\state-switch.js
     type: module
-  - url: /browser_mod.js
+  - url: \browser_mod.js
     type: module
-  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+  - url: \hacsfiles\lovelace-auto-entities\auto-entities.js
     type: module
-  - url: /hacsfiles/battery-state-card/battery-state-card.js
+  - url: \hacsfiles\battery-state-card\battery-state-card.js
     type: module
-  - url: /hacsfiles/rgb-light-card/card.js
+  - url: \hacsfiles\rgb-light-card\card.js
     type: module
-  - url: /hacsfiles/light-entity-card/light-entity-card.js
+  - url: \hacsfiles\light-entity-card\light-entity-card.js
     type: module
-  - url: /local/laundry.js
+  - url: \local\laundry.js
     type: module
-  - url: /hacsfiles/lovelace-mushroom/mushroom.js
+  - url: \hacsfiles\lovelace-mushroom\mushroom.js
     type: module
+  - url: \hacsfiles\webrtc\webrtc-camera.js
+    type: module
+  - url: \local\LG\7segment.css
+    type: css

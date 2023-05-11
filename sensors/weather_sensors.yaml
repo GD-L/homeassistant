@@ -1,6 +1,3 @@
-#https://www.home-assistant.io/components/moon/
-  - platform: moon
-
 #https://www.home-assistant.io/components/template/
   - platform: template
     sensors:

@@ -14,3 +14,37 @@
     entity_id: cover.garage_door_opener_garage
     type: close
   mode: single
+- id: '1660937295894'
+  alias: Garage Status Change
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 6e148cfd2ba68d0a2f519b58f8b7fca3
+    domain: cover
+    entity_id: cover.garage_door_opener_garage
+    type: opening
+  - platform: device
+    device_id: 6e148cfd2ba68d0a2f519b58f8b7fca3
+    domain: cover
+    entity_id: cover.garage_door_opener_garage
+    type: closing
+  condition: []
+  action:
+  - service: notify.telegram_notify_greg
+    data:
+      message: The Garage Door Status is changing
+  mode: single
+- id: '1665424944793'
+  alias: PlexWebHook
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: -caCzNJiN-e89VdOC0f5jPG7O
+  condition: []
+  action:
+  - service: notify.telegram_notify_greg
+    data:
+      data:
+        '[object Object]':
+      message: '{{trigger.data.payload.decode()}}'
+  mode: single

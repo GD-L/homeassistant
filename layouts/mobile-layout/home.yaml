@@ -101,125 +101,92 @@ cards:
     tap_action:
       action: fire-dom-event
       browser_mod:
-        command: popup 
-        title: Lights
-        card: 
-          type: vertical-stack
-          cards:
-            - type: custom:button-card
-              entity: group.inside_lights
-              show_state: true
-              size: 20%
-              styles:
-                card:
-                  - color: gray
-                  - font-size: 12px
-              state:
-                - value: 'on'
-                  styles:
-                    icon:
-                    - color: var(--label-badge-yellow)
-                - value: 'off'
-                  styles:
-                    icon:
+        service: browser_mod.popup
+        data:
+          size: normal
+          browser_id: THIS
+          title: Lights
+          content:
+            # card:
+            type: vertical-stack
+            cards:
+              - type: custom:button-card
+                entity: group.inside_lights
+                show_state: true
+                size: 20%
+                styles:
+                  card:
                     - color: gray
-            - type: custom:button-card
-              entity: switch.bookshelf_lamp
-              show_state: true
-              icon: mdi:lightbulb
-              size: 20%
-              styles:
-                card:
-                  - color: gray
-                  - font-size: 12px
-              state:
-                - value: 'on'
-                  styles:
-                    icon:
-                    - color: var(--label-badge-yellow)
-                - value: 'off'
-                  styles:
-                    icon:
+                    - font-size: 12px
+                state:
+                  - value: 'on'
+                    styles:
+                      icon:
+                      - color: var(--label-badge-yellow)
+                  - value: 'off'
+                    styles:
+                      icon:
+                      - color: gray
+              - type: custom:button-card
+                entity: switch.bookshelf_lamp
+                show_state: true
+                icon: mdi:lightbulb
+                size: 20%
+                styles:
+                  card:
                     - color: gray
-            - type: custom:button-card
-              entity: switch.lr
-              show_state: true
-              icon: mdi:lightbulb
-              size: 20%
-              name: Living Room
-              styles:
-                card:
-                  - color: gray
-                  - font-size: 12px
-              state:
-                - value: 'on'
-                  styles:
-                    icon:
-                    - color: var(--label-badge-yellow)
-                - value: 'off'
-                  styles:
-                    icon:
+                    - font-size: 12px
+                state:
+                  - value: 'on'
+                    styles:
+                      icon:
+                      - color: var(--label-badge-yellow)
+                  - value: 'off'
+                    styles:
+                      icon:
+                      - color: gray
+              - type: custom:button-card
+                entity: switch.bedroom_lamp
+                show_state: true
+                icon: mdi:lightbulb
+                size: 20%
+                styles:
+                  card:
                     - color: gray
-            - type: custom:button-card
-              entity: switch.bedroom_lamp
-              show_state: true
-              icon: mdi:lightbulb
-              size: 20%
-              styles:
-                card:
-                  - color: gray
-                  - font-size: 12px
-              state:
-                - value: 'on'
-                  styles:
-                    icon:
-                    - color: var(--label-badge-yellow)
-                - value: 'off'
-                  styles:
-                    icon:
+                    - font-size: 12px
+                state:
+                  - value: 'on'
+                    styles:
+                      icon:
+                      - color: var(--label-badge-yellow)
+                  - value: 'off'
+                    styles:
+                      icon:
+                      - color: gray
+              - type: custom:button-card
+                entity: switch.garage_lights
+                show_state: true
+                icon: mdi:lightbulb
+                size: 20%
+                styles:
+                  card:
                     - color: gray
-            - type: custom:button-card
-              entity: switch.office
-              show_state: true
-              icon: mdi:lightbulb
-              size: 20%
-              styles:
-                card:
-                  - color: gray
-                  - font-size: 12px
-              state:
-                - value: 'on'
-                  styles:
-                    icon:
-                    - color: var(--label-badge-yellow)
-                - value: 'off'
-                  styles:
-                    icon:
-                    - color: gray
-            - type: custom:button-card
-              entity: switch.garage_lights
-              show_state: true
-              icon: mdi:lightbulb
-              size: 20%
-              styles:
-                card:
-                  - color: gray
-                  - font-size: 12px
-              state:
-                - value: 'on'
-                  styles:
-                    icon:
-                    - color: var(--label-badge-yellow)
-                - value: 'off'
-                  styles:
-                    icon:
-                    - color: gray
-            - type: horizontal-stack
-              cards:
-                - type: light
-                  entity: light.living_room_color_light
-                - type: light
-                  entity: light.bookshelf_color_light 
+                    - font-size: 12px
+                state:
+                  - value: 'on'
+                    styles:
+                      icon:
+                      - color: var(--label-badge-yellow)
+                  - value: 'off'
+                    styles:
+                      icon:
+                      - color: gray
+              - type: horizontal-stack
+                cards:
+                  - type: light
+                    entity: light.living_room_color_light
+                  - type: light
+                    entity: light.bookshelf_color_light 
 
   - type: custom:button-card
     show_icon: true
@@ -233,20 +200,23 @@ cards:
     tap_action:
       action: fire-dom-event
       browser_mod:
-        command: popup 
-        title: Cameras
-        card: 
-          type: vertical-stack
-          cards:
-            - type: 'custom:webrtc-camera'
-              entity: camera.lr_camera
-              ui: true
-              title: "LR Camera"
-            - type: picture-entity
-              entity: camera.front_door
-              name: "Front Door Camera"
-              show_state: false
-              show_label: false
+        service: browser_mod.popup
+        data:
+          browser_id: THIS
+          size: normal
+          title: Cameras
+          content:
+              type: vertical-stack
+              cards:
+                - type: 'custom:webrtc-camera'
+                  entity: camera.lr_camera
+                  ui: true
+                  title: "LR Camera"
+                - type: picture-entity
+                  entity: camera.front_door
+                  name: "Front Door Camera"
+                  show_state: false
+                  show_label: false
   
   - cards:
       - type: custom:button-card
