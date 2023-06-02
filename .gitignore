@@ -21,6 +21,8 @@
 !/.github*
 !/.github/*
 !/.github/*/.jscpd.json
+!/template/binarysensors/*
+!/template/binarysensors/
 
 # Ignore folders.
 /.cloud
