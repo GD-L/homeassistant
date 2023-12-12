@@ -98,7 +98,7 @@ scene: !include_dir_merge_list scenes/
 weather:
 sun:
 
-discovery:
+#discovery:
 
 wemo:
   discovery: false
@@ -163,13 +163,13 @@ tts:
 #-----------------------------------------------------------------
 #Devices
 #-----------------------------------------------------------------
-device_tracker:
-  - platform: ping
-    hosts:
-      sara_router: 192.168.1.85
-      greg_router: 192.168.1.131
-      scan_interval: 60
-    consider_home: 600
+# device_tracker:
+#   - platform: ping
+#     hosts:
+#       sara_router: 192.168.1.185
+#       greg_router: 192.168.1.131
+#       scan_interval: 60
+#     consider_home: 600
 
 #-----------------------------------------------------------------
 #Notifiers
@@ -194,10 +194,19 @@ notify:
 #Wake on LAN
 wake_on_lan:
 shell_command: !include shell_command.yaml
-circadian_lighting:
 
-ecovacs:
-  username: !secret ecovacs_email
-  password: !secret ecovacs_pass
-  country: us #USA
-  continent: na #North America
+
+adaptive_lighting:
+  lights:
+    - light.living_room_color_light
+    - light.bookshelf_color_light
+  take_over_control: false
+
+waste_collection_schedule:
+  sources:
+    - name: ics
+      args:
+        split_at: '\, (?:and )?|(?: and )'
+        url: https://recollect.a.ssl.fastly.net/api/places/C2F11EB2-78CC-11E8-A433-F358DF3039AC/services/665/events.en-US.ics
+
+command_line: !include_dir_merge_list command_line/

@@ -1,0 +1,23 @@
+
+  - platform: waste_collection_schedule
+    source_index: 0
+    name: "Recycle"
+    details_format: upcoming
+    count: 3
+    leadtime: 7
+    value_template: 'In {{value.daysTo}} days on {{value.date.strftime("%a")}}, {{value.date.strftime("%d.%m.%Y")}}'
+    date_template: '{{value.date.strftime("%d.%m.%Y")}}'
+    add_days_to: true
+    types:
+      - "Recycling Blue Week"
+  - platform: waste_collection_schedule
+    source_index: 0
+    name: "Trash"
+    details_format: upcoming
+    count: 3
+    leadtime: 7
+    value_template: 'In {{value.daysTo}} days on {{value.date.strftime("%a")}}, {{value.date.strftime("%d.%m.%Y")}}'
+    date_template: '{{value.date.strftime("%d.%m.%Y")}}'
+    add_days_to: true
+    types:
+      - "Garbage"

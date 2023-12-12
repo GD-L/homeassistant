@@ -1,5 +1,0 @@
-- platform: circadian_lighting
-  name: "Circadian Lights"
-  lights_ct:
-    - light.living_room_color_light
-    - light.bookshelf_color_light

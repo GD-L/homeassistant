@@ -6,3 +6,4 @@
       friendly_name: "RT-AX58U GB received"
       unit_of_measurement: 'GB'
       value_template: "{{ (states('sensor.rt_ax58u_22f0_b_received')| float /1073741824)| round(2, default = 0)}}"
+

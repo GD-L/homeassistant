@@ -1,10 +1,10 @@
-##PiHole Sensors, integrated and Glances
+# ##PiHole Sensors, integrated and Glances
 
-#Convert piHole CPU temp from F to Celcius
-  - platform: template
-    sensors:     
-     pihole_temp_c:
-      friendly_name: "piHole CPU Temp"
-      unit_of_measurement: 'C'
-      value_template: >
-        {{ ((states('sensor.glances_cpu_thermal_1_temperature') | float-32)*(5/9)) | round(2, default = 0)}}
+# #Convert piHole CPU temp from F to Celcius
+#   - platform: template
+#     sensors:     
+#      pihole_temp_c:
+#       friendly_name: "piHole CPU Temp"
+#       unit_of_measurement: 'C'
+#       value_template: >
+#         {{ ((states('sensor.glances_cpu_thermal_1_temperature') | float-32)*(5/9)) | round(2, default = 0)}}

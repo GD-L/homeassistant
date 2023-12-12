@@ -3,16 +3,20 @@
 *
 
 # You can whitelist files/folders with !, these will not be ignored.
+!/template/
+/template/*
+!/template/binarysensors/
+!/command_line/
+#!custom_components/
 !*.yaml
 !.gitignore
 !*.md
 !/sensors
 !/.storage/lovelace*
 !/www
-!/automations*
 !/www/*
+!/automations*
 !/lovelace
-!hassup.sh
 !/switches
 !/binarysensors
 !/layouts*
@@ -21,8 +25,7 @@
 !/.github*
 !/.github/*
 !/.github/*/.jscpd.json
-!/template/binarysensors/*
-!/template/binarysensors/
+!hassup.sh
 
 # Ignore folders.
 /.cloud

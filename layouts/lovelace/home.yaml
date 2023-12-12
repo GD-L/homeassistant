@@ -64,6 +64,7 @@ cards:
       - type: 'custom:webrtc-camera'
         entity: camera.lr_camera
         ui: true
+        mode: webrtc
         title: "LR Camera"
       - type: picture-entity
         entity: camera.front_door

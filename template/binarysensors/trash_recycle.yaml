@@ -1,0 +1,87 @@
+# # Garbage Day sensors
+# #Thanks to @Moonbase59 https://community.home-assistant.io/t/a-garbage-day-automation-using-google-calendar-and-pre-warning-that-actually-works/203756
+# - name: trash_calendar
+#   state: >-
+#     {{'Household' in state_attr('calendar.712_cross_timbers_dr_durham', 'message') and 
+#       states('calendar.712_cross_timbers_dr_durham') == 'on'}}
+
+# - name: recycle_calendar
+#   state: >-
+#     {{'Recycling' in state_attr('calendar.712_cross_timbers_dr_durham', 'message') and 
+#      states('calendar.712_cross_timbers_dr_durham') == 'on'}}
+
+
+# - name: 'Trash Day'
+#   icon: >-
+#     {% if is_state('binary_sensor.trash_calendar', 'on') %}
+#       mdi:delete-alert
+#     {% else %}
+#       mdi:delete-outline
+#     {% endif %}
+
+#   state: >-
+#     {% set calendar = 'calendar.712_cross_timbers_dr_durham' %}
+#     {# Adapt these for your needs #}
+#     {% set seconds_before_all_day = 25200 %}
+#     {% set seconds_before_end_all_day = 25200 %}
+#     {% set seconds_before_single = 3600 %}
+#     {% set start = state_attr(calendar,'start_time') %}
+#     {% set trash = states('binary_sensor.trash_calendar') %}
+#     {# Prevent error when no calendar event (we won't have a start_time then) #}
+#     {% if trash == 'on' %}
+#       {% if start != None %}
+#         {% set _now = now().timestamp() %}
+#         {% set start = as_timestamp(start) %}
+#         {% set end = as_timestamp(state_attr(calendar,'end_time')) %}
+#         {% if _now < end %}
+#           {% if state_attr(calendar,'all_day') %}
+#             {{ _now < end - seconds_before_end_all_day and start - _now < seconds_before_all_day }}
+#           {% else %}
+#             {{ start - _now < seconds_before_single }}
+#           {% endif %}
+#         {% else %}
+#           false
+#         {% endif %}
+#         {% else %}
+#           false
+#         {% endif %}
+#     {% else %}
+#     false
+#     {% endif %}
+
+# - name: 'Recycle Day'
+#   icon: >-
+#     {% if is_state('binary_sensor.recycle_calendar', 'on') %}
+#       mdi:recycle
+#     {% else %}
+#       mdi:recycle-variant
+#     {% endif %}
+#   state: >-
+#     {% set calendar = 'calendar.712_cross_timbers_dr_durham' %}
+#     {# Adapt these for your needs #}
+#     {% set seconds_before_all_day = 25200 %}
+#     {% set seconds_before_end_all_day = 25200 %}
+#     {% set seconds_before_single = 3600 %}
+#     {% set start = state_attr(calendar,'start_time') %}
+#     {% set recycle = states('binary_sensor.recycle_calendar') %}
+#     {# Prevent error when no calendar event (we won't have a start_time then) #}
+#     {% if recycle == 'on' %}
+#       {% if start != None %}
+#         {% set _now = now().timestamp() %}
+#         {% set start = as_timestamp(start) %}
+#         {% set end = as_timestamp(state_attr(calendar,'end_time')) %}
+#         {% if _now < end %}
+#           {% if state_attr(calendar,'all_day') %}
+#             {{ _now < end - seconds_before_end_all_day and start - _now < seconds_before_all_day }}
+#           {% else %}
+#             {{ start - _now < seconds_before_single }}
+#           {% endif %}
+#         {% else %}
+#           false
+#         {% endif %}
+#         {% else %}
+#           false
+#         {% endif %}
+#     {% else %}
+#     false
+#     {% endif %}

@@ -1,0 +1,11 @@
+- sensor:
+    name: qBittorrent - active torrents
+    command: "./www/commands/activetorrents.sh"
+    unit_of_measurement: 'torrents'
+    scan_interval: 20
+
+- sensor:
+    name: qBittorrent - inactive torrents
+    command: "./www/commands/inactivetorrents.sh"
+    unit_of_measurement: 'torrents'
+    scan_interval: 20
