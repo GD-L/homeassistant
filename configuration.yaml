@@ -9,7 +9,7 @@ homeassistant:
   latitude: !secret home_lat
   longitude: !secret home_long
   elevation: 365
-  unit_system: imperial
+  unit_system: us_customary
   time_zone: America/New_York
   currency: USD
   country: US
@@ -61,6 +61,12 @@ lovelace:
       title: Mobile
       show_in_sidebar: true
       require_admin: true
+    gemini-layout:
+      mode: yaml
+      title: Gemini
+      icon: mdi:flower-tulip
+      show_in_sidebar: true
+      filename: layouts/gemini-layout/ui-lovelace.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -68,11 +74,11 @@ frontend:
 browser_mod:
   prefix: "browser_"
 
-panel_iframe:
-  zwave:
-    title: "Z-Wave Config"
-    url: !secret zwave_url
-    icon: mdi:z-wave
+# panel_iframe:
+#   zwave:
+#     title: "Z-Wave Config"
+#     url: !secret zwave_url
+#     icon: mdi:z-wave
 
 
 #-----------------------------------------------------------------
@@ -117,18 +123,6 @@ zone:
     radius: 300
     icon: mdi:breifcase
 
-  - name: !secret swork_name
-    latitude: !secret swork_lat
-    longitude: !secret swork_long
-    radius: 500
-    icon: !secret swork_icon
-
-  - name: Greg Gym
-    latitude: !secret gym_lat
-    longitude: !secret gym_long
-    radius: 300
-    icon: mdi:Dumbbell
-
 
 #-----------------------------------------------------------------
 #Smart home assistants (Echo/Google)
@@ -145,6 +139,8 @@ alexa:
         - device_tracker
 api:
 
+conversation:
+
 google_assistant:
   project_id: !secret google_assist_project
   service_account: !include SERVICE_ACCOUNT.JSON
@@ -156,9 +152,6 @@ google_assistant:
     - vacuum
     - climate
 
-# Text to speech
-tts:
-  - platform: google_translate
 
 #-----------------------------------------------------------------
 #Devices

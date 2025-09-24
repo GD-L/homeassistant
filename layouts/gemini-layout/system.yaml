@@ -1,0 +1,29 @@
+
+# Gemini System
+path: system
+title: System
+icon: mdi:server
+cards:
+  - type: custom:mushroom-title-card
+    title: "System Status"
+  - type: custom:mushroom-entity-card
+    entity: binary_sensor.docker_hub_update_available
+    name: "Home Assistant Update"
+  - type: custom:mushroom-title-card
+    title: "Network"
+  - type: custom:mushroom-entity-card
+    entity: sensor.archer_gb_received
+    name: "Router GB Received"
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.speedtest_download
+        name: "Download"
+      - entity: sensor.speedtest_upload
+        name: "Upload"
+    hours_to_show: 24
+    points_per_hour: 2
+    line_width: 2
+    name: "SpeedTest"
+    decimals: 0
+    show:
+      fill: true

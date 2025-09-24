@@ -5,6 +5,6 @@
     from: 'off'
     to: 'on'
   action:
-    - service: notify.mobile_app_Pixel_6
+    - service: notify.mobile_app_Pixel_8
       data:
         message: "Guest Mode Turned On"

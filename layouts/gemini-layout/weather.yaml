@@ -1,0 +1,23 @@
+# Gemini Weather
+path: weather
+title: Weather
+icon: mdi:weather-cloudy
+cards:
+  - type: custom:mushroom-title-card
+    title: "Weather Forecast"
+  - type: weather-forecast
+    entity: weather.krdu_daynight
+    show_forecast: true
+    forecast_type: daily
+  - type: weather-forecast
+    entity: weather.krdu_daynight
+    show_forecast: true
+    forecast_type: hourly
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-entity-card
+        entity: sensor.krdu_relative_humidity
+        name: "Relative Humidity"
+      - type: custom:mushroom-entity-card
+        entity: sensor.krdu_dewpoint
+        name: "Dew Point"

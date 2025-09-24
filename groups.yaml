@@ -3,14 +3,12 @@ inside_lights:
   icon: mdi:lightbulb
   entities:
     - switch.bedroom_lamp
-    - switch.bookshelf_lamp
     - light.bookshelf_color_light
     - light.living_room_color_light
     
 livingroom:
   name: Living Room
   entities:
-    - switch.bookshelf_lamp 
     - light.bookshelf_color_light
     - light.living_room_color_light 
  

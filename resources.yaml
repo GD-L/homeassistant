@@ -28,3 +28,5 @@
     type: module
   - url: \local\LG\7segment.css
     type: css
+  - url: \hacsfiles\Ultra-Vehicle-Card\ultra-vehicle-card.js
+    type: module

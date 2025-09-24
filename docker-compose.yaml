@@ -1,34 +1,34 @@
-version: '3.1'
+version: '3.8'
+
+networks:
+  ha_net:
+    driver: bridge
 
 services:
-
   homeassistant:
     container_name: 'home-assistant'
     image: homeassistant/home-assistant:stable
-    network_mode: host
+    networks:
+      - ha_net
     volumes:
       - /docker/homeassistant:/config
     devices:
-    #Passthrough USB Stick for Z-Wave & Zigbee
-      - /dev/ttyUSB1:/dev/ttyUSB1 #Zigbee
-      #- /dev/ttyUSB0:/dev/ttyUSB0 #Z-Wave
-      #- /dev/ttyUSBX:/dev/ttyUSBX
-    #environment:
-    #  - PUID=1000
-    #  - PGID=1000
-    #  - TZ=America/New_York
-    env_file: /docker/docker_envs.env 
+      - /dev/ttyUSB1:/dev/ttyUSB1 # Zigbee
+    env_file: /docker/docker_envs.env
+    ports:
+      - 8123:8123 
     restart: unless-stopped
     depends_on: 
       - zwaveJS
       - go2rtc
     labels:
       - "diun.enable=true"
-  
+
   zwaveJS:
     container_name: zwave_js
     image: zwavejs/zwavejs2mqtt:latest
-    #network_mode: host
+    networks:
+      - ha_net
     volumes: 
       - ./store:/usr/src/app/store
     devices:
@@ -41,15 +41,19 @@ services:
     restart: unless-stopped
     labels:
       - "diun.enable=true"
+
   go2rtc:
-      container_name: go2rtc
-      image: alexxit/go2rtc
-      network_mode: host       # important for WebRTC, HomeKit, UDP cameras
-      privileged: true         # only for FFmpeg hardware transcoding
-      restart: unless-stopped  # autorestart on fail or config change from WebUI
-      environment:
-        - TZ=America/New_York  # timezone in logs
-      volumes:
-        - "/docker/homeassistant/got2rtc/:/config" # folder for go2rtc.yaml file (edit from WebUI)
-      labels:
-      - "diun.enable=true"   
+    container_name: go2rtc
+    image: alexxit/go2rtc
+    networks:
+      - ha_net
+    restart: unless-stopped
+    environment:
+      - TZ=America/New_York
+    ports:
+      - "1984:1984"  # you can change the external port if needed
+    volumes:
+      - "/docker/homeassistant/got2rtc/:/config"
+      - /docker/homeassistant/.storage/core.config_entries:/config/.storage/core.config_entries
+    labels:
+      - "diun.enable=true"

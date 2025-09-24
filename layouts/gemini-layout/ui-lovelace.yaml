@@ -1,0 +1,7 @@
+
+title: Gemini
+views:
+  - !include home.yaml
+  - !include media.yaml
+  - !include system.yaml
+  - !include weather.yaml

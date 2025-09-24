@@ -5,14 +5,6 @@ icon: mdi:home-variant
 cards:
   - cards:
       - type: custom:button-card
-        entity: binary_sensor.garage_door_opened
-        show_name: true
-        show_state: true
-        size: 20%
-        styles:
-          card: 
-            - font-size: 10px
-      - type: custom:button-card
         entity: cover.garage_door_opener_garage
         show_name: true
         show_state: true
@@ -70,23 +62,7 @@ cards:
         show_name: true
         show_state: true
         state: *stateperson
-        #   - value: not_home
-        #     styles:
-        #       icon:
-        #         - color: var(--disabled-text-color)
-        #   - value: home
-        #     styles:
-        #       icon:
-        #         - color: var(--primary-color)
         styles: *statestyle 
-          #<<: *statestyle
-        #   grid:
-        #   - grid-template-areas: ' "i n" "i l" "i s"'
-        #   - grid-template-columns: 1fr
-        #   - grid-template-rows: 1fr min-content min-content
-        #   card:
-        #     - border: solid 2px var(--card-background-color)
-        #     - background: transparent
     type: horizontal-stack
 
   - type: custom:button-card
@@ -382,9 +358,9 @@ cards:
 
     type: vertical-stack  
 
-  - cards:
-    entities: 
-      - binary_sensor.trash_day
-      - binary_sensor.recycle_day
-    type: glance 
-    show_state: false
+  # - cards:
+  #   entities: 
+  #     - binary_sensor.trash_day
+  #     - binary_sensor.recycle_day
+  #   type: glance 
+  #   show_state: false

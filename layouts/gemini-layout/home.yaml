@@ -1,0 +1,59 @@
+
+# Gemini Home
+path: home
+title: Home
+icon: mdi:home
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-person-card
+        entity: person.greg
+        use_entity_picture: true
+        primary_info: name
+        secondary_info: state
+      - type: custom:mushroom-person-card
+        entity: person.sara
+        use_entity_picture: true
+        primary_info: name
+        secondary_info: state
+  - type: custom:mushroom-title-card
+    title: "House Status"
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: sun.sun
+      - type: entity
+        entity: binary_sensor.front_door_sensor
+      - type: entity
+        entity: binary_sensor.patio_door_sensor
+      - type: entity
+        entity: cover.garage_door_opener_garage
+  - type: custom:mushroom-title-card
+    title: "Lights"
+  - type: custom:mushroom-light-card
+    entity: group.inside_lights
+    name: "All Inside Lights"
+    show_brightness_control: true
+    show_color_control: true
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-light-card
+        entity: light.living_room_color_light
+        name: "Living Room"
+      - type: custom:mushroom-light-card
+        entity: light.bookshelf_color_light
+        name: "Bookshelf"
+  - type: custom:mushroom-title-card
+    title: "Climate"
+  - type: thermostat
+    entity: climate.upstairs
+    name: "Upstairs"
+  - type: thermostat
+    entity: climate.downstairs
+    name: "Downstairs"
+  - type: custom:mushroom-title-card
+    title: "Cameras"
+  - type: custom:webrtc-camera
+    entity: camera.lr_camera
+  - type: picture-entity
+    entity: camera.front_door

@@ -16,3 +16,15 @@
         {% else %}
           {{ "Google Dark Theme" }}
         {% endif %}
+
+- id: "d5bf17fd57acbbfe3a54953b81806433"
+  alias: Get Weather Forecast Hourly
+  description: ""
+  trigger:
+    - platform: time_pattern
+      hours: /1
+  action: nws.get_forecasts_extra
+  target:
+    entity_id: weather.krdu_daynight
+  data:
+    type: twice_daily

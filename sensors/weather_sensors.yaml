@@ -1,6 +1,46 @@
 #https://www.home-assistant.io/components/template/
-  - platform: template
-    sensors:
+template:
+  - trigger:
+    - platform: time_pattern
+      minutes: "*"
+    - platform: homeassistant
+      event: start
+    - platform: event
+      event_type: event_template_reloaded
+    action: 
+      - service: weather.get_forecasts
+        target:
+          entity_id: weather.krdu_daynight
+        data:
+          type: twice_daily
+        response_variable: daily_forecast
+    sensor:
+      - name: "sample_weather"
+        unique_id: sample_weather
+        state: "{{ states('weather.krdu_daynight') }}"
+        attributes:
+          desc: "{{ state_attr('weather.krdu_daynight', 'forecast') }}"
+      - name: "Weather Daily"
+        unique_id: home_daily
+        state: "{{ states('weather.krdu_daynight') }}"
+        attributes:
+          temperature: "{{ state_attr('weather.krdu_daynight', 'temperature') }}"
+          dew_point: "{{ state_attr('weather.krdu_daynight', 'dew_point') }}"
+          temperature_unit: "{{ state_attr('weather.krdu_daynight', 'temperature_unit') }}"
+          humidity: "{{ state_attr('weather.krdu_daynight', 'humidity') }}"
+          cloud_coverage: "{{ state_attr('weather.krdu_daynight', 'cloud_coverage') }}"
+          pressure: "{{ state_attr('weather.krdu_daynight', 'pressure') }}"
+          pressure_unit: "{{ state_attr('weather.krdu_daynight', 'pressure_unit') }}"
+          wind_bearing: "{{ state_attr('weather.krdu_daynight', 'wind_bearing') }}"
+          wind_gust_speed: "{{ state_attr('weather.krdu_daynight', 'wind_gust_speed') }}"
+          wind_speed: "{{ state_attr('weather.krdu_daynight', 'wind_speed') }}"
+          wind_speed_unit: "{{ state_attr('weather.krdu_daynight', 'wind_speed_unit') }}"
+          visibility: "{{ state_attr('weather.krdu_daynight', 'visibility') }}"
+          visibility_unit: "{{ state_attr('weather.krdu_daynight', 'visibility_unit') }}"
+          precipitation: "{{ state_attr('weather.krdu_daynight', 'precipitation') }}"
+          precipitation_unit: "{{ state_attr('weather.krdu_daynight', 'precipitation_unit') }}"
+          forecast: "{{ daily_forecast.forecast[:5] }}"
+  - sensors:
       currenttemp:
         value_template: "{{ state_attr('weather.krdu_daynight', 'temperature') }}"
         unit_of_measurement: "°F"
@@ -22,9 +62,7 @@
         value_template: >-
          {% set timestamp = as_timestamp(state_attr('sun.sun', 'next_setting')) | timestamp_custom("%H:%M") %} 
          {{ timestamp }}
-      # sunset: 
-      #   value_template: "{{ state_attr('sun.sun', 'next_setting') }}"
-      #   device_class: timestamp
+
       sunrise:
         value_template: >-
          {% set timestamp = as_timestamp(state_attr('sun.sun', 'next_rising')) | timestamp_custom("%H:%M") %} 
