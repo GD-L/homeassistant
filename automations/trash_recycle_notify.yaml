@@ -13,9 +13,8 @@
           false
         {% endif %}
   action: 
-    - service: notify.send_message
+    - service: notify.telegram_notify_greg
       data:
-        entity_id: notify.telegram_notify_greg
         message: >-
           {% if is_state('binary_sensor.trash_day','on') 
             and  is_state('binary_sensor.recycle_day','off') %}

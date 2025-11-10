@@ -26,9 +26,8 @@
     for:
       minutes: 5
   action:
-    - service: notify.send_message
+    - service: notify.telegram_notify_greg
       data:
-        entity_id: notify.telegram_notify_greg
         message: 'The UPS is in an unknown state, you may need to reboot the server.'
   
 - id: "4de6626d-f937-48b1-9f2d-8ad7ce4c59e5"
