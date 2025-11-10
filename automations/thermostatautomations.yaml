@@ -136,7 +136,7 @@
         false
         {% endif %}
   action: 
-    - service: notify.telegram_notify_Greg
+    - service: notify.telegram_notify_greg
       data:
         message: >-
           {% set upstairs_mode = state_attr('climate.upstairs', 'preset_mode') %}

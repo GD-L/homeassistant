@@ -4,8 +4,9 @@
     platform: time
     at: "06:44:00"
   action:
-    - service: notify.telegram_notify_Greg
+    - service: notify.send_message
       data: 
+        entity_id: notify.telegram_notify_greg
         message: "Today's forecast calls for {{state_attr('weather.krdu_daynight', 'forecast')[0].detailed_description}}
                   \n Humidity: {{states('sensor.krdu_relative_humidity')}}% 
                   \n Dewpoint: {{states('sensor.krdu_dew_point')}}° 
@@ -20,11 +21,11 @@
       to: 'unavailable'
       for:
         seconds: 60
-  action:
-    - service: notify.telegram_notify_Greg
-      data:
-        title: "*qBitTorrent is Down*"
-        message: "qBitTorrent has lost connection, log on to restart it"
+  action: notify.send_message
+  data:
+    entity_id: notify.telegram_notify_greg
+    title: "*qBitTorrent is Down*"
+    message: "qBitTorrent has lost connection, log on to restart it"
 
 
 - id: "3dbc90c3-6d28-4ba4-8c4e-0efaa3cb6160"
@@ -34,10 +35,10 @@
       entity_id: binary_sensor.docker_hub_update_available
       from: 'off'
       to: 'on'
-  action:
-    - service: notify.telegram_notify_Greg
-      data:
-        message: "Home Assistant {{states('sensor.docker_hub')}} is available."
+  action: notify.send_message
+  data:
+    entity_id: notify.telegram_notify_greg
+    message: "Home Assistant {{states('sensor.docker_hub')}} is available."
 
 - id: "277eee6a-72fb-47b9-a73d-0d24721e80f4"
   alias: Version Check

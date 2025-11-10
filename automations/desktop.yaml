@@ -10,8 +10,9 @@
     entity_id: switch.desktop_power
     state: 'on'
   action:
-    - service: notify.telegram_notify_Greg
+    - service: notify.send_message
       data:
+        entity_id: notify.telegram_notify_greg
         message: "It's late and the computer is on."
         data:
           inline_keyboard:

@@ -7,10 +7,11 @@
       entity_id: sensor.ups_input_voltage
       below: 50
   action:
-    - service: notify.telegram_notify_Greg
+    - service: notify.send_message
       data:
         title: "*Power Outage*"
         message: "The power is out and network devices are running off the UPS"
+        entity_id: notify.telegram_notify_greg
     - service: homeassistant.turn_on
       entity_id: automation.power_restored
 
@@ -24,9 +25,11 @@
       entity_id: sensor.ups_input_voltage
       above: 50
   action:
-    - service: notify.telegram_notify_Greg
+    - service: notify.send_message
       data:
         title: "*Power Restored*"
         message: "The power is Restored"
+        entity_id: notify.telegram_notify_greg
+
     - service: homeassistant.turn_off
       entity_id: automation.power_restored
