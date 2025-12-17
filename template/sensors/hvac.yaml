@@ -1,118 +1,117 @@
-- sensor:
-    - name: Downstairs HVAC Runtime
-      unique_id: downstairs_hvac_runtime
-      default_entity_id: sensor.downstairs_hvac_runtime
-      unit_of_measurement: h
-      state: >-
-        {%- if [states.sensor.downstairs_cool.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat.state|float(0)| round(2, default = 0), 0]|max != None -%}
-          {{ [states.sensor.downstairs_cool.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat.state|float(0)| round(2, default = 0), 0]|max }}
-        {%- else -%}
-          0
-        {%- endif -%}
-      icon: >-
-        {%- if states('sensor.downstairs_cool')|default(0) < states('sensor.downstairs_heat')|default(0) -%}
-          mdi:fire
-        {%- elif states('sensor.downstairs_cool')|default(0) > states('sensor.downstairs_heat')|default(0) -%}
-          mdi:snowflake
-        {%- endif -%}
+- name: Downstairs HVAC Runtime
+  unique_id: downstairs_hvac_runtime
+  default_entity_id: sensor.downstairs_hvac_runtime
+  unit_of_measurement: h
+  state: >-
+    {%- if [states.sensor.downstairs_cool.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat.state|float(0)| round(2, default = 0), 0]|max != None -%}
+      {{ [states.sensor.downstairs_cool.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat.state|float(0)| round(2, default = 0), 0]|max }}
+    {%- else -%}
+      0
+    {%- endif -%}
+  icon: >-
+    {%- if states('sensor.downstairs_cool')|default(0) < states('sensor.downstairs_heat')|default(0) -%}
+      mdi:fire
+    {%- elif states('sensor.downstairs_cool')|default(0) > states('sensor.downstairs_heat')|default(0) -%}
+      mdi:snowflake
+    {%- endif -%}
 
-    - name: Upstairs HVAC Runtime
-      unique_id: upstairs_hvac_runtime
-      default_entity_id: sensor.upstairs_hvac_runtime
-      unit_of_measurement: h
-      state: >-
-        {%- if [states.sensor.upstairs_cool.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat.state|float(0)| round(2, default = 0), 0]|max != None -%}
-          {{ [states.sensor.upstairs_cool.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat.state|float(0)| round(2, default = 0), 0]|max }}
-        {%- else -%}
-          0
-        {%- endif -%}
-      icon: >-
-        {%- if states('sensor.upstairs_cool')|default(0) < states('sensor.upstairs_heat')|default(0) -%}
-          mdi:fire
-        {%- elif states('sensor.upstairs_cool')|default(0) > states('sensor.upstairs_heat')|default(0) -%}
-          mdi:snowflake
-        {%- endif -%}
+- name: Upstairs HVAC Runtime
+  unique_id: upstairs_hvac_runtime
+  default_entity_id: sensor.upstairs_hvac_runtime
+  unit_of_measurement: h
+  state: >-
+    {%- if [states.sensor.upstairs_cool.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat.state|float(0)| round(2, default = 0), 0]|max != None -%}
+      {{ [states.sensor.upstairs_cool.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat.state|float(0)| round(2, default = 0), 0]|max }}
+    {%- else -%}
+      0
+    {%- endif -%}
+  icon: >-
+    {%- if states('sensor.upstairs_cool')|default(0) < states('sensor.upstairs_heat')|default(0) -%}
+      mdi:fire
+    {%- elif states('sensor.upstairs_cool')|default(0) > states('sensor.upstairs_heat')|default(0) -%}
+      mdi:snowflake
+    {%- endif -%}
 
-    - name: Downstairs Thermostat
-      unique_id: downstairsthermoper
-      default_entity_id: sensor.downstairsthermoper
-      state: "{{ state_attr('climate.downstairs', 'hvac_action') }}"
-      icon: >-
-        {%- if state_attr('climate.downstairs', 'hvac_action') == "heating" -%}
-          mdi:fire
-        {%- elif state_attr('climate.downstairs', 'hvac_action') == "cooling" -%}
-          mdi:snowflake
-        {%- else -%}
-          mdi:fan
-        {%- endif -%}
+- name: Downstairs Thermostat
+  unique_id: downstairsthermoper
+  default_entity_id: sensor.downstairsthermoper
+  state: "{{ state_attr('climate.downstairs', 'hvac_action') }}"
+  icon: >-
+    {%- if state_attr('climate.downstairs', 'hvac_action') == "heating" -%}
+      mdi:fire
+    {%- elif state_attr('climate.downstairs', 'hvac_action') == "cooling" -%}
+      mdi:snowflake
+    {%- else -%}
+      mdi:fan
+    {%- endif -%}
 
-    - name: Upstairs Thermostat
-      unique_id: upstairsthermoper
-      default_entity_id: sensor.upstairsthermoper
-      state: "{{ state_attr('climate.upstairs', 'hvac_action') }}"
-      icon: >-
-        {%- if state_attr('climate.upstairs', 'hvac_action') == "heating" -%}
-          mdi:fire
-        {%- elif state_attr('climate.upstairs', 'hvac_action') ==  "cooling" -%}
-          mdi:snowflake
-        {%- else -%}
-          mdi:fan
-        {%- endif -%}
+- name: Upstairs Thermostat
+  unique_id: upstairsthermoper
+  default_entity_id: sensor.upstairsthermoper
+  state: "{{ state_attr('climate.upstairs', 'hvac_action') }}"
+  icon: >-
+    {%- if state_attr('climate.upstairs', 'hvac_action') == "heating" -%}
+      mdi:fire
+    {%- elif state_attr('climate.upstairs', 'hvac_action') ==  "cooling" -%}
+      mdi:snowflake
+    {%- else -%}
+      mdi:fan
+    {%- endif -%}
 
-    - name: Downstairs idler
-      unique_id: downstairs_idler
-      default_entity_id: sensor.downstairs_idler
-      state: >-
-        {% if state_attr('climate.downstairs', 'hvac_action') in ['heating', 'cooling'] %}
-          running
-        {% elif state_attr('climate.downstairs', 'fan') == 'on' %}
-          running
-        {% else %}
-          idle
-        {% endif %}
+- name: Downstairs idler
+  unique_id: downstairs_idler
+  default_entity_id: sensor.downstairs_idler
+  state: >-
+    {% if state_attr('climate.downstairs', 'hvac_action') in ['heating', 'cooling'] %}
+      running
+    {% elif state_attr('climate.downstairs', 'fan') == 'on' %}
+      running
+    {% else %}
+      idle
+    {% endif %}
 
-    - name: Upstairs idler
-      unique_id: upstairs_idler
-      default_entity_id: sensor.upstairs_idler
-      state: >-
-        {% if state_attr('climate.upstairs', 'hvac_action') in ['heating', 'cooling'] %}
-          running
-        {% elif state_attr('climate.upstairs', 'fan') == 'on' %}
-          running
-        {% else %}
-          idle
-        {% endif %}
+- name: Upstairs idler
+  unique_id: upstairs_idler
+  default_entity_id: sensor.upstairs_idler
+  state: >-
+    {% if state_attr('climate.upstairs', 'hvac_action') in ['heating', 'cooling'] %}
+      running
+    {% elif state_attr('climate.upstairs', 'fan') == 'on' %}
+      running
+    {% else %}
+      idle
+    {% endif %}
 
-    - name: Upstairs 24Hr HVAC Runtime
-      unique_id: upstairs_hvac_runtime_24h
-      default_entity_id: sensor.upstairs_hvac_runtime_24h
-      unit_of_measurement: h
-      state: >-
-        {%- if [states.sensor.upstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max != None -%}
-          {{ [states.sensor.upstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max }}
-        {%- else -%}
-          0
-        {%- endif -%}
-      icon: >-
-        {%- if states('sensor.upstairs_cool_24h')|default(0) < states('sensor.upstairs_heat_24h')|default(0) -%}
-          mdi:fire
-        {%- elif states('sensor.upstairs_cool_24h')|default(0) > states('sensor.upstairs_heat_24h')|default(0) -%}
-          mdi:snowflake
-        {%- endif -%}
+- name: Upstairs 24Hr HVAC Runtime
+  unique_id: upstairs_hvac_runtime_24h
+  default_entity_id: sensor.upstairs_hvac_runtime_24h
+  unit_of_measurement: h
+  state: >-
+    {%- if [states.sensor.upstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max != None -%}
+      {{ [states.sensor.upstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.upstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max }}
+    {%- else -%}
+      0
+    {%- endif -%}
+  icon: >-
+    {%- if states('sensor.upstairs_cool_24h')|default(0) < states('sensor.upstairs_heat_24h')|default(0) -%}
+      mdi:fire
+    {%- elif states('sensor.upstairs_cool_24h')|default(0) > states('sensor.upstairs_heat_24h')|default(0) -%}
+      mdi:snowflake
+    {%- endif -%}
 
-    - name: Downstairs 24Hr HVAC Runtime
-      unique_id: downstairs_hvac_runtime_24h
-      default_entity_id: sensor.downstairs_hvac_runtime_24h
-      unit_of_measurement: h
-      state: >-
-        {%- if [states.sensor.downstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max != None -%}
-          {{ [states.sensor.downstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max }}
-        {%- else -%}
-          0
-        {%- endif -%}
-      icon: >-
-        {%- if states('sensor.downstairs_cool_24h')|default(0) < states('sensor.downstairs_heat_24h')|default(0) -%}
-          mdi:fire
-        {%- elif states('sensor.downstairs_cool_24h')|default(0) > states('sensor.downstairs_heat_24h')|default(0) -%}
-          mdi:snowflake
-        {%- endif -%}
+- name: Downstairs 24Hr HVAC Runtime
+  unique_id: downstairs_hvac_runtime_24h
+  default_entity_id: sensor.downstairs_hvac_runtime_24h
+  unit_of_measurement: h
+  state: >-
+    {%- if [states.sensor.downstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max != None -%}
+      {{ [states.sensor.downstairs_cool_24h.state|float(0)| round(2, default = 0), states.sensor.downstairs_heat_24h.state|float(0)| round(2, default = 0), 0]|max }}
+    {%- else -%}
+      0
+    {%- endif -%}
+  icon: >-
+    {%- if states('sensor.downstairs_cool_24h')|default(0) < states('sensor.downstairs_heat_24h')|default(0) -%}
+      mdi:fire
+    {%- elif states('sensor.downstairs_cool_24h')|default(0) > states('sensor.downstairs_heat_24h')|default(0) -%}
+      mdi:snowflake
+    {%- endif -%}
