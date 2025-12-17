@@ -6,6 +6,8 @@
 !/template/
 /template/*
 !/template/binarysensors/
+!/template/sensors/
+!/template/sensors/*
 !/command_line/
 #!custom_components/
 !*.yaml

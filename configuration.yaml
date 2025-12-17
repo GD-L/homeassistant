@@ -94,8 +94,9 @@ automation manual: !include_dir_merge_list automations/  #Custom manual Automati
 automation ui: !include automations.yaml # Automations created by UI
 #binary_sensor: !include_dir_merge_list binarysensors/
 switch: !include_dir_merge_list switches/
-template: 
+template:
   - binary_sensor: !include_dir_merge_list template/binarysensors/
+  - sensor: !include_dir_merge_list template/sensors/
 input_boolean:
 scene: !include_dir_merge_list scenes/
 #-----------------------------------------------------------------

@@ -1,0 +1,22 @@
+- sensor:
+    - name: Garage Door Status
+      unique_id: garage_door_status
+      default_entity_id: sensor.garage_door_status
+      state: >-
+        {% if is_state('binary_sensor.garage_door_opened', 'off') %}
+          Closed
+        {% else %}
+          Open
+        {% endif %}
+      icon: >-
+        {% if is_state('binary_sensor.garage_door_opened', 'off') %}
+          mdi:garage
+        {% else %}
+          mdi:garage-open
+        {% endif %}
+
+    - name: Garage Last Changed
+      unique_id: garage_last_changed
+      default_entity_id: sensor.garage_last_changed
+      state: >-
+        {{as_timestamp(states.binary_sensor.garage_door_opened.last_changed)|timestamp_custom("%a %b %m at %H:%M %p")}}

@@ -1,0 +1,21 @@
+- sensor:
+    - name: Plex LAN Bandwidth
+      unique_id: plex_lan_bandwidth
+      default_entity_id: sensor.plex_lan_bandwidth
+      unit_of_measurement: Mbps
+      icon: mdi:ethernet
+      state: "{{int(states('sensor.lan_bandwidth'))/1024| round(2, default = 0)| int(0)}}"
+
+    - name: Plex WAN Bandwidth
+      unique_id: plex_wan_bandwidth
+      default_entity_id: sensor.plex_wan_bandwidth
+      unit_of_measurement: Mbps
+      icon: mdi:ethernet
+      state: "{{int(states('sensor.wan_bandwidth'))/1024| round(2, default = 0)| int(0)}}"
+
+    - name: Plex Stream Counts
+      unique_id: plex_stream_counts
+      default_entity_id: sensor.plex_stream_counts
+      unit_of_measurement: Streams
+      icon: mdi:monitor-eye
+      state: "{{states('sensor.tautulli') | default(0) }}"
